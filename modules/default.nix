@@ -106,6 +106,7 @@ in
 
       # Desktop
       desktops.hyprland.enable = true;
+      notification.mako.enable = true;
       appLauncher.rofi = {
         enable = true;
         wayland =

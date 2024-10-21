@@ -147,7 +147,6 @@ mkModule {
         exec-once = [
           "swww-daemon"
           "${wallpaperScript}"
-          "mako"
         ];
 
         input = with config.modules.graphics; {
