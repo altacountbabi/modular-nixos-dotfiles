@@ -73,7 +73,6 @@ mkModule {
           [
             # General Management
             "$mod SHIFT, M, exit"
-            "$mod, Return, exec, kitty" # TODO: Dont hardcode this
             "$mod, Q, killactive"
 
             # Layout Management
@@ -226,8 +225,6 @@ mkModule {
           disable_splash_rendering = true;
           animate_manual_resizes = true;
           enable_swallow = true;
-          # TODO: Dont hard-code this
-          # swallow_regex = mkIf config.modules.home-manager.terminal.enable "^(${config.modules.home-manager.terminal.terminal})$";
           swallow_exception_regex = "(qemu|wev)";
           initial_workspace_tracking = 0;
         };
