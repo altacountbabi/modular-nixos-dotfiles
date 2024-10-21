@@ -22,6 +22,7 @@ in
   opts ? { },
   requirements ? [ ],
   cfg ? mkError "cfg" "module definition",
+  hm ? (cfg: { }),
 }:
 let
   mergedOpts = {
@@ -41,5 +42,7 @@ in
   inherit imports;
 
   options.modules = setAttrByPath pathList mergedOpts;
-  config = (mkIf enable (cfg configPath));
+  config = (mkIf enable (cfg configPath)) // {
+    home-manager.users."${config.modules.user.username}" = (hm configPath);
+  };
 }
