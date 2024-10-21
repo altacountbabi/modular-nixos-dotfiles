@@ -100,9 +100,21 @@ in
     };
 
     desktop = {
+      # Login Screen
       autologin.enable = true;
       dm.gdm.enable = true;
+
+      # Desktop
       desktops.hyprland.enable = true;
+      appLauncher.rofi = {
+        enable = true;
+        wayland =
+          let
+            desktops = config.modules.desktop.desktops;
+          in
+          # Add other compositors if needed:
+          desktops.hyprland.enable; # || desktops.[other wayland compositor].enable
+      };
     };
   };
 
