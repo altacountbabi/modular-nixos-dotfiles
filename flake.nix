@@ -51,7 +51,12 @@
         inherit (pkgs) mkShell;
       in
       {
-        devShells.default = mkShell { packages = with pkgs; [ just ]; };
+        devShells.default = mkShell {
+          packages = with pkgs; [
+            nixfmt-rfc-style
+            just
+          ];
+        };
       }
     );
 

@@ -1,5 +1,9 @@
+# Debugging
 repl:
     nix repl -f '<nixpkgs>'
+
+eval:
+    nix-instantiate --eval --strict eval.nix | nixfmt
 
 # Build Commands
 dryb:
