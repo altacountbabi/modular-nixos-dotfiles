@@ -101,8 +101,10 @@ in
 
     desktop = {
       # Login Screen
-      autologin.enable = true;
-      dm.gdm.enable = true;
+      dm = {
+        autologin.enable = true;
+        gdm.enable = true;
+      };
 
       # Desktop
       desktops.hyprland.enable = true;

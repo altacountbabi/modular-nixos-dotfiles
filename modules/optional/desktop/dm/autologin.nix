@@ -7,7 +7,7 @@
 
 mkModule {
   name = "autologin";
-  path = "desktop.autologin";
+  path = "desktop.dm.autologin";
   cfg =
     cfg:
     let
