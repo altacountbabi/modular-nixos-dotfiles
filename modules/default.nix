@@ -1,5 +1,6 @@
 {
   config,
+  system,
   inputs,
   pkgs,
   lib,
@@ -32,6 +33,7 @@ let
           inherit
             mkModule
             config
+            system
             inputs
             pkgs
             lib

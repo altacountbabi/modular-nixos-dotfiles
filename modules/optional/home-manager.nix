@@ -1,7 +1,9 @@
 {
   mkModule,
+  system,
   config,
   inputs,
+  pkgs,
   lib,
   ...
 }:
@@ -32,6 +34,15 @@ mkModule {
       ];
       default = "24.05";
     };
+    packages = mkOption {
+      type = listOf package;
+      default = with pkgs; [
+        inputs.zen-browser.packages."${system}".specific
+        youtube-music
+        pavucontrol
+        armcord
+      ];
+    };
   };
   cfg =
     cfg:
@@ -50,6 +61,8 @@ mkModule {
             inherit username;
             homeDirectory = "/home/${username}";
             stateVersion = cfg.version;
+
+            inherit (cfg) packages;
           };
 
           programs.home-manager.enable = true;

@@ -71,13 +71,6 @@ mkModule {
         micro
         git
         bun
-
-        # General Applications
-        # TODO: Move most of these to home-manager
-        # inputs.zen-browser.packages."${system}".specific
-        youtube-music
-        pavucontrol
-        armcord
       ]
       ++ cfg.extraPackages;
 
