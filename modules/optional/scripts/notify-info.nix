@@ -8,7 +8,7 @@ pkgs.writeShellApplication {
   runtimeInputs = with pkgs; [ libnotify ];
   text =
     let
-      volumeScript = getExe (import ./_volume.nix pkgs);
+      volumeScript = getExe (import ./volume.nix pkgs);
       timeout = 5000;
     in
     ''
