@@ -96,7 +96,11 @@ in
       vscode-server.enable = true;
     };
 
-    desktops.hyprland.enable = true;
+    desktop = {
+      autologin.enable = true;
+      dm.gdm.enable = true;
+      desktops.hyprland.enable = true;
+    };
   };
 
   nix.settings.experimental-features = [

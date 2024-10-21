@@ -12,10 +12,34 @@ let
     getExe
     types
     ;
+
+  getScript = name: getExe (import ../../scripts/${name}.nix { inherit lib pkgs; });
+
+  notifyInfoScript = getScript "notify-info";
+  volumeScript = getScript "volume";
+  wallpaperScript = getExe (
+    pkgs.writeShellApplication {
+      name = "wallpaper";
+      runtimeInputs = with pkgs; [ swww ];
+      text =
+        let
+          # Relative to home directory
+          wallpaperPath = "Pictures/wallpapers";
+        in
+        ''
+          if ! pidof swww-daemon > /dev/null; then
+            hyprctl -i 0 dispatch exec swww-daemon
+          fi
+
+          random_wallpaper=$(find "$HOME/${wallpaperPath}" | shuf -n 1)
+          swww img "$random_wallpaper"
+        '';
+    }
+  );
 in
 mkModule {
   name = "hyprland";
-  path = "desktops.hyprland";
+  path = "desktop.desktops.hyprland";
   opts = with types; {
     volumeStep = mkOption {
       type = int;
@@ -28,34 +52,5 @@ mkModule {
     };
     hyprcursor = mkEnableOption "hyprcursor";
   };
-  cfg =
-    cfg:
-    let
-      getScript = name: getExe (import ../../scripts/_${name}.nix { inherit lib pkgs; });
-
-      notifyInfoScript = getScript "notify-info";
-      volumeScript = getScript "volume";
-      wallpaperScript = getExe (
-        pkgs.writeShellApplication {
-          name = "wallpaper";
-          runtimeInputs = with pkgs; [ swww ];
-          text =
-            let
-              # Relative to home directory
-              wallpaperPath = "Pictures/wallpapers";
-            in
-            ''
-              if ! pidof swww-daemon > /dev/null; then
-                hyprctl -i 0 dispatch exec swww-daemon
-              fi
-
-              random_wallpaper=$(find "$HOME/${wallpaperPath}" | shuf -n 1)
-              swww img "$random_wallpaper"
-            '';
-        }
-      );
-    in
-    {
-      programs.hyprland.enable = true;
-    };
+  cfg = cfg: { programs.hyprland.enable = true; };
 }

@@ -33,6 +33,10 @@ mkModule {
     };
   };
   cfg = cfg: {
-
+    hardware.graphics.enable = true;
+    services.xserver = {
+      enable = true;
+      inherit (cfg) xkb;
+    };
   };
 }
