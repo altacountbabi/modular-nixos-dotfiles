@@ -90,6 +90,7 @@ in
     sops.enable = true;
     flatpak.enable = true;
     graphics.enable = true;
+    home-manager.enable = true;
     services = {
       keyd.enable = true;
       ssh.enable = true;
