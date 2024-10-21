@@ -58,6 +58,11 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
 
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     flatpaks.url = "github:GermanBread/declarative-flatpak/stable-v3";
     vscode-server.url = "github:nix-community/nixos-vscode-server";
     flake-utils.url = "github:numtide/flake-utils";
