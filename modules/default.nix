@@ -99,6 +99,8 @@ in
       vscode-server.enable = true;
     };
 
+    colorscheme.catppuccin.enable = true;
+
     desktop = {
       # Login Screen
       dm = {
