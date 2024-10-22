@@ -34,6 +34,7 @@ mkModule {
     home.packages = with pkgs; [ mako ];
     services.mako = mkIf (cfg.enable && config.modules.home-manager.enable) {
       enable = true;
+      catppuccin.enable = config.modules.colorscheme.catppuccin.enable;
       borderRadius = cfg.cornerRadius;
       inherit (cfg) anchor;
     };

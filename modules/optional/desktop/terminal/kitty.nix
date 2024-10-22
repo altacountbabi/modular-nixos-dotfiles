@@ -82,6 +82,7 @@ mkModule {
 
     programs.kitty = {
       enable = true;
+      catppuccin.enable = config.modules.colorscheme.catppuccin.enable;
       settings = {
         font_family = cfg.font.family;
         font_size = cfg.font.size;

@@ -67,6 +67,7 @@ mkModule {
 
     wayland.windowManager.hyprland = {
       enable = true;
+      catppuccin.enable = config.modules.colorscheme.catppuccin.enable;
       settings = {
         "$mod" = "SUPER";
         bind =

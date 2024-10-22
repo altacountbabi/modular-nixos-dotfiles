@@ -17,9 +17,12 @@ mkModule {
   };
   hm = cfg: {
     home.packages = with pkgs; [ (if cfg.wayland then rofi-wayland else rofi) ];
-    programs.rofi.enable = true;
-    wayland.windowManager.hyprland.settings.bind = mkIf config.modules.desktop.desktops.hyprland.enable [
-      "$mod, Space, exec, rofi -show drun"
-    ];
+    programs.rofi = {
+      enable = true;
+      catppuccin.enable = config.modules.colorscheme.catppuccin.enable;
+    };
+    wayland.windowManager.hyprland.settings.bind =
+      mkIf config.modules.desktop.desktops.hyprland.enable
+        [ "$mod, Space, exec, rofi -show drun" ];
   };
 }
