@@ -95,7 +95,8 @@ in
     home-manager.enable = true;
     services = {
       vscode-server.enable = true;
-      jellyfin.enable = true;
+      mediaServer.enable = true;
+      docker.enable = true;
       keyd.enable = true;
       ssh.enable = true;
       ftp.enable = true;
