@@ -60,6 +60,7 @@ mkModule {
         libnotify # notify-send
         neofetch
         delta # better `diff`
+        just # command runner
         tree
         htop
         btop

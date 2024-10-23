@@ -10,6 +10,7 @@
 
   modules = {
     graphics.gpuType = "nvidia";
+    network.hostname = "laptop-nixos";
   };
 
   # This value determines the NixOS release from which the default
