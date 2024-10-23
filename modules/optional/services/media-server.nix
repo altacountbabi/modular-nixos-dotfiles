@@ -51,6 +51,7 @@ mkModule {
         enable = true; # Enable transmission daemon
         openRPCPort = true; # Open firewall for RPC
         settings = {
+          rpc-whitelist-enabled = false;
           rpc-bind-address = "0.0.0.0";
           rpc-enabled = true;
           rpc-port = 9091;
