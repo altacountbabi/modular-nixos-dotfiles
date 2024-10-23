@@ -27,7 +27,11 @@ mkModule {
         cacheDir = "${cfg.dataDir}/cache";
         openFirewall = true;
 
-        jellyseer.enable = true;
+      };
+
+      jellyseerr = {
+        enable = true;
+        openFirewall = true;
       };
 
       # I would download a car
