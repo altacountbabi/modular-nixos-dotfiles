@@ -94,9 +94,10 @@ in
     graphics.enable = true;
     home-manager.enable = true;
     services = {
+      vscode-server.enable = true;
+      jellyfin.enable = true;
       keyd.enable = true;
       ssh.enable = true;
-      vscode-server.enable = true;
     };
 
     colorscheme.catppuccin.enable = true;
