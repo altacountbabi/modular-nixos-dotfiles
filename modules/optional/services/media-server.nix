@@ -26,7 +26,6 @@ mkModule {
         dataDir = "${cfg.dataDir}/data";
         cacheDir = "${cfg.dataDir}/cache";
         openFirewall = true;
-
       };
 
       jellyseerr = {
@@ -52,7 +51,6 @@ mkModule {
         enable = true; # Enable transmission daemon
         openRPCPort = true; # Open firewall for RPC
         settings = {
-          download-dir = "${cfg.dataDir}/movies";
           rpc-bind-address = "0.0.0.0";
           rpc-enabled = true;
           rpc-port = 9091;
