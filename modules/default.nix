@@ -98,6 +98,7 @@ in
       jellyfin.enable = true;
       keyd.enable = true;
       ssh.enable = true;
+      ftp.enable = true;
     };
 
     colorscheme.catppuccin.enable = true;
