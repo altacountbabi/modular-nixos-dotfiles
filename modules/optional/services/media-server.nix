@@ -19,17 +19,33 @@ mkModule {
     };
   };
   cfg = cfg: {
+    virtualisation.oci-containers = {
+      backend = "docker";
+      containers = {
+        jellyseerr = {
+          image = "fallenbagel/jellyseerr:latest";
+          ports = [ "5055:5055" ];
+          environment = {
+            LOG_LEVEL = "debug";
+            TZ = "Europe/Bucharest";
+          };
+          volumes = [
+            "${cfg.dataDir}/jellyseerr:/app/config"
+          ];
+        };
+      };
+    };
+
+    networking.firewall.allowedTCPPorts = [
+      5055 # jellyseerr
+    ];
+
     services = {
       jellyfin = {
         enable = true;
         inherit user;
         dataDir = "${cfg.dataDir}/data";
         cacheDir = "${cfg.dataDir}/cache";
-        openFirewall = true;
-      };
-
-      jellyseerr = {
-        enable = true;
         openFirewall = true;
       };
 
@@ -50,7 +66,9 @@ mkModule {
       transmission = {
         enable = true; # Enable transmission daemon
         openRPCPort = true; # Open firewall for RPC
+        inherit user;
         settings = {
+          download-dir = "${cfg.dataDir}/transmissionDL";
           rpc-whitelist-enabled = false;
           rpc-bind-address = "0.0.0.0";
           rpc-enabled = true;
