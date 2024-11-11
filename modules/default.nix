@@ -113,7 +113,7 @@ in
       notification.mako.enable = true;
       terminal.kitty.enable = true;
       appLauncher.rofi = {
-        enable = false;
+        enable = true;
         wayland =
           let
             desktops = config.modules.desktop.desktops;

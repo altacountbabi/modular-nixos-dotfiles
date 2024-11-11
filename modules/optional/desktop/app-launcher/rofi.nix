@@ -16,13 +16,17 @@ mkModule {
     wayland = mkEnableOption "wayland support";
   };
   hm = cfg: {
-    home.packages = with pkgs; [ (if cfg.wayland then rofi-wayland else rofi) ];
-    programs.rofi = {
+    programs.rofi = with pkgs; {
       enable = true;
+      package = (if cfg.wayland then rofi-wayland else rofi);
+      plugins = [ (if cfg.wayland then rofi-emoji-wayland else rofi-emoji) ];
       catppuccin.enable = config.modules.colorscheme.catppuccin.enable;
     };
     wayland.windowManager.hyprland.settings.bind =
       mkIf config.modules.desktop.desktops.hyprland.enable
-        [ "$mod, Space, exec, rofi -show drun" ];
+        [
+          "$mod, Space, exec, rofi -show drun"
+          "ALT, comma, exec, rofi -show emoji"
+        ];
   };
 }
