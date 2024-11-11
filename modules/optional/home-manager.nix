@@ -37,7 +37,8 @@ mkModule {
     packages = mkOption {
       type = listOf package;
       default = with pkgs; [
-        inputs.zen-browser.packages."${system}".specific
+        # inputs.zen-browser.packages."${system}".specific
+        (import ../../pkgs/zen-browser.nix { inherit pkgs; })
         youtube-music
         pavucontrol
         legcord
