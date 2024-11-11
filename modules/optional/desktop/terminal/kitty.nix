@@ -84,9 +84,9 @@ mkModule {
       enable = true;
       catppuccin.enable = config.modules.colorscheme.catppuccin.enable;
       settings = {
+        # Font
         font_family = cfg.font.family;
         font_size = cfg.font.size;
-        # Dont you love it when options are inverted for no reason? I sure do
         disable_ligatures = (
           if cfg.ligatures then
             "never"
@@ -96,11 +96,21 @@ mkModule {
             cfg.ligatures
         );
         box_drawing_scale = "0.1, 1, 1.5, 2";
+
+        # Graphics
         sync_to_monitor = true;
+        resize_debounce_time = 0;
+
+        # Behaviour
+        confirm_os_window_close = 0;
+
+        # Visual / Layout
         window_padding_width = cfg.padding;
         window_margin_width = cfg.padding;
-        background_opacity = builtins.toString cfg.opacity;
+        background_opacity = toString cfg.opacity;
         placement_strategy = "center";
+
+        # Cursor
         cursor_shape = (
           if cfg.cursor.beam.enable then
             "beam"
