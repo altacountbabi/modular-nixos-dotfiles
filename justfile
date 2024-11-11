@@ -12,11 +12,16 @@ dryb:
 b:
     sudo nixos-rebuild build --flake .\#$(hostname) --option eval-cache false --show-trace
 
-
-# Switch Command
+# NixOS Commands
 switch:
     sudo nixos-rebuild switch --flake .\#$(hostname) --option eval-cache false --show-trace
 
+update:
+    nix flake update
+    just switch
+
+gc:
+    sudo nix-collect-garbage -d
 
 # VM Commands
 vm:
