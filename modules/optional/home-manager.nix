@@ -40,7 +40,7 @@ mkModule {
         inputs.zen-browser.packages."${system}".specific
         youtube-music
         pavucontrol
-        armcord
+        legcord
       ];
     };
   };
