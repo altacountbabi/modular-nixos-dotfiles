@@ -11,6 +11,12 @@
   modules = {
     graphics.gpuType = "nvidia";
     network.hostname = "laptop-nixos";
+
+    services = {
+      mediaServer.enable = true;
+      docker.enable = true;
+      ftp.enable = true;
+    };
   };
 
   # This value determines the NixOS release from which the default

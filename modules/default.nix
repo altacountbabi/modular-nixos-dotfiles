@@ -95,11 +95,8 @@ in
     home-manager.enable = true;
     services = {
       vscode-server.enable = true;
-      mediaServer.enable = true;
-      docker.enable = true;
       keyd.enable = true;
       ssh.enable = true;
-      ftp.enable = true;
     };
 
     colorscheme.catppuccin.enable = true;
