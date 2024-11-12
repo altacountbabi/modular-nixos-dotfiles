@@ -99,6 +99,10 @@ in
       ssh.enable = true;
     };
 
+    programming-language = {
+      rust.enable = true;
+    };
+
     colorscheme.catppuccin.enable = true;
 
     desktop = {
@@ -129,5 +133,10 @@ in
     "flakes"
   ];
 
-  nixpkgs.config.allowUnfree = true;
+  # Overlays
+
+  nixpkgs = {
+    config.allowUnfree = true;
+    overlays = [ inputs.rust-overlay.overlays.default ];
+  };
 }
