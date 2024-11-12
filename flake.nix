@@ -49,9 +49,10 @@
       let
         pkgs = import nixpkgs { inherit system; };
       in
+      with pkgs;
       {
-        devShells.default = pkgs.mkShell {
-          packages = with pkgs; [
+        devShells.default = mkShell {
+          packages = [
             nixfmt-rfc-style
             just
           ];
