@@ -23,7 +23,7 @@
           map (host: {
             name = host.host;
             value = nixosSystem (rec {
-              system = host.system;
+              inherit (host) system;
               specialArgs = {
                 inherit inputs system;
               };
@@ -48,10 +48,9 @@
       system:
       let
         pkgs = import nixpkgs { inherit system; };
-        inherit (pkgs) mkShell;
       in
       {
-        devShells.default = mkShell {
+        devShells.default = pkgs.mkShell {
           packages = with pkgs; [
             nixfmt-rfc-style
             just
