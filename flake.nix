@@ -73,6 +73,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     flatpaks.url = "github:GermanBread/declarative-flatpak/stable-v3";
     vscode-server.url = "github:nix-community/nixos-vscode-server";
     zen-browser.url = "github:0xc000022070/zen-browser-flake";

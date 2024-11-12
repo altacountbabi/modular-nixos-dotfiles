@@ -103,6 +103,11 @@ in
       rust.enable = true;
     };
 
+    editor = {
+      vscode.enable = true;
+      micro.enable = true;
+    };
+
     colorscheme.catppuccin.enable = true;
 
     desktop = {
