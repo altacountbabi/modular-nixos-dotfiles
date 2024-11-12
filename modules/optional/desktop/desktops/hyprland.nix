@@ -18,10 +18,11 @@ let
 
   notifyInfoScript = getScript "notify-info";
   volumeScript = getScript "volume";
-  wallpaperScript = getExe (
-    pkgs.writeShellApplication {
+  wallpaperScript =
+    with pkgs;
+    getExe (writeShellApplication {
       name = "wallpaper";
-      runtimeInputs = with pkgs; [ swww ];
+      runtimeInputs = [ swww ];
       text =
         let
           # Relative to home directory
@@ -35,8 +36,7 @@ let
           random_wallpaper=$(find "$HOME/${wallpaperPath}" | shuf -n 1)
           swww img "$random_wallpaper"
         '';
-    }
-  );
+    });
 in
 mkModule {
   name = "hyprland";
@@ -148,9 +148,12 @@ mkModule {
             "$mod, mouse:272, movewindow"
             "$mod, mouse:273, resizewindow"
           ];
+
+          # Startup Apps
           exec-once = [
-            "swww-daemon"
-            "${wallpaperScript}"
+            "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1" # privilege escalation gui popup
+            "swww-daemon" # wallpaper daemon
+            "${wallpaperScript}" # set random wallpaper
           ];
 
           input = with config.modules.graphics; {
