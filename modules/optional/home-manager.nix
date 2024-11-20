@@ -39,6 +39,7 @@ mkModule {
       default = with pkgs; [
         youtube-music
         pavucontrol
+        obs-studio
       ];
     };
   };
