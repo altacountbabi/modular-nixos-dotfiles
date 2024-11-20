@@ -17,6 +17,11 @@
       docker.enable = true;
       ftp.enable = true;
     };
+
+    desktop = {
+      browser.zen.autoStart = false;
+      discord.autoStart = false;
+    };
   };
 
   # This value determines the NixOS release from which the default

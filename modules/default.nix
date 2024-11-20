@@ -130,6 +130,16 @@ in
           # Add other compositors if needed:
           desktops.hyprland.enable; # || desktops.[other wayland compositor].enable
       };
+
+      # Apps
+      browser.zen = {
+        enable = true;
+        autoStart = true;
+      };
+      discord = {
+        enable = true;
+        autoStart = true;
+      };
     };
   };
 
@@ -137,8 +147,6 @@ in
     "nix-command"
     "flakes"
   ];
-
-  # Overlays
 
   nixpkgs = {
     config.allowUnfree = true;

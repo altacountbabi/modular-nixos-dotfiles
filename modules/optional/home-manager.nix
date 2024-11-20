@@ -37,10 +37,8 @@ mkModule {
     packages = mkOption {
       type = listOf package;
       default = with pkgs; [
-        inputs.zen-browser.packages."${system}".specific
         youtube-music
         pavucontrol
-        legcord
       ];
     };
   };
