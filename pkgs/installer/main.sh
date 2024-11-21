@@ -52,4 +52,4 @@ if ! gum confirm --default=false "Are you sure you want to install to $DISK? Thi
     exit 0
 fi
 
-gum spin --spinner minidot --title "Installing NixOS..." -- sleep 5
+gum spin --spinner line --title "Installing NixOS..." -- sleep 5
