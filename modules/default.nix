@@ -89,10 +89,11 @@ in
     };
 
     # Optional Modules
-    sops.enable = true;
-    flatpak.enable = true;
-    graphics.enable = true;
     home-manager.enable = true;
+    graphics.enable = true;
+    flatpak.enable = true;
+    disko.enable = false;
+    sops.enable = true;
     services = {
       vscode-server.enable = true;
       keyd.enable = true;
