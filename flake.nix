@@ -58,6 +58,17 @@
           ];
         };
       }
+    )
+    // (
+      let
+        pkgs = import nixpkgs { system = "x86_64-linux"; };
+      in
+      {
+        packages.x86_64-linux = {
+          installer = pkgs.callPackage ./pkgs/installer { inherit pkgs; };
+          default = self.packages.x86_64-linux.installer;
+        };
+      }
     );
 
   inputs = {
