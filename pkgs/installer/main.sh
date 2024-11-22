@@ -7,7 +7,7 @@ if [ ! -d "/tmp/dotfiles/.git" ]; then
     git clone https://github.com/altacountbabi/modular-nixos-dotfiles "/tmp/dotfiles"
 fi
 
-DISKO_CONFIG="/tmp/dotfiles/modules/optional/disko.nix"
+DISKO_CONFIG="/tmp/dotfiles/pkgs/installer/disko.nix"
 
 if [ ! -e "$DISKO_CONFIG" ]; then
     echo "Error: unable to find disko config at \"$DISKO_CONFIG\""
@@ -15,12 +15,12 @@ fi
 
 export GUM_CHOOSE_HEADER_FOREGROUND=""
 export GUM_CHOOSE_CURSOR_FOREGROUND=""
-export GUM_CHOOSE_SELECTED_FOREGROUND="4"
+export GUM_CHOOSE_SELECTED_FOREGROUND="38"
 export GUM_INPUT_CURSOR_FOREGROUND=""
 export GUM_INPUT_CURSOR_FOREGROUND=""
 export GUM_CONFIRM_PROMPT_FOREGROUND=""
-export GUM_CONFIRM_SELECTED_BACKGROUND="4"
-export GUM_SPIN_SPINNER_FOREGROUND="4"
+export GUM_CONFIRM_SELECTED_BACKGROUND="38"
+export GUM_SPIN_SPINNER_FOREGROUND="38"
 
 HOSTS=$(find /tmp/dotfiles/hosts -type f -name "config.nix" -printf "%h\n" | awk -F'/' '{print $(NF)}')
 CHOICES=$(echo -e "$HOSTS\nCreate New")
@@ -52,4 +52,5 @@ if ! gum confirm --default=false "Are you sure you want to install to $DISK? Thi
     exit 0
 fi
 
-gum spin --spinner line --title "Installing NixOS..." -- sleep 5
+gum spin --spinner line --title "Partitioning disks..." -- sudo nix run github:nix-community/disko --extra-experimental-features "nix-command flakes" --no-write-lock-file -- --mode destroy,format,mount "/tmp/dotfiles/pkgs/installer/disko.nix"
+gum spin --spinner line --title "Installing NixOS... (this may take a while)" -- sudo nixos-install --flake "/tmp/dotfiles/#$TARGET_HOST"
