@@ -7,7 +7,7 @@ if [ ! -d "/tmp/dotfiles/.git" ]; then
     git clone https://github.com/altacountbabi/modular-nixos-dotfiles "/tmp/dotfiles"
 fi
 
-DISKO_CONFIG="/tmp/dotfiles/pkgs/installer/disko.nix"
+DISKO_CONFIG="/tmp/dotfiles/modules/optional/disko.nix"
 
 if [ ! -e "$DISKO_CONFIG" ]; then
     echo "Error: unable to find disko config at \"$DISKO_CONFIG\""
