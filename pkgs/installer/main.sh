@@ -54,7 +54,7 @@ cp "/tmp/hwconf/etc/nixos/hardware-configuration.nix" /tmp/dotfiles/hosts/"$TARG
 DISK=$(lsblk -d -o NAME,TYPE | grep -E 'disk|part' | awk '{print "/dev/" $1}' | gum choose --header "What disk do you want to install to?")
 
 # Set disko module `device` option
-sed -i "s/DISKO_DEVICE/$DISK/g" /tmp/dotfiles/hosts/"$NEW_HOST_NAME"/config.nix
+sed -i "s/DISKO_DEVICE/$DISK/g" /tmp/dotfiles/hosts/"$TARGET_HOST"/config.nix
 
 if ! gum confirm --default=false "Are you sure you want to install to $DISK? This operation will ERASE ALL DATA from the disk."; then
     echo "Exiting"
