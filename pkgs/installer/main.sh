@@ -47,7 +47,7 @@ fi
 
 echo "Generating hardware config..."
 nixos-generate-config --root /tmp/hwconf --no-filesystems
-cp "/tmp/hwconf/etc/nixos/hardware-configuration.nix" /tmp/dotfiles/hosts/"$NEW_HOST_NAME"/hardware.nix
+cp "/tmp/hwconf/etc/nixos/hardware-configuration.nix" /tmp/dotfiles/hosts/"$TARGET_HOST"/hardware.nix
 
 # Prompt for what disk to install to:
 # list disks | remove first line of lsblk | prefix disk name with `/dev/` | choose from disks
