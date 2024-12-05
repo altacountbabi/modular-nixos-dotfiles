@@ -45,7 +45,8 @@ if [ "$TARGET_HOST" = "Create New" ]; then
     TARGET_HOST=$NEW_HOST_NAME
 fi
 
-gum spin --title "Generating hardware config..." -- nixos-generate-config --root /tmp/hwconfig --no-filesystems
+echo "Generating hardware config..."
+nixos-generate-config --root /tmp/hwconfig --no-filesystems
 cp "/tmp/hwconf/etc/nixos/hardware-configuration.nix" /tmp/dotfiles/hosts/"$NEW_HOST_NAME"/hardware.nix
 
 # Prompt for what disk to install to:
