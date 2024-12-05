@@ -11,6 +11,11 @@
   modules = {
     graphics.gpuType = "GPU_TYPE";
     network.hostname = "HOSTNAME";
+
+    disko = {
+      enable = true;
+      device = "DISKO_DEVICE";
+    };
   };
 
   # This value determines the NixOS release from which the default
