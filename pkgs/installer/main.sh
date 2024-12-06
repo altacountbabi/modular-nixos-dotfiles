@@ -69,6 +69,8 @@ if ! gum confirm --default=false "Are you sure you want to install to $DISK? Thi
     exit 0
 fi
 
+# disko-install has some issues with `nounset`
+set +o nounset
 sudo nix run "github:nix-community/disko/latest#disko-install" --extra-experimental-features "nix-command flakes" -- --write-efi-boot-entries --flake "/tmp/dotfiles/#$TARGET_HOST" --disk "main" "$DISK"
 # gum spin --title "Partitioning disks..." -- sudo nix run github:nix-community/disko --extra-experimental-features "nix-command flakes" --no-write-lock-file -- --mode destroy,format,mount "/tmp/dotfiles/pkgs/installer/disko.nix"
 # gum spin --title "Installing NixOS... (this may take a while)" -- sudo nixos-install --flake "/tmp/dotfiles/#$TARGET_HOST"
