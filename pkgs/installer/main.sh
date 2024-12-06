@@ -1,3 +1,4 @@
+# shellcheck disable=SC2148
 if [ "$(id -u)" -eq 0 ]; then
     echo "Error: this script can not be ran as root."
     exit 1
@@ -74,7 +75,7 @@ max_jobs=$((num_cores < 4 ? num_cores : 4))
 
 echo "Detected $num_cores cores. Setting max-jobs to $max_jobs."
 sudo mkdir -p /etc/nix
-sudo echo "max-jobs = $max_jobs" >> /etc/nix/nix.conf
+echo "max-jobs = $max_jobs" | sudo tee -a /etc/nix/nix.conf > /dev/null
 
 sudo nix run "github:nix-community/disko/latest#disko-install" --extra-experimental-features "nix-command flakes" -- --write-efi-boot-entries --flake "/tmp/dotfiles/#$TARGET_HOST" --disk "main" "$DISK"
 # gum spin --title "Partitioning disks..." -- sudo nix run github:nix-community/disko --extra-experimental-features "nix-command flakes" --no-write-lock-file -- --mode destroy,format,mount "/tmp/dotfiles/pkgs/installer/disko.nix"
