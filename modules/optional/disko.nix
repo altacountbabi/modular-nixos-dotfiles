@@ -19,7 +19,7 @@ mkModule {
     };
     devices = mkOption {
       # im not writing types for allat
-      type = any;
+      type = anything;
       default = {
         disk.main = {
           inherit device;
