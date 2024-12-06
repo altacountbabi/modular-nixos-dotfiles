@@ -42,6 +42,7 @@
           system = "x86_64-linux";
           host = "laptop-nixos";
         }
+        # config-placeholder
       ];
     }
     // flake-utils.lib.eachDefaultSystem (

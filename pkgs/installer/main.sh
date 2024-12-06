@@ -27,7 +27,6 @@ HOSTS=$(find /tmp/dotfiles/hosts -type f -name "config.nix" -printf "%h\n" | awk
 CHOICES=$(echo -e "$HOSTS\nCreate New")
 TARGET_HOST=$(echo -e "$CHOICES" | gum choose --header "Please pick a host to use or create a new one")
 
-# TODO: Add the new host to the `mkHosts` call so that the new host is actually usable.
 if [ "$TARGET_HOST" = "Create New" ]; then
     NEW_HOST_NAME=$(gum input --placeholder "New host name")
     echo "What GPU brand do you have?"
@@ -42,6 +41,14 @@ if [ "$TARGET_HOST" = "Create New" ]; then
 
     # Set hostname
     sed -i "s/HOSTNAME/$NEW_HOST_NAME/g" /tmp/dotfiles/hosts/"$NEW_HOST_NAME"/config.nix
+
+    # Add new host to flake
+    sed -i '/# config-placeholder/c\
+        {\
+          system = "x86_64-linux";\
+          host = '"\"$NEW_HOST_NAME\""';\
+        }\
+        # config-placeholder' /tmp/dotfiles/flake.nix
 
     TARGET_HOST=$NEW_HOST_NAME
 fi
