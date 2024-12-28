@@ -32,10 +32,6 @@ in
   };
 
   fileSystems = {
-    "/" = {
-      device = "/dev/disk/by-uuid/ccf4e43e-ea6f-403b-8d3d-4b04691fd361";
-      fsType = "ext4";
-    };
     "/boot" = {
       device = "/dev/disk/by-uuid/40EA-6A4E";
       fsType = "vfat";
@@ -43,6 +39,14 @@ in
         "fmask=0077"
         "dmask=0077"
       ];
+    };
+    "/" = {
+      device = "/dev/disk/by-uuid/ccf4e43e-ea6f-403b-8d3d-4b04691fd361";
+      fsType = "ext4";
+    };
+    "/mnt/ssd" = {
+      device = "/dev/sda1";
+      fsType = "ext4";
     };
   };
 
