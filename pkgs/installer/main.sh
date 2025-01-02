@@ -80,4 +80,11 @@ fi
 echo "Partitioning disks..."
 sudo nix run github:nix-community/disko --extra-experimental-features "nix-command flakes" --no-write-lock-file -- --mode destroy,format,mount /tmp/dotfiles/hosts/"$TARGET_HOST"/disko.nix --yes-wipe-all-disks
 echo "Installing NixOS... (this may take a while)"
+
+(
+    # shellcheck disable=SC2164
+    cd /tmp/dotfiles
+    git add -A
+)
+
 sudo nixos-install --flake "/tmp/dotfiles/#$TARGET_HOST"
