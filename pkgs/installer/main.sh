@@ -36,6 +36,8 @@ if [ "$TARGET_HOST" = "Create New" ]; then
     mkdir -p /tmp/dotfiles/hosts/"$NEW_HOST_NAME"
     # Copy base config
     cp /tmp/dotfiles/pkgs/installer/base.nix /tmp/dotfiles/hosts/"$NEW_HOST_NAME"/config.nix
+    # Copy disko config
+    cp /tmp/dotfiles/pkgs/installer/disko_base.nix /tmp/dotfiles/hosts/"$NEW_HOST_NAME"/disko.nix
 
     # Set GPU type
     sed -i "s/GPU_TYPE/$GPU_TYPE/g" /tmp/dotfiles/hosts/"$NEW_HOST_NAME"/config.nix

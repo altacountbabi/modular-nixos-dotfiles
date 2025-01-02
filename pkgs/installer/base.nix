@@ -6,7 +6,10 @@
 }:
 
 {
-  imports = [ ./hardware.nix ];
+  imports = [
+    ./hardware.nix
+    ./disko.nix
+  ];
 
   modules = {
     graphics.gpuType = "GPU_TYPE";
