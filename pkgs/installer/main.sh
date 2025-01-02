@@ -78,6 +78,6 @@ fi
 
 # sudo nix run "github:nix-community/disko/latest#disko-install" --extra-experimental-features "nix-command flakes" -- --write-efi-boot-entries --flake "/tmp/dotfiles/#$TARGET_HOST" --disk "main" "$DISK"
 echo "Partitioning disks..."
-sudo nix run github:nix-community/disko --extra-experimental-features "nix-command flakes" --no-write-lock-file -- --mode destroy,format,mount "/tmp/dotfiles/pkgs/installer/disko.nix" --yes-wipe-all-disks
+sudo nix run github:nix-community/disko --extra-experimental-features "nix-command flakes" --no-write-lock-file -- --mode destroy,format,mount /tmp/dotfiles/hosts/"$TARGET_HOST"/disko.nix --yes-wipe-all-disks
 echo "Installing NixOS... (this may take a while)"
 sudo nixos-install --flake "/tmp/dotfiles/#$TARGET_HOST"
