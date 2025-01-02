@@ -87,12 +87,8 @@ echo "Installing NixOS... (this may take a while)"
 )
 
 if sudo nixos-install --flake "/tmp/dotfiles/#$TARGET_HOST"; then
-    if find /mnt/home -maxdepth 1 -type d | grep -q .; then
-        cp -r /tmp/dotfiles /mnt/home/dotfiles
-        echo "Copied config to installation."
-    else
-        echo "No user was setup in installation, unable to copy config."
-    fi
+    cp -r /tmp/dotfiles /mnt/home/*
+    echo "Copied config to all users in installation."
 
     if gum confirm --default=yes "Installation complete, would you like to reboot now?"; then
         sudo reboot
