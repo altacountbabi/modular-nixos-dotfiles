@@ -76,15 +76,26 @@ if ! gum confirm --default=false "Are you sure you want to install to $DISK? Thi
     exit 0
 fi
 
-# sudo nix run "github:nix-community/disko/latest#disko-install" --extra-experimental-features "nix-command flakes" -- --write-efi-boot-entries --flake "/tmp/dotfiles/#$TARGET_HOST" --disk "main" "$DISK"
 echo "Partitioning disks..."
 sudo nix run github:nix-community/disko --extra-experimental-features "nix-command flakes" --no-write-lock-file -- --mode destroy,format,mount /tmp/dotfiles/hosts/"$TARGET_HOST"/disko.nix --yes-wipe-all-disks
-echo "Installing NixOS... (this may take a while)"
 
+echo "Installing NixOS... (this may take a while)"
 (
     # shellcheck disable=SC2164
     cd /tmp/dotfiles
     git add -A
 )
 
-sudo nixos-install --flake "/tmp/dotfiles/#$TARGET_HOST"
+if find /mnt/home -maxdepth 1 -type d | grep -q .; then
+    cp -r /tmp/dotfiles /mnt/home/dotfiles
+    echo "Copied config to installation."
+else
+    echo "No user was setup in installation, unable to copy config."
+fi
+
+
+if sudo nixos-install --flake "/tmp/dotfiles/#$TARGET_HOST"; then
+    if gum confirm --default=yes "Installation complete, would you like to reboot now?"; then
+        sudo reboot
+    fi
+fi
