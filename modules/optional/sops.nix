@@ -2,13 +2,9 @@
   mkModule,
   config,
   inputs,
-  lib,
   ...
 }:
 
-let
-  inherit (lib) mkOption;
-in
 mkModule {
   name = "secret management";
   path = "sops";

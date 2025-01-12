@@ -26,6 +26,7 @@ mkModule {
       mkIf config.modules.desktop.desktops.hyprland.enable
         [
           "$mod, Space, exec, rofi -show drun"
+          # Emoji picker is broken right now (probably)
           "ALT, comma, exec, rofi -show emoji"
         ];
   };

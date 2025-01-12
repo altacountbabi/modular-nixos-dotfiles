@@ -8,6 +8,7 @@ mkModule {
       enable = true;
       keyboards.default = {
         ids = [ "*" ];
+        # Switch caps and escape
         settings.main = {
           capslock = "escape";
           escape = "capslock";

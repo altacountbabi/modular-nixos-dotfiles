@@ -71,7 +71,6 @@ mkModule {
         vscode
         micro
         git
-        bun
       ]
       ++ cfg.extraPackages;
 

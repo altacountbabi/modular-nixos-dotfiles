@@ -27,7 +27,7 @@ mkModule {
           ports = [ "5055:5055" ];
           environment = {
             LOG_LEVEL = "debug";
-            TZ = "Europe/Bucharest";
+            TZ = config.modules.locale.timeZone;
           };
           volumes = [
             "${cfg.dataDir}/jellyseerr:/app/config"

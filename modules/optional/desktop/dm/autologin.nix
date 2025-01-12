@@ -1,7 +1,6 @@
 {
   mkModule,
   config,
-  lib,
   ...
 }:
 

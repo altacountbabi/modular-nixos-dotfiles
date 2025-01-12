@@ -1,9 +1,4 @@
-{
-  inputs,
-  config,
-  pkgs,
-  ...
-}:
+{ pkgs, ... }:
 
 {
   imports = [ ./hardware.nix ];
@@ -11,6 +6,8 @@
   modules = {
     graphics.gpuType = "nvidia";
     network.hostname = "laptop-nixos";
+
+    virt-manager.enable = false;
 
     services = {
       mediaServer.enable = true;
@@ -22,6 +19,8 @@
       browser.zen.autoStart = false;
       discord.autoStart = false;
     };
+
+    home-manager.packages = with pkgs; [ pavucontrol ];
   };
 
   # This value determines the NixOS release from which the default

@@ -14,7 +14,7 @@ let
     strings
     lists
     ;
-  inherit (builtins) elem filter toString;
+  inherit (builtins) filter toString;
 
   mkModule = import ../lib/mkModule.nix { inherit config lib; };
 
@@ -81,10 +81,10 @@ in
       };
       nix-ld.enable = true;
     };
-    user = {
+    user = rec {
       enable = true;
       username = "real";
-      displayName = "Real Moment";
+      displayName = username;
       shell = pkgs.zsh;
     };
 
@@ -109,6 +109,8 @@ in
     };
 
     colorscheme.catppuccin.enable = true;
+
+    virt-manager.enable = true;
 
     desktop = {
       # Login Screen
