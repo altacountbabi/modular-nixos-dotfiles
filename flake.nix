@@ -42,6 +42,10 @@
           system = "x86_64-linux";
           host = "laptop-nixos";
         }
+        {
+          system = "x86_64-linux";
+          host = "main-pc";
+        }
         # config-placeholder
       ];
     }
@@ -93,6 +97,5 @@
     catppuccin.url = "github:catppuccin/nix";
     disko.url = "github:nix-community/disko";
     nixcord.url = "github:kaylorben/nixcord";
-    sops-nix.url = "github:Mic92/sops-nix";
   };
 }

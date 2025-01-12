@@ -50,11 +50,6 @@ mkModule {
       enable = true;
       inherit (cfg) accent flavor;
 
-      cursors = {
-        enable = true;
-        accent = "dark";
-      };
-
       kvantum.enable = true;
 
       # TODO: Probably should make a function to make this more pretty.

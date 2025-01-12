@@ -61,7 +61,7 @@ mkModule {
     };
     opacity = mkOption {
       type = float;
-      default = 0.7;
+      default = 1.0;
     };
     padding = mkOption {
       type = int;

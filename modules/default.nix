@@ -92,7 +92,6 @@ in
     home-manager.enable = true;
     graphics.enable = true;
     flatpak.enable = true;
-    sops.enable = true;
     services = {
       vscode-server.enable = true;
       keyd.enable = true;

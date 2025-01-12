@@ -24,8 +24,6 @@
       i18n.extra = "en_US.UTF-8";
     };
 
-    sops.enable = false;
-
     packages = {
       extraPackages = with pkgs; [ wineWowPackages.stable ];
       steam = true;
@@ -43,7 +41,11 @@
     };
 
     # Add extra packages here not in home-manager.nix
-    home-manager.packages = with pkgs; [ thunderbird r2modman protonvpn-gui ];
+    home-manager.packages = with pkgs; [
+      thunderbird
+      r2modman
+      protonvpn-gui
+    ];
   };
 
   # This value determines the NixOS release from which the default

@@ -55,6 +55,11 @@ mkModule {
       description = "The name of the touchpad device, find with `hyprctl devices`";
       default = "elan0711:00-04f3:30eb-touchpad";
     };
+    monitor = mkOption {
+      type = listOf str;
+      description = "Monitor config";
+      default = [ ];
+    };
     hyprcursor = mkEnableOption "hyprcursor";
   };
   cfg = cfg: { programs.hyprland.enable = true; };
@@ -73,6 +78,8 @@ mkModule {
       wayland.windowManager.hyprland = {
         enable = true;
         settings = {
+          inherit (cfg) monitor;
+
           "$mod" = "SUPER";
           bind =
             [
@@ -150,9 +157,14 @@ mkModule {
 
           # Startup Apps
           exec-once = [
-            "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1" # privilege escalation gui popup
-            "swww-daemon" # wallpaper daemon
-            "${wallpaperScript}" # set random wallpaper
+            # cursor
+            "hyprctl setcursor Adwaita 24"
+            # privilege escalation gui popup
+            "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
+            # wallpaper daemon
+            "swww-daemon"
+            # set random wallpaper
+            "${wallpaperScript}"
           ];
 
           input = with config.modules.graphics; {
@@ -245,7 +257,7 @@ mkModule {
           misc = {
             disable_hyprland_logo = true;
             disable_splash_rendering = true;
-            animate_manual_resizes = true;
+            animate_manual_resizes = false;
             enable_swallow = true;
             swallow_exception_regex = "(qemu|wev)";
             initial_workspace_tracking = 0;
