@@ -85,7 +85,6 @@ in
       enable = true;
       username = "real";
       displayName = username;
-      shell = pkgs.zsh;
     };
 
     # Optional Modules

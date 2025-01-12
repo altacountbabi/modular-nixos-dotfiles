@@ -223,7 +223,7 @@ $env.config = {
         vi_normal: line
     }
 
-    footer_mode: "25"
+    footer_mode: 25
     float_precision: 2
     buffer_editor: ""
     use_ansi_coloring: true
