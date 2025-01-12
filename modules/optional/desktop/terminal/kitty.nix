@@ -21,7 +21,7 @@ mkModule {
     font = {
       family = mkOption {
         type = str;
-        default = "FiraCode Nerd Font";
+        default = "FiraCode Nerd Font Medium";
       };
       package = mkOption {
         type = package;
