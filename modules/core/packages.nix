@@ -21,7 +21,11 @@ mkModule {
       description = "Extra packages to install";
       default = [ ];
     };
-    steam = mkEnableOption "steam";
+    steam = mkOption {
+      type = bool;
+      description = "Install steam";
+      default = true;
+    };
     nh = {
       enable = mkEnableOption "nh";
       flakePath = mkOption {
@@ -75,7 +79,14 @@ mkModule {
       ++ cfg.extraPackages;
 
     programs = {
-      steam.enable = cfg.steam;
+      steam = {
+        enable = cfg.steam;
+        package = pkgs.steam.override {
+          extraPkgs = p: [
+            p.adwaita-icon-theme
+          ];
+        };
+      };
       nh = mkIf cfg.nh.enable {
         enable = true;
         flake = cfg.nh.flakePath;

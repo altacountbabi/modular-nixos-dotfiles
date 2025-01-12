@@ -2,12 +2,12 @@
   mkModule,
   config,
   inputs,
+  pkgs,
   lib,
   ...
 }:
 
 let
-  inherit (builtins) listToAttrs;
   inherit (lib) mkOption types;
 in
 mkModule {
@@ -52,8 +52,6 @@ mkModule {
 
       kvantum.enable = true;
 
-      # TODO: Probably should make a function to make this more pretty.
-
       # Graphical Apps
       hyprland.enable = config.modules.desktop.desktops.hyprland.enable;
       rofi.enable = config.modules.desktop.appLauncher.rofi.enable;
@@ -74,5 +72,15 @@ mkModule {
       platformTheme.name = "kvantum";
       enable = true;
     };
+
+    gtk = {
+      enable = true;
+      theme = {
+        name = "catppuccin-${cfg.flavor}-${cfg.accent}";
+        package = pkgs.catppuccin-gtk;
+      };
+    };
+
+    dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
   };
 }

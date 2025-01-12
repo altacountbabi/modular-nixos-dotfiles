@@ -17,7 +17,7 @@ mkModule {
     displayName = mkOption { type = str; };
     shell = mkOption {
       type = package;
-      default = pkgs.zsh;
+      default = pkgs.nushell;
     };
     extraGroups = mkOption {
       type = listOf str;

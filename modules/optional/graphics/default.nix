@@ -1,12 +1,13 @@
 { mkModule, lib, ... }:
 
 let
-  inherit (lib) mkOption types;
+  inherit (lib) mkOption mkEnableOption types;
 in
 mkModule {
   name = "graphics";
   path = "graphics";
   opts = with types; {
+    enableX = mkEnableOption "Enable X server";
     xkb = {
       layout = mkOption {
         type = str;
@@ -35,7 +36,7 @@ mkModule {
   cfg = cfg: {
     hardware.graphics.enable = true;
     services.xserver = {
-      enable = true;
+      enable = cfg.enableX;
       inherit (cfg) xkb;
     };
   };

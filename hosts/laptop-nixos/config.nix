@@ -7,6 +7,8 @@
     graphics.gpuType = "nvidia";
     network.hostname = "laptop-nixos";
 
+    packages.steam = false;
+
     virt-manager.enable = false;
 
     services = {

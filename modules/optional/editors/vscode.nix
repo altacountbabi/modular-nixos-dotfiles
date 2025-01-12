@@ -19,11 +19,12 @@ mkModule {
     languages =
       let
         languages = [
-          "svelte"
-          "tauri"
           "rust"
-          "toml"
           "nix"
+          "toml"
+          "tauri"
+          "svelte"
+          # "nu"
         ];
       in
       mkOption {
@@ -43,8 +44,10 @@ mkModule {
           jnoortheen.nix-ide
         ];
         toml = [ tamasfe.even-better-toml ];
-        svelte = [ svelte.svelte-vscode ];
         tauri = [ tauri-apps.tauri-vscode ];
+        svelte = [ svelte.svelte-vscode ];
+        # FIXME: Extension is just not in the flake for some reason.
+        # nu = [ TheNuProjectContributors.vscode-nushell-lang ];
       };
 
       catppuccinCfg = config.modules.colorscheme.catppuccin;
@@ -70,6 +73,7 @@ mkModule {
             cardinal90.multi-cursor-case-preserve
             usernamehw.errorlens
             albert.tabout
+            wayou.vscode-todo-highlight
           ]
           ++ concatLists (map (lang: languageExtensions."${lang}") cfg.languages)
           ++ (
@@ -82,117 +86,100 @@ mkModule {
               [ ]
           );
         userSettings = {
-          workbench = {
-            # Even though im using catppuccin mocha this has better icon colors in my opinion.
-            iconTheme = mkIf catppuccinCfg.enable "catppuccin-perfect-${
-              if catppuccinCfg.flavor == "mocha" then "macchiato" else catppuccinCfg.flavor
-            }";
-            colorTheme = mkIf catppuccinCfg.enable "Catppuccin ${uppercaseFirstChar catppuccinCfg.flavor}";
+          # Even though im using catppuccin mocha this has better icon colors in my opinion.
+          "workbench.iconTheme" = mkIf catppuccinCfg.enable "catppuccin-perfect-${
+            if catppuccinCfg.flavor == "mocha" then "macchiato" else catppuccinCfg.flavor
+          }";
+          "workbench.colorTheme" =
+            mkIf catppuccinCfg.enable "Catppuccin ${uppercaseFirstChar catppuccinCfg.flavor}";
 
-            editor = {
-              enablePreview = false;
-              tabSizing = "shrink";
-            };
-            layoutControl.enabled = false;
-            list.smoothScrolling = true;
-            statusBar.visible = false;
-            startupEditor = "none";
-            tips.enabled = false;
-            tree.indent = 16;
-          };
+          "workbench.editor.enablePreview" = false;
+          "workbench.editor.tabSizing" = "shrink";
 
-          explorer = {
-            confirmDragAndDrop = true;
-            confirmDelete = false;
-          };
+          "workbench.layoutControl.enabled" = false;
+          "workbench.list.smoothScrolling" = true;
+          "workbench.statusBar.visible" = false;
+          "workbench.startupEditor" = "none";
+          "workbench.tips.enabled" = false;
+          "workbench.tree.indent" = 16;
 
-          editor = {
-            cursorSmoothCaretAnimation = "on";
-            cursorBlinking = "phase";
-            minimap.enabled = false;
-            smoothScrolling = true;
-            fontLigatures = true;
-            linkedEditing = true;
-            formatOnSave = true;
-            fontFamily = "monospace";
-            lineHeight = 2;
-          };
+          "explorer.confirmDragAndDrop" = true;
+          "explorer.confirmDelete" = false;
 
-          zenMode = {
-            centerLayout = false;
-            fullScreen = false;
-            hideLineNumbers = false;
-          };
+          "editor.cursorSmoothCaretAnimation" = "on";
+          "editor.cursorBlinking" = "phase";
+          "editor.minimap.enabled" = false;
+          "editor.smoothScrolling" = true;
+          "editor.fontLigatures" = true;
+          "editor.linkedEditing" = true;
+          "editor.formatOnSave" = true;
+          "editor.fontFamily" = "monospace";
+          "editor.lineHeight" = 2;
 
-          git = {
-            openRepositoryInParentFolders = "never";
-            postCommitCommand = "push";
-            enableSmartCommit = true;
-            confirmSync = false;
-          };
+          "breadcrumbs.enabled" = false;
 
-          window = {
-            confirmSaveUntitledWorkspace = false;
-            menuBarVisibility = "toggle";
-            titleBarStyle = "native";
-            dialogStyle = "custom";
-            commandCenter = false;
-            zoomLevel = 1;
-          };
+          "zenMode.centerLayout" = false;
+          "zenMode.fullScreen" = false;
+          "zenMode.hideLineNumbers" = false;
 
-          terminal.integrated = {
-            fontFamily = "FiraCode Nerd Font Ret";
-            cursorStyleInactive = "line";
-            cursorStyle = "line";
-            fontSize = 13;
-          };
+          "git.openRepositoryInParentFolders" = "never";
+          "git.postCommitCommand" = "push";
+          "git.enableSmartCommit" = true;
+          "git.confirmSync" = false;
+
+          "window.confirmSaveUntitledWorkspace" = false;
+          "window.menuBarVisibility" = "toggle";
+          "window.titleBarStyle" = "native";
+          "window.dialogStyle" = "custom";
+          "window.commandCenter" = false;
+          "window.zoomLevel" = 1;
+
+          "terminal.integrated.fontFamily" = "FiraCode Nerd Font Ret";
+          "terminal.integrated.cursorStyleInactive" = "line";
+          "terminal.integrated.cursorStyle" = "line";
+          "terminal.integrated.fontSize" = 13;
 
           # Misc Settings
-          security.workspace.trust.untrustedFiles = "open";
-          extensions.ignoreRecommendations = true;
-          files.trimTrailingWhitespace = true;
-          keyboard.dispatch = "keyCode";
+          "security.workspace.trust.untrustedFiles" = "open";
+          "extensions.ignoreRecommendations" = true;
+          "files.trimTrailingWhitespace" = true;
+          "keyboard.dispatch" = "keyCode";
 
           ## Language Specific
           # Rust
-          "[rust]".editor.defaultFormatter = mkIf (elem "rust" cfg.languages) "rust-lang.rust-analyzer";
-          rust-analyzer = mkIf (elem "rust" cfg.languages) {
-            # Only check cargo projects when needed
-            cachePriming.enabled = false;
-            check = {
-              allTargets = false;
+          "[rust]"."editor.defaultFormatter" = mkIf (elem "rust" cfg.languages) "rust-lang.rust-analyzer";
 
-              # Use clippy
-              command = "clippy";
-              extraArgs = splitString " " "-- -Wclippy::pedantic";
+          # Only check cargo projects when needed
+          "rust-analyzer.cachePriming.enable" = mkIf (elem "rust" cfg.languages) false;
+          "rust-analyzer.check.allTargets" = mkIf (elem "rust" cfg.languages) false;
 
-              # Disable inlay hints
-              inlayHints = {
-                typeHints.enable = false;
-                chainingHints.enable = false;
-              };
-            };
-          };
+          # Use clippy
+          "rust-analyzer.check.command" = mkIf (elem "rust" cfg.languages) "clippy";
+          "rust-analyzer.check.extraArgs" = mkIf (elem "rust" cfg.languages) (
+            splitString " " "-- -Wclippy::pedantic"
+          );
+
+          # Disable inlay hints
+          "rust-analyzer.inlayHints.typeHints.enable" = mkIf (elem "rust" cfg.languages) false;
+          "rust-analyzer.inlayHints.chainingHints.enable" = mkIf (elem "rust" cfg.languages) false;
 
           # Nix
-          "[nix]".editor = mkIf (elem "nix" cfg.languages) {
-            defaultFormatter = "brettm12345.nixfmt-vscode";
-            tabSize = 2;
-          };
-          nix = mkIf (elem "nix" cfg.languages) {
-            serverSettings.nil.diagnostics.ignored = [ "unused_binding" ];
-            enableLanguageServer = true;
-          };
+          "[nix]"."editor.defaultFormatter" = mkIf (elem "nix" cfg.languages) "brettm12345.nixfmt-vscode";
+          "[nix]"."editor.tabSize" = mkIf (elem "nix" cfg.languages) 2;
+          "nix.serverSettings"."nil.diagnostics.ignored" = mkIf (elem "nix" cfg.languages) [
+            "unused_binding"
+          ];
+          "nix.enableLanguageServer" = elem "nix" cfg.languages;
 
           # Markdown
-          "[markdown]".files.trimTrailingWhitespace = false;
+          "[markdown]"."files.trimTrailingWhitespace" = false;
 
           # JS/TS
-          javascript.updateImportsOnFileMove.enabled = "always";
-          typescript.updateImportsOnFileMove.enabled = "always";
+          "javascript.updateImportsOnFileMove.enabled" = "always";
+          "typescript.updateImportsOnFileMove.enabled" = "always";
 
           # Svelte
-          svelte.enable-ts-plugin = mkIf (elem "svelte" cfg.languages) true;
+          "svelte.enable-ts-plugin" = elem "svelte" cfg.languages;
         };
       };
     };

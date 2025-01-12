@@ -43,7 +43,6 @@
     # Add extra packages here not in home-manager.nix
     home-manager.packages = with pkgs; [
       thunderbird
-      r2modman
       protonvpn-gui
     ];
   };

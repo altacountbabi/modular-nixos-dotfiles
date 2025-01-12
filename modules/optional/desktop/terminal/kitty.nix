@@ -32,9 +32,25 @@ mkModule {
         default = 11;
       };
     };
+    ligatures = mkOption {
+      type = enum [
+        true
+        "cursor"
+        false
+      ];
+      default = true;
+    };
+    line_height = mkOption {
+      type = int;
+      default = 3;
+    };
     cursor = {
       beam = {
-        enable = mkEnableOption "beam cursor shape";
+        enable = mkOption {
+          type = bool;
+          description = "Enable beam cursor shape";
+          default = true;
+        };
         thickness = mkOption {
           type = float;
           default = 1.5;
@@ -50,14 +66,6 @@ mkModule {
         };
       };
       block.enable = mkEnableOption "block cursor shape";
-    };
-    ligatures = mkOption {
-      type = enum [
-        true
-        "cursor"
-        false
-      ];
-      default = true;
     };
     opacity = mkOption {
       type = float;
@@ -94,6 +102,7 @@ mkModule {
           else
             cfg.ligatures
         );
+        adjust_line_height = cfg.line_height;
         box_drawing_scale = "0.1, 1, 1.5, 2";
 
         # Graphics

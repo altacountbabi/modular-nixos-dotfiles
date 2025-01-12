@@ -1,7 +1,16 @@
-{ mkModule, config, inputs, pkgs, lib, ... }:
+{
+  mkModule,
+  config,
+  inputs,
+  pkgs,
+  lib,
+  ...
+}:
 
-let inherit (lib) mkOption mkIf types;
-in mkModule {
+let
+  inherit (lib) mkOption mkIf types;
+in
+mkModule {
   name = "home-manager";
   path = "home-manager";
   imports = [ inputs.home-manager.nixosModules.home-manager ];
@@ -30,14 +39,18 @@ in mkModule {
         obs-studio
         youtube-music
         prismlauncher
+        r2modman
         libreoffice-fresh
         pinta
       ];
     };
   };
-  cfg = cfg:
-    let username = config.modules.user.username;
-    in mkIf config.modules.user.enable {
+  cfg =
+    cfg:
+    let
+      username = config.modules.user.username;
+    in
+    mkIf config.modules.user.enable {
       home-manager = {
         useGlobalPkgs = true;
         backupFileExtension = "hm-backup";

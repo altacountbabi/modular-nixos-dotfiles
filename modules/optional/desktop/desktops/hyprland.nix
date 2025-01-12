@@ -18,6 +18,7 @@ let
 
   notifyInfoScript = getScript "notify-info";
   volumeScript = getScript "volume";
+  colorPickerScript = getScript "color-picker";
   wallpaperScript =
     with pkgs;
     getExe (writeShellApplication {
@@ -107,7 +108,7 @@ mkModule {
               "$mod, Down, movefocus, d"
 
               # Misc
-              "ALT, Tab, exec, ${notifyInfoScript}"
+              "$mod, Tab, exec, ${notifyInfoScript}"
               "$mod, L, exec, youtube-music"
               "$mod, T, exec, steam"
 
@@ -115,11 +116,16 @@ mkModule {
               "ALT, R, exec, grimblast --freeze copy area"
               "ALT SHIFT, R, exec, grimblast copy screen"
 
+              # Color picker
+              "ALT, n, exec, ${colorPickerScript}"
+
               # Media Control
               # (this makes a lot more sense on my keyboard instead of XF86 keys)
               "ALT, 7, exec, playerctl previous"
               "ALT, 8, exec, playerctl play-pause"
               "ALT, 9, exec, playerctl next"
+
+              "$mod, grave, workspace, 999"
             ]
             # Workspace Switching
             ++ (concatLists (
