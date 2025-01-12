@@ -25,7 +25,7 @@ mkModule {
       };
       package = mkOption {
         type = package;
-        default = (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; });
+        default = pkgs.nerd-fonts.fira-code;
       };
       size = mkOption {
         type = int;
@@ -82,7 +82,6 @@ mkModule {
 
     programs.kitty = {
       enable = true;
-      catppuccin.enable = config.modules.colorscheme.catppuccin.enable;
       settings = {
         # Font
         font_family = cfg.font.family;

@@ -7,13 +7,10 @@
 }:
 
 mkModule {
-  name = "editor.micro";
+  name = "micro text editor";
   path = "editor.micro";
   hm = cfg: {
     home.packages = [ pkgs.micro ];
-    programs.micro = {
-      enable = true;
-      catppuccin.enable = config.modules.colorscheme.catppuccin.enable;
-    };
+    programs.micro.enable = true;
   };
 }

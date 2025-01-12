@@ -1,5 +1,6 @@
 {
   mkModule,
+  config,
   inputs,
   lib,
   ...
@@ -49,36 +50,34 @@ mkModule {
       enable = true;
       inherit (cfg) accent flavor;
 
-      pointerCursor = {
+      cursors = {
         enable = true;
         accent = "dark";
       };
+
+      kvantum.enable = true;
+
+      # TODO: Probably should make a function to make this more pretty.
+
+      # Graphical Apps
+      hyprland.enable = config.modules.desktop.desktops.hyprland.enable;
+      rofi.enable = config.modules.desktop.appLauncher.rofi.enable;
+      micro.enable = config.modules.editor.micro.enable;
+      mako.enable = config.modules.desktop.notification.mako.enable;
+      kitty.enable = config.modules.desktop.terminal.kitty.enable;
+
+      # CLI Apps
+      lazygit.enable = true;
+      btop.enable = true;
+      cava.enable = true;
+      fish.enable = true;
+      bat.enable = true;
     };
 
     qt = {
-      style = {
-        catppuccin.enable = true;
-        name = "kvantum";
-      };
+      style.name = "kvantum";
       platformTheme.name = "kvantum";
       enable = true;
     };
-
-    programs = listToAttrs (
-      map
-        (prog: {
-          name = prog;
-          value = {
-            catppuccin.enable = true;
-          };
-        })
-        [
-          "lazygit"
-          "btop"
-          "cava"
-          "fish"
-          "bat"
-        ]
-    );
   };
 }

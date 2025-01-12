@@ -72,7 +72,6 @@ mkModule {
 
       wayland.windowManager.hyprland = {
         enable = true;
-        catppuccin.enable = config.modules.colorscheme.catppuccin.enable;
         settings = {
           "$mod" = "SUPER";
           bind =
@@ -195,15 +194,19 @@ mkModule {
             blur = {
               enabled = true;
               size = 10;
-              passes = 4;
+              passes = 3;
               noise = 0.1;
             };
 
-            drop_shadow = true;
-            shadow_range = 14;
-            shadow_render_power = 3;
-            shadow_ignore_window = true;
-            "col.shadow" = "rgba(00000045)";
+            shadow = {
+              enabled = true;
+              range = 14;
+              render_power = 3;
+              ignore_window = true;
+              color = "rgba(00000045)";
+            };
+
+            dim_special = 0.2;
           };
 
           animations = {
@@ -223,8 +226,19 @@ mkModule {
           dwindle = {
             pseudotile = true;
             preserve_split = true;
-            no_gaps_when_only = true;
           };
+
+          # No gaps when only 1 window
+          workspace = [
+            "w[tv1], gapsout:0, gapsin:0"
+            "f[1], gapsout:0, gapsin:0"
+          ];
+          windowrulev2 = [
+            "bordersize 0, floating:0, onworkspace:w[tv1]"
+            "rounding 0, floating:0, onworkspace:w[tv1]"
+            "bordersize 0, floating:0, onworkspace:f[1]"
+            "rounding 0, floating:0, onworkspace:f[1]"
+          ];
 
           cursor.enable_hyprcursor = cfg.hyprcursor;
 

@@ -20,7 +20,6 @@ mkModule {
       enable = true;
       package = (if cfg.wayland then rofi-wayland else rofi);
       plugins = [ (if cfg.wayland then rofi-emoji-wayland else rofi-emoji) ];
-      catppuccin.enable = config.modules.colorscheme.catppuccin.enable;
     };
     wayland.windowManager.hyprland.settings.bind =
       mkIf config.modules.desktop.desktops.hyprland.enable

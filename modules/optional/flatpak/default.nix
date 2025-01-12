@@ -14,7 +14,7 @@ in
 mkModule {
   name = "flatpak applications";
   path = "flatpak";
-  imports = [ inputs.flatpaks.nixosModules.default ];
+  imports = [ inputs.flatpaks.nixosModules.declarative-flatpak ];
   opts = with types; {
     remotes = mkOption {
       type = attrsOf str;
