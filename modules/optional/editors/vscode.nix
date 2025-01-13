@@ -114,7 +114,7 @@ mkModule {
           "editor.linkedEditing" = true;
           "editor.formatOnSave" = true;
           "editor.fontFamily" = "monospace";
-          "editor.lineHeight" = 2;
+          "editor.lineHeight" = 2.3;
 
           "breadcrumbs.enabled" = false;
 
