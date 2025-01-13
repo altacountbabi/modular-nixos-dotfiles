@@ -42,6 +42,7 @@ mkModule {
         r2modman
         resources
         cartridges
+        nemo
         libreoffice-fresh
         pinta
       ];
