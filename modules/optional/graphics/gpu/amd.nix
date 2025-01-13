@@ -18,7 +18,6 @@ mkModule {
     };
   };
   cfg = cfg: {
-    boot.initrd.kernelModules = [ "amdgpu" ];
     hardware.graphics.enable = true;
   };
 }
