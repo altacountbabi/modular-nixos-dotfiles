@@ -27,7 +27,7 @@ mkModule {
         "bottom-left"
         "center"
       ];
-      default = "top-center";
+      default = "bottom-center";
     };
   };
   hm = cfg: {
