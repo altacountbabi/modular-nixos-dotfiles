@@ -2,8 +2,8 @@
 #
 # version = "0.92.2"
 
-def create_left_prompt [] {
-    let dir = match (do { $env.PWD | path relative-to $nu.home-path }) {
+$env.PROMPT_COMMAND = $env.PROMPT_COMMAND? | default {||
+    let dir = match (do -i { $env.PWD | path relative-to $nu.home-path }) {
         null => $env.PWD
         '' => '~'
         $relative_pwd => ([~ $relative_pwd] | path join)
@@ -11,13 +11,11 @@ def create_left_prompt [] {
 
     let path_color = (if (is-admin) { ansi red_bold } else { ansi green_bold })
     let separator_color = (if (is-admin) { ansi light_red_bold } else { ansi light_green_bold })
-    let path_segment = $"($path_color)($dir)"
+    let path_segment = $"($path_color)($dir)(ansi reset)"
 
     $path_segment | str replace --all (char path_sep) $"($separator_color)(char path_sep)($path_color)"
 }
 
-# Use nushell functions to define your right and left prompt
-$env.PROMPT_COMMAND = {|| create_left_prompt }
 # FIXME: This default is not implemented in rust code as of 2023-09-08.
 $env.PROMPT_COMMAND_RIGHT = {|| "" }
 
