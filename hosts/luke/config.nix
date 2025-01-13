@@ -24,11 +24,6 @@
       i18n.extra = "en_US.UTF-8";
     };
 
-    packages = {
-      extraPackages = with pkgs; [ wineWowPackages.stable ];
-      steam = true;
-    };
-
     # Desktop settings
     desktop = {
       dm.autologin.enable = false;
