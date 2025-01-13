@@ -65,6 +65,7 @@ mkModule {
         neofetch
         delta # better `diff`
         just # command runner
+        calc # calc is short for calculator btw im just using slang
         tree
         htop
         btop
