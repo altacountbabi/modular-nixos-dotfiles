@@ -110,7 +110,7 @@ mkModule {
               # Misc
               "$mod, Tab, exec, ${notifyInfoScript}"
               "$mod, L, exec, youtube-music"
-              "$mod, T, exec, steam"
+              "$mod, T, exec, cartridges"
 
               # Screenshotting
               "ALT, R, exec, grimblast --freeze copy area"
