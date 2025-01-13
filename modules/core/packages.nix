@@ -75,6 +75,9 @@ mkModule {
         vscode
         micro
         git
+
+        # Wine
+        wineWowPackages.stable
       ]
       ++ cfg.extraPackages;
 

@@ -40,6 +40,7 @@ mkModule {
         youtube-music
         prismlauncher
         r2modman
+        resources
         libreoffice-fresh
         pinta
       ];
