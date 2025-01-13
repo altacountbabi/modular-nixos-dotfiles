@@ -41,6 +41,7 @@ mkModule {
         prismlauncher
         r2modman
         resources
+        cartridges
         libreoffice-fresh
         pinta
       ];
