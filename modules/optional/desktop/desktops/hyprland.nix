@@ -117,7 +117,7 @@ mkModule {
               "ALT SHIFT, R, exec, grimblast copy screen"
 
               # Color picker
-              "ALT, n, exec, ${colorPickerScript}"
+              "$mod, n, exec, ${colorPickerScript}"
 
               # Media Control
               # (this makes a lot more sense on my keyboard instead of XF86 keys)

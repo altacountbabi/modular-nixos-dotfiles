@@ -26,7 +26,7 @@ mkModule {
         [
           "$mod, Space, exec, rofi -show drun"
           # Emoji picker is broken right now (probably)
-          "ALT, comma, exec, rofi -show emoji"
+          "$mod, comma, exec, rofi -show emoji"
         ];
   };
 }
