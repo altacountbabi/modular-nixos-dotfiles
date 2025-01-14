@@ -1,8 +1,6 @@
 {
   mkModule,
-  config,
   pkgs,
-  lib,
   ...
 }:
 

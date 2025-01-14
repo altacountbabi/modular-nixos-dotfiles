@@ -104,6 +104,7 @@ in
     editor = {
       vscode.enable = true;
       micro.enable = true;
+      helix.enable = true;
     };
 
     colorscheme.catppuccin.enable = true;

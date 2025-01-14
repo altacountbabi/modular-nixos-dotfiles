@@ -1,6 +1,5 @@
 {
   mkModule,
-  inputs,
   pkgs,
   lib,
   ...
@@ -26,6 +25,7 @@ mkModule {
       default = [
         "rustfmt"
         "clippy"
+        "rust-analyzer"
       ];
     };
     targets = mkOption {
@@ -35,11 +35,12 @@ mkModule {
     };
   };
   cfg = cfg: {
-    environment.systemPackages = [
-      (pkgs.rust-bin."${cfg.channel}".latest.default.override {
+    environment.systemPackages = with pkgs; [
+      (rust-bin."${cfg.channel}".latest.default.override {
         extensions = cfg.components;
         targets = cfg.targets;
       })
+      gcc14
     ];
   };
 }

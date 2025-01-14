@@ -130,6 +130,9 @@ mkModule {
         cursor_beam_thickness = cfg.cursor.beam.thickness;
         cursor_underline_thickness = cfg.cursor.underline.thickness;
       };
+      keybindings = {
+        "alt+shift+w" = "new_tab_with_cwd";
+      };
     };
   };
 }

@@ -79,7 +79,7 @@ $env.NU_PLUGIN_DIRS = [
 # source ($nu.default-config-dir | path join 'custom.nu')
 
 # $env.CARGO_TARGET_DIR = "/home/real/target"
-alias v = neovide --neovim-bin ~/projects/nixvim-dots/result/bin/nvim
+alias v = hx .
 alias cat = bat
 alias ns = nix-shell -p --command "nu"
 

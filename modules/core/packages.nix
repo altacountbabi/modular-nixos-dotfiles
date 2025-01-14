@@ -56,10 +56,6 @@ mkModule {
     environment.systemPackages =
       with pkgs;
       [
-        # NixOS-Related Packages
-        nixfmt-rfc-style
-        nil
-
         # Cli Utilities
         libnotify # notify-send
         neofetch
