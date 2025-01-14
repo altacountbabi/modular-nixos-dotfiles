@@ -90,3 +90,13 @@ def nsr [pkg] {
 def mkcd [name] {
 	mkdir $name; cd $name
 }
+
+# nix search $query -> nix-search $query
+# nix $something -> nix $something
+def nix [...args] {
+    if $args.0 == "search" {
+        nix-search ...($args | skip 1)
+    } else {
+        ^nix ...$args
+    }
+}

@@ -57,6 +57,7 @@ mkModule {
       with pkgs;
       [
         # Cli Utilities
+        nix-search-cli # cli frontend to search.nixos.org
         libnotify # notify-send
         neofetch
         delta # better `diff`
@@ -65,6 +66,7 @@ mkModule {
         tree
         htop
         btop
+        file # describe the content of files
         wget
         bat # better `cat`
 
