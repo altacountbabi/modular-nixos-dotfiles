@@ -71,7 +71,9 @@ mkModule {
         # Development
         vscode
         micro
+        lazygit
         git
+        gh
 
         # Wine
         wineWowPackages.stable
