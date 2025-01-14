@@ -41,6 +41,7 @@ mkModule {
         targets = cfg.targets;
       })
       gcc14
+      lldb
     ];
   };
 }

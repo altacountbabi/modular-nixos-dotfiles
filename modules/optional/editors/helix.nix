@@ -26,7 +26,7 @@ mkModule {
           {
             name = "rust";
             auto-format = true;
-            formatter.command = "cargo fmt";
+            formatter.command = "rustfmt";
             language-servers = [ "rust-analyzer" ];
           }
         ];
@@ -88,8 +88,9 @@ mkModule {
             display-inlay-hints = true;
             display-messages = true;
           };
-          true-color = true;
           bufferline = "multiple";
+          true-color = true;
+          cursorline = true;
         };
         keys = {
           normal = {
