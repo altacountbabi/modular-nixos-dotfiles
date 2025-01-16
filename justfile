@@ -8,15 +8,15 @@ eval:
 
 # Dry build a config
 dryb:
-    sudo nixos-rebuild dry-build --flake .\#$(hostname) --option eval-cache false --show-trace
+    sudo nixos-rebuild dry-build --flake .\#$(hostname)
 
 # Build a config
 b:
-    sudo nixos-rebuild build --flake .\#$(hostname) --option eval-cache false --show-trace
+    sudo nixos-rebuild build --flake .\#$(hostname)
 
 # NixOS Commands
 switch:
-    sudo nixos-rebuild switch --flake .\#$(hostname) --option eval-cache false --show-trace
+    sudo nixos-rebuild switch --flake .\#$(hostname)
 
 # Update flakes and rebuild system
 update:
@@ -29,7 +29,7 @@ gc:
 
 # Build a VM with the $(hostname) host
 vm:
-    sudo nixos-rebuild build-vm --flake .\#$(hostname) --option eval-cache false --show-trace
+    sudo nixos-rebuild build-vm --flake .\#$(hostname)
 
 # Clean up after the VM
 rmvm:
