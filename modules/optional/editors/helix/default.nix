@@ -29,6 +29,27 @@ mkModule {
             formatter.command = "rustfmt";
             language-servers = [ "rust-analyzer" ];
           }
+          {
+            name = "tl";
+            scope = "source.tl";
+            injection-regex = "tl";
+            file-types = [ "tl" ];
+            comment-tokens = "//";
+            indent = {
+              tab-width = 4;
+              unit = "\t";
+            };
+
+          }
+        ];
+        grammar = [
+          {
+            name = "tl";
+            source = {
+              git = "https://github.com/PoopyPooOS/tree-sitter-tl";
+              rev = "c8e7ac06d8518ac1fed71dfd1613fc0f6ae91879";
+            };
+          }
         ];
         language-server = {
           nixd = {
@@ -105,14 +126,28 @@ mkModule {
             C-w = ":buffer-close!";
             C-q = ":q";
 
+            p = "paste_before";
+            P = "paste_after";
+
             y = [
               ":clipboard-yank"
               "yank"
             ];
             C-v = [ ":clipboard-paste-before" ];
+
+            esc = [
+              "collapse_selection"
+              "keep_primary_selection"
+            ];
+
+            tab = "goto_next_buffer";
+            A-tab = "goto_previous_buffer";
           };
           insert = {
             C-s = ":w";
+            C-w = ":buffer-close!";
+            C-q = ":q";
+
             C-v = [ ":clipboard-paste-before" ];
           };
           select = {
@@ -123,6 +158,10 @@ mkModule {
           };
         };
       };
+    };
+
+    xdg.configFile = {
+      "helix/runtime/queries/tl".source = ./tl-queries;
     };
   };
 }

@@ -79,9 +79,9 @@ $env.NU_PLUGIN_DIRS = [
 # source ($nu.default-config-dir | path join 'custom.nu')
 
 # $env.CARGO_TARGET_DIR = "/home/real/target"
-alias v = hx .
 alias cat = bat
 alias ns = nix-shell -p --command "nu"
+alias tree = tree -l # Make `tree` follow symlinks
 
 def nsr [pkg] {
 	nix-shell -p $pkg --command $pkg
@@ -98,5 +98,14 @@ def nix [...args] {
         nix-search ...($args | skip 1)
     } else {
         ^nix ...$args
+    }
+}
+
+# Alias to helix
+def v [...args] {
+    if ($args | is-empty) {
+        hx .
+    } else {
+        hx ...$args
     }
 }
