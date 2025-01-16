@@ -74,6 +74,7 @@ mkModule {
         playerctl # media playback control
         grimblast # screenshot utility
         swww # wallpaper daemon
+        wl-clipboard # clipboard
       ];
 
       wayland.windowManager.hyprland = {
