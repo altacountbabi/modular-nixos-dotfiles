@@ -12,6 +12,7 @@ pkgs.writeShellApplication {
       timeout = 5000;
     in
     ''
-      notify-send -t "${builtins.toString timeout}" -e "Time:   $(date +%-I:%M)" "Volume: $(${volumeScript} g)%"
+      notify-send -t "${builtins.toString timeout}" -e "Time:   $(date +%-I:%M)" "Date:   $(date +"%A, %d, %B")
+      Volume: $(${volumeScript} g)%"
     '';
 }
