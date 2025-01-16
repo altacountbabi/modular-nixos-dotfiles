@@ -53,6 +53,7 @@ mkModule {
               command = "clippy";
               extraArgs = [
                 "--examples"
+                "--tests"
                 "--"
                 "-Wclippy::pedantic"
               ];
@@ -78,9 +79,9 @@ mkModule {
             character = "▏";
             skip-levels = 1;
           };
-          inline-diagnostics = rec {
-            cursor-line = "warning";
-            other-lines = cursor-line;
+          inline-diagnostics = {
+            cursor-line = "hint";
+            other-lines = "error";
             prefix-len = 2;
             max-diagnostics = 5;
           };
@@ -101,10 +102,24 @@ mkModule {
             i = "append_mode";
 
             C-s = ":w";
+            C-w = ":buffer-close!";
             C-q = ":q";
+
+            y = [
+              ":clipboard-yank"
+              "yank"
+            ];
+            C-v = [ ":clipboard-paste-before" ];
           };
           insert = {
             C-s = ":w";
+            C-v = [ ":clipboard-paste-before" ];
+          };
+          select = {
+            y = [
+              ":clipboard-yank"
+              "yank"
+            ];
           };
         };
       };
