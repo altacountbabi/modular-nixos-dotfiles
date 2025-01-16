@@ -1,0 +1,111 @@
+(defpoll time :interval "30s" "date '+%H:%M'")
+(
+    defwindow bar
+    :monitor 0
+    :geometry (
+        geometry
+        :x "0%"
+        :y "0%"
+        :width "100%"
+        :height "10px"
+        :anchor "bottom center"
+    )
+    :exclusive true
+    (
+        centerbox
+        :orientation "h"
+        (workspaces)
+        (
+            label
+            :text time
+        )
+        (
+            box
+            :class "right"
+            :orientation "h"
+            :space-evenly false
+            :halign "end"
+            (
+                metric
+                :label ""
+                :value volume
+                :onchange ""
+            )
+        )
+    )
+)
+(
+    defwidget workspaces []
+    (
+        box
+        :class "workspaces"
+        :orientation "h"
+        :space-evenly true
+        :halign "start"
+        :spacing 10
+        (button :onclick "hyprctl dispatch workspace 1" 1)
+        (button :onclick "hyprctl dispatch workspace 2" 2)
+        (button :onclick "hyprctl dispatch workspace 3" 3)
+        (button :onclick "hyprctl dispatch workspace 4" 4)
+        (button :onclick "hyprctl dispatch workspace 5" 5)
+        (button :onclick "hyprctl dispatch workspace 6" 6)
+    )
+)
+
+
+(
+    defwidget metric [label value onchange]
+    (
+        box
+        :orientation "h"
+        :class "metric"
+        :space-evenly false
+        (
+            box
+            :class "label"
+            label
+        )
+        (
+            scale
+            :min 0
+            :max 101
+            :active {onchange != ""}
+            :value value
+            :onchange onchange
+        )
+    )
+)
+
+(defvar volume 0)
+(
+    defwindow volume_popup
+    :monitor 0
+    :stacking "overlay"
+    :namespace "volume-popup"
+    :geometry (
+        geometry
+        :y "50px"
+        :height "40px"
+        :anchor "bottom center"
+    )
+    (
+        box
+        :class "volume_popup_background"
+        :orientation "horizontal"
+        (
+            metric
+            :label {
+                ; Muted
+                volume == 0 ? "󰸈" :
+                    ; Low volume
+                    volume < 26 ? "󰕿" :
+                        ; Medium volume
+                        volume < 51 ? "󰖀" :
+                            ; High volume
+                            volume < 76 ? "󰕾" : "" ; Over 100 volume
+            }
+            :value volume
+            :onchange ""
+        )
+    )
+)

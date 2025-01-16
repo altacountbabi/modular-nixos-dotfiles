@@ -131,6 +131,7 @@ in
           # Add other compositors if needed:
           desktops.hyprland.enable; # || desktops.[other wayland compositor].enable
       };
+      eww.enable = true;
 
       # Apps
       browser.zen = {

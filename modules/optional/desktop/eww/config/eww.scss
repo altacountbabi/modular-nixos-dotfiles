@@ -1,0 +1,61 @@
+* {
+  all: unset;
+}
+
+tooltip {
+	background: #000;
+	border-radius: 5px;
+}
+
+.bar {
+	background: #1e1e2e;
+  color: #cdd6f4;
+  padding: 10px;
+}
+
+.right {
+  margin-right: 10px;
+}
+
+.right slider {
+  all: unset;
+  color: #11111b;
+}
+
+.metric scale trough highlight {
+  all: unset;
+  background-color: #f38ba8;
+  color: #f38ba8;
+  border-radius: 10px;
+}
+
+.metric scale trough {
+  all: unset;
+  background-color: #11111b;
+  border-radius: 50px;
+  min-height: 3px;
+  min-width: 50px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.metric scale trough {
+  all: unset;
+  background-color: #313244;
+  border-radius: 50px;
+  min-height: 3px;
+  min-width: 50px;
+  margin-left: 10px;
+  margin-right: 20px;
+}
+
+.workspaces button {
+  padding-left: 10px;
+}
+
+.volume_popup_background {
+  background: #1e1e2e;
+  border-radius: 9px;
+  border: 2px solid #313244;
+  padding-left: 17px;
+}
