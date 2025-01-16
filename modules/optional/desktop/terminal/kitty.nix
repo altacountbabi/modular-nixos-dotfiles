@@ -129,6 +129,7 @@ mkModule {
         );
         cursor_beam_thickness = cfg.cursor.beam.thickness;
         cursor_underline_thickness = cfg.cursor.underline.thickness;
+        allow_remote_control = true;
       };
       keybindings = {
         "alt+shift+w" = "new_tab_with_cwd";
