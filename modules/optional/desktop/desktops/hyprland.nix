@@ -258,7 +258,13 @@ mkModule {
             "rounding 0, floating:0, onworkspace:f[1]"
           ];
 
-          cursor.enable_hyprcursor = cfg.hyprcursor;
+          cursor.enable_hyprcursor = true;
+          env = [
+            "XCURSOR_SIZE,24"
+            "XCURSOR_THEME,Adwaita"
+            "HYPRCURSOR_THEME,Adwaita"
+            "HYPRCURSOR_SIZE,24"
+          ];
 
           misc = {
             disable_hyprland_logo = true;
