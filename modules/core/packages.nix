@@ -12,6 +12,7 @@ let
     mkIf
     types
     ;
+  segoe-ui = import ../../pkgs/segoe-ui-font { inherit pkgs; };
 in
 mkModule {
   path = "packages";
@@ -64,6 +65,7 @@ mkModule {
         just # command runner
         calc # calc is short for calculator btw im just using slang
         tree
+        cava
         htop
         btop
         file # describe the content of files
@@ -81,6 +83,12 @@ mkModule {
         wineWowPackages.stable
       ]
       ++ cfg.extraPackages;
+
+    fonts.packages = with pkgs; [
+      noto-fonts
+      corefonts
+      segoe-ui
+    ];
 
     programs = {
       steam = {
