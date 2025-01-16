@@ -67,6 +67,11 @@ mkModule {
       bat.enable = true;
     };
 
+    programs = {
+      cava.enable = true;
+      btop.enable = true;
+    };
+
     qt = {
       style.name = "kvantum";
       platformTheme.name = "kvantum";
