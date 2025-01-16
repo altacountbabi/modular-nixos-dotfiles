@@ -35,7 +35,7 @@ mkModule {
         LC_NUMERIC = extra;
         LC_PAPER = extra;
         LC_TELEPHONE = extra;
-        LC_TIME = extra;
+        LC_TIME = if extra == "ro_RO.UTF-8" then main else extra;
       };
     };
   };
