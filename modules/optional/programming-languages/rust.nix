@@ -6,7 +6,10 @@
 }:
 
 let
-  inherit (lib) mkOption types;
+  inherit (lib)
+    mkOption
+    types
+    ;
 in
 mkModule {
   name = "programming-language.rust";
@@ -25,13 +28,15 @@ mkModule {
       default = [
         "rustfmt"
         "clippy"
+        "rust-src"
         "rust-analyzer"
       ];
     };
     targets = mkOption {
-      # I am NOT making this an enum
       type = listOf str;
-      default = [ ];
+      default = [
+        "x86_64-unknown-linux-musl"
+      ];
     };
   };
   cfg = cfg: {
