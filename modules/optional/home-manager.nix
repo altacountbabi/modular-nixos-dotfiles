@@ -35,17 +35,7 @@ mkModule {
     };
     packages = mkOption {
       type = listOf package;
-      default = with pkgs; [
-        obs-studio
-        youtube-music
-        prismlauncher
-        r2modman
-        resources
-        cartridges
-        nemo
-        libreoffice-fresh
-        pinta
-      ];
+      default = [ ];
     };
   };
   cfg =
@@ -63,8 +53,19 @@ mkModule {
             inherit username;
             homeDirectory = "/home/${username}";
             stateVersion = cfg.version;
-
-            inherit (cfg) packages;
+            packages =
+              cfg.packages
+              ++ (with pkgs; [
+                obs-studio
+                youtube-music
+                prismlauncher
+                r2modman
+                resources
+                cartridges
+                nemo
+                libreoffice-fresh
+                pinta
+              ]);
           };
 
           programs.home-manager.enable = true;

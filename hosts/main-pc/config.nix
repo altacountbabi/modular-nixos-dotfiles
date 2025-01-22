@@ -1,4 +1,5 @@
 {
+  pkgs,
   ...
 }:
 
@@ -11,6 +12,10 @@
   modules = {
     graphics.gpuType = "amd";
     network.hostname = "main-pc";
+
+    home-manager.packages = with pkgs; [
+      localsend
+    ];
 
     desktop.desktops.hyprland.monitor = [
       ",1920x1080@240,0x0,1,vrr,2"
