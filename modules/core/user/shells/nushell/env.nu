@@ -82,6 +82,7 @@ $env.NU_PLUGIN_DIRS = [
 alias cat = bat
 alias ns = nix-shell -p --command "nu"
 alias tree = tree -l # Make `tree` follow symlinks
+alias clone = git clone --depth 1
 
 def nsr [pkg] {
 	nix-shell -p $pkg --command $pkg
@@ -109,3 +110,4 @@ def v [...args] {
         hx ...$args
     }
 }
+
