@@ -15,7 +15,6 @@
 
     services = {
       vscode-server.enable = false;
-      keyd.enable = false;
       ssh.enable = false;
     };
 
