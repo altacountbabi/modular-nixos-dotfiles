@@ -83,6 +83,7 @@ alias cat = bat
 alias ns = nix-shell -p --command "nu"
 alias tree = tree -l # Make `tree` follow symlinks
 alias clone = git clone --depth 1
+alias shell = nix-shell --command "nu"
 
 def nsr [pkg] {
 	nix-shell -p $pkg --command $pkg
