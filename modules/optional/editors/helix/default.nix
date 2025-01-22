@@ -47,7 +47,7 @@ mkModule {
             name = "tl";
             source = {
               git = "https://github.com/PoopyPooOS/tree-sitter-tl";
-              rev = "c8e7ac06d8518ac1fed71dfd1613fc0f6ae91879";
+              rev = "0ca9fb6a029c505f6d5f2849236cccd5f87d888d";
             };
           }
         ];
