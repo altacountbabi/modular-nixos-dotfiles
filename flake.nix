@@ -11,9 +11,7 @@
     let
       pkgs = nixpkgs;
       inherit (pkgs.lib)
-        strings
         listToAttrs
-        concatMap
         nixosSystem
         ;
 
@@ -22,7 +20,7 @@
         listToAttrs (
           map (host: {
             name = host.host;
-            value = nixosSystem (rec {
+            value = nixosSystem rec {
               inherit (host) system;
               specialArgs = {
                 inherit inputs system;
@@ -32,7 +30,7 @@
                 ./hosts/${host.host}/config.nix
                 ./modules
               ];
-            });
+            };
           }) hosts
         );
     in
