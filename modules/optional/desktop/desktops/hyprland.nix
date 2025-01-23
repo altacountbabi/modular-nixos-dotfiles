@@ -75,6 +75,7 @@ mkModule {
         grimblast # screenshot utility
         swww # wallpaper daemon
         wl-clipboard # clipboard
+        hyprprop
       ];
 
       wayland.windowManager.hyprland = {
@@ -121,10 +122,13 @@ mkModule {
               "$mod, n, exec, ${colorPickerScript}"
 
               # Media Control
-              # (this makes a lot more sense on my keyboard instead of XF86 keys)
               "ALT, 7, exec, playerctl previous"
               "ALT, 8, exec, playerctl play-pause"
               "ALT, 9, exec, playerctl next"
+
+              ", XF86AudioPrev, exec, playerctl previous"
+              ", XF86AudioPlay, exec, playerctl play-pause"
+              ", XF86AudioNext, exec, playerctl next"
 
               "$mod, grave, workspace, 999"
             ]
@@ -150,6 +154,10 @@ mkModule {
             "ALT, 0, exec, ${volumeScript} t"
             "ALT, minus, exec, ${volumeScript} d ${toString cfg.volumeStep}"
             "ALT, equal, exec, ${volumeScript} i ${toString cfg.volumeStep}"
+
+            ", XF86AudioMute, exec, ${volumeScript} t"
+            ", XF86AudioLowerVolume, exec, ${volumeScript} d ${toString cfg.volumeStep}"
+            ", XF86AudioRaiseVolume, exec, ${volumeScript} i ${toString cfg.volumeStep}"
 
             # Window Resizing
             "$mod CTRL, Right, resizeactive, ${toString cfg.kbResizeStep} 0"
