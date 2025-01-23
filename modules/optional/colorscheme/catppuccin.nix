@@ -50,7 +50,9 @@ mkModule {
       enable = true;
       inherit (cfg) accent flavor;
 
+      # UI Toolkits
       kvantum.enable = true;
+      gtk.enable = true;
 
       # Graphical Apps
       hyprland.enable = config.modules.desktop.desktops.hyprland.enable;
@@ -80,10 +82,6 @@ mkModule {
 
     gtk = {
       enable = true;
-      theme = {
-        name = "catppuccin-${cfg.flavor}-${cfg.accent}";
-        package = pkgs.catppuccin-gtk;
-      };
       gtk3.extraConfig = {
         gtk-application-prefer-dark-theme = 1;
       };

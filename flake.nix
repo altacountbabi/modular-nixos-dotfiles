@@ -92,7 +92,7 @@
     vscode-server.url = "github:nix-community/nixos-vscode-server";
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     flake-utils.url = "github:numtide/flake-utils";
-    catppuccin.url = "github:catppuccin/nix";
+    catppuccin.url = "github:altacountbabi/catppuccin-nix";
     disko.url = "github:nix-community/disko";
     nixcord.url = "github:kaylorben/nixcord";
   };
