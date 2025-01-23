@@ -46,7 +46,7 @@ mkModule {
         toml = [ tamasfe.even-better-toml ];
         tauri = [ tauri-apps.tauri-vscode ];
         svelte = [ svelte.svelte-vscode ];
-        # FIXME: Extension is just not in the flake for some reason.
+        # FIXME: Extension isnt in the vscode extensions flake for some reason.
         # nu = [ TheNuProjectContributors.vscode-nushell-lang ];
       };
 
