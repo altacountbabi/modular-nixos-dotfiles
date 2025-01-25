@@ -72,6 +72,7 @@ mkModule {
     programs = {
       cava.enable = true;
       btop.enable = true;
+      bat.enable = true;
     };
 
     qt = {
