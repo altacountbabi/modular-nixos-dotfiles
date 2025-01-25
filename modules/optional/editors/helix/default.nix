@@ -5,6 +5,9 @@
   ...
 }:
 
+let
+  mdpls = import ../../../../pkgs/mdpls { inherit pkgs; };
+in
 mkModule {
   name = "Helix IDE";
   path = "editor.helix";
@@ -12,8 +15,12 @@ mkModule {
     programs.helix = {
       enable = true;
       extraPackages = with pkgs; [
+        # Nix
         nixd
         nixfmt-rfc-style
+
+        # Markdown
+        mdpls
       ];
       languages = {
         language = [
@@ -28,6 +35,11 @@ mkModule {
             auto-format = true;
             formatter.command = "rustfmt";
             language-servers = [ "rust-analyzer" ];
+          }
+          {
+            name = "markdown";
+            auto-format = false;
+            language-servers = [ "mdpls" ];
           }
           {
             name = "tl";
@@ -86,6 +98,13 @@ mkModule {
             };
             cachePriming.enable = false;
           };
+          mdpls = {
+            command = "mdpls";
+            config = {
+              auto = false;
+              browser = "zen-twilight";
+            };
+          };
         };
       };
       settings = {
@@ -116,7 +135,12 @@ mkModule {
         };
         keys = {
           normal = {
-            space.space = "file_picker";
+            # Swap space.f and space.F
+            space = {
+              space = "file_picker_in_current_directory";
+              f = "file_picker_in_current_directory";
+              F = "file_picker";
+            };
 
             # Swap `a` and `i` because `a` is more convenient to press
             a = "insert_mode";
