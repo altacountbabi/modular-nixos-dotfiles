@@ -15,6 +15,7 @@
 
     home-manager.packages = with pkgs; [
       localsend
+      obsidian
     ];
 
     desktop.desktops.hyprland.monitor = [
