@@ -60,10 +60,7 @@ in
       enable = true;
       plymouth = true;
     };
-    environment = {
-      enable = true;
-      editor = "micro";
-    };
+    environment.enable = true;
     locale = {
       enable = true;
       timeZone = "Europe/Bucharest";
