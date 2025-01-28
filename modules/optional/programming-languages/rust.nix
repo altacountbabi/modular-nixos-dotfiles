@@ -36,6 +36,9 @@ mkModule {
       type = listOf str;
       default = [
         "x86_64-unknown-linux-musl"
+        "aarch64-unknown-linux-musl"
+        "aarch64-unknown-linux-gnu"
+        "x86_64-unknown-uefi"
       ];
     };
   };
