@@ -14,6 +14,7 @@ mkModule {
   hm = cfg: {
     programs.helix = {
       enable = true;
+      defaultEditor = true;
       extraPackages = with pkgs; [
         # Nix
         nixd
@@ -51,7 +52,6 @@ mkModule {
               tab-width = 4;
               unit = "\t";
             };
-
           }
         ];
         grammar = [
@@ -59,7 +59,7 @@ mkModule {
             name = "tl";
             source = {
               git = "https://github.com/PoopyPooOS/tree-sitter-tl";
-              rev = "0ca9fb6a029c505f6d5f2849236cccd5f87d888d";
+              rev = "d5bc1d6c3d85c5f4896fac8751ed857e2ae76897";
             };
           }
         ];
@@ -157,7 +157,7 @@ mkModule {
               ":clipboard-yank"
               "yank"
             ];
-            C-v = [ ":clipboard-paste-before" ];
+            C-v = ":clipboard-paste-before";
 
             esc = [
               "collapse_selection"
