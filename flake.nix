@@ -95,5 +95,6 @@
     catppuccin.url = "github:altacountbabi/catppuccin-nix";
     disko.url = "github:nix-community/disko";
     nixcord.url = "github:kaylorben/nixcord";
+    helix.url = "github:helix-editor/helix";
   };
 }

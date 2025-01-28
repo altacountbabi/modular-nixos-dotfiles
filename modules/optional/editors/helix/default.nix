@@ -1,12 +1,15 @@
 {
   mkModule,
   config,
+  inputs,
+  system,
   pkgs,
   ...
 }:
 
 let
   mdpls = import ../../../../pkgs/mdpls { inherit pkgs; };
+
 in
 mkModule {
   name = "Helix IDE";
@@ -15,6 +18,7 @@ mkModule {
     programs.helix = {
       enable = true;
       defaultEditor = true;
+      package = inputs.helix.packages.${system}.default;
       extraPackages = with pkgs; [
         # Nix
         nixd
