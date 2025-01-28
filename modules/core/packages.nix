@@ -1,5 +1,6 @@
 {
   mkModule,
+  config,
   pkgs,
   lib,
   ...
@@ -31,7 +32,7 @@ mkModule {
       enable = mkEnableOption "nh";
       flakePath = mkOption {
         type = str;
-        default = "/etc/nixos";
+        default = "/home/${config.modules.user.username}/dotfiles";
       };
       clean = {
         enable = mkEnableOption "nh clean";
