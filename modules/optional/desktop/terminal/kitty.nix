@@ -88,6 +88,30 @@ mkModule {
       misc.swallow_regex = "^(kitty)$";
     };
 
+    xdg.mimeApps = {
+      enable = true;
+      defaultApplications = {
+        "x-scheme-handler/terminal" = "kitty.desktop";
+      };
+    };
+
+    dconf = {
+      enable = true;
+      settings =
+        let
+          exec = "kitty";
+          exec-arg = "";
+        in
+        {
+          "org/gnome/desktop/default-applications/terminal" = {
+            inherit exec exec-arg;
+          };
+          "org/cinnamon/desktop/default-applications/terminal" = {
+            inherit exec exec-arg;
+          };
+        };
+    };
+
     programs.kitty = {
       enable = true;
       settings = {
