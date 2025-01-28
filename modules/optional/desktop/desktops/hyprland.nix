@@ -180,6 +180,8 @@ mkModule {
             "swww-daemon"
             # set random wallpaper
             "${wallpaperScript}"
+            # start keyring daemon
+            "${pkgs.gnome-keyring}/bin/gnome-keyring-daemon"
           ];
 
           input = with config.modules.graphics; {
@@ -265,6 +267,9 @@ mkModule {
             "rounding 0, floating:0, onworkspace:w[tv1]"
             "bordersize 0, floating:0, onworkspace:f[1]"
             "rounding 0, floating:0, onworkspace:f[1]"
+
+            # Make file/folder info windows in file managers floating
+            "float, title:(.*Properties.*)"
           ];
 
           cursor.enable_hyprcursor = true;
