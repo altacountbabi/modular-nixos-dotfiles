@@ -88,13 +88,6 @@ mkModule {
       misc.swallow_regex = "^(kitty)$";
     };
 
-    xdg.mimeApps = {
-      enable = true;
-      defaultApplications = {
-        "x-scheme-handler/terminal" = "kitty.desktop";
-      };
-    };
-
     dconf = {
       enable = true;
       settings =
