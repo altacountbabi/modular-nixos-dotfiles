@@ -56,15 +56,20 @@ mkModule {
             packages =
               cfg.packages
               ++ (with pkgs; [
-                obs-studio
+                # Normal Apps
+                libreoffice-fresh
                 youtube-music
                 prismlauncher
-                r2modman
-                resources
+                obs-studio
                 cartridges
-                nemo
-                libreoffice-fresh
+                r2modman
                 pinta
+
+                # System Apps
+                resources
+                nautilus
+                loupe
+                feh
               ]);
           };
 
