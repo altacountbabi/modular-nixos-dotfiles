@@ -1,11 +1,10 @@
 { pkgs, ... }:
 
-with pkgs;
-stdenvNoCC.mkDerivation {
+pkgs.stdenvNoCC.mkDerivation {
   pname = "segoe-ui";
   version = "unstable-2025-01-16";
 
-  src = fetchurl {
+  src = pkgs.fetchurl {
     url = "https://aka.ms/segoeuifont";
     hash = "sha256-g8ZnGi6JHaijAy0uCv+ZqFktMlegbJQ+VWwzIC8oA3Q=";
     curlOptsList = [
@@ -16,7 +15,7 @@ stdenvNoCC.mkDerivation {
   };
 
   unpackPhase = ''
-    ${unzip}/bin/unzip $src -d .
+    ${pkgs.unzip}/bin/unzip $src -d .
   '';
 
   installPhase = ''
@@ -24,7 +23,7 @@ stdenvNoCC.mkDerivation {
     mv *.ttf $out/share/fonts/ttf
   '';
 
-  meta = with lib; {
+  meta = with pkgs.lib; {
     description = "Segoe UI font package";
     license = licenses.unfree;
     platforms = platforms.all;

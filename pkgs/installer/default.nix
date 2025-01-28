@@ -1,9 +1,8 @@
 { pkgs, ... }:
 
-with pkgs;
-writeShellApplication {
+pkgs.writeShellApplication {
   name = "nixos-installer";
-  runtimeInputs = [
+  runtimeInputs = with pkgs; [
     git
     gum # TUI Dialogs
   ];
