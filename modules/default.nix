@@ -17,6 +17,7 @@ let
   inherit (builtins) filter toString;
 
   mkModule = import ../lib/mkModule.nix { inherit config lib; };
+  match = import ../lib/mkModule.nix;
 
   contains = list: string: builtins.any (substr: strings.hasPrefix (toString substr) string) list;
 
@@ -35,6 +36,7 @@ let
             config
             system
             inputs
+            match
             pkgs
             lib
             ;
