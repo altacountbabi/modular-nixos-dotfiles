@@ -133,17 +133,25 @@ mkModule {
             display-inlay-hints = true;
             display-messages = true;
           };
+          file-picker = {
+            hidden = false;
+            git-ignore = false;
+          };
           bufferline = "multiple";
           true-color = true;
           cursorline = true;
         };
         keys = {
           normal = {
-            # Swap space.f and space.F
             space = {
               space = "file_picker_in_current_directory";
+              # Swap space.f and space.F
               f = "file_picker_in_current_directory";
               F = "file_picker";
+
+              # Swap space.e and space.E
+              e = "file_explorer_in_current_directory";
+              E = "file_explorer";
             };
 
             # Swap `a` and `i` because `a` is more convenient to press
@@ -156,6 +164,8 @@ mkModule {
 
             p = "paste_before";
             P = "paste_after";
+
+            ret = "goto_word";
 
             y = [
               ":clipboard-yank"
