@@ -39,6 +39,7 @@ mkModule {
         "aarch64-unknown-linux-musl"
         "aarch64-unknown-linux-gnu"
         "x86_64-unknown-uefi"
+        "wasm32-unknown-unknown"
       ];
     };
   };
@@ -50,6 +51,9 @@ mkModule {
       })
       gcc14
       lldb
+
+      cargo-binstall
+      wasm-bindgen-cli
     ];
   };
 }
