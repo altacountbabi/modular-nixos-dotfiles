@@ -16,6 +16,7 @@
     home-manager.packages = with pkgs; [
       localsend
       obsidian
+      figma-linux
     ];
 
     desktop.desktops.hyprland.monitor = [
