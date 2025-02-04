@@ -287,6 +287,7 @@ mkModule {
             enable_swallow = true;
             swallow_exception_regex = "(qemu|wev)";
             initial_workspace_tracking = 0;
+            middle_click_paste = false;
           };
 
           xwayland.force_zero_scaling = true;
