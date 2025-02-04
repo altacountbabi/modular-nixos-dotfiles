@@ -2,7 +2,6 @@
   mkModule,
   config,
   inputs,
-  pkgs,
   lib,
   ...
 }:
@@ -41,6 +40,16 @@ mkModule {
         "mocha"
       ];
       default = "mocha";
+    };
+  };
+  cfg = cfg: {
+    modules.desktop.eww = {
+      bg = "#1e1e2e";
+      border = "#313244";
+      slider_bg = "#11111b";
+      fg = "#cdd6f4";
+      # FIXME: Match the selected accent for the right color here, this is just going to be mauve by default
+      accent = "#b4befe";
     };
   };
   hm = cfg: {
