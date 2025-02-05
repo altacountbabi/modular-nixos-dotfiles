@@ -30,9 +30,13 @@
     # Desktop settings
     desktop = {
       dm.autologin.enable = false;
+      eww.bar = true;
 
       browser = {
-        zen.enable = false;
+        zen = {
+          enable = false;
+          autoStart = false;
+        };
         firefox.enable = true;
       };
       discord.autoStart = false;
