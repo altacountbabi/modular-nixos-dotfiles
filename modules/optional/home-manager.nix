@@ -66,6 +66,7 @@ mkModule {
                 pinta
 
                 # System Apps
+                gnome-calculator
                 resources
                 nautilus
                 loupe
