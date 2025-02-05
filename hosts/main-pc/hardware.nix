@@ -2,10 +2,10 @@
 # and may be overwritten by future invocations.  Please make changes
 # to /etc/nixos/configuration.nix instead.
 {
-  config,
-  lib,
-  system,
   modulesPath,
+  config,
+  system,
+  lib,
   ...
 }:
 
@@ -13,9 +13,7 @@ let
   inherit (lib) mkDefault;
 in
 {
-  imports = [
-    (modulesPath + "/installer/scan/not-detected.nix")
-  ];
+  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
   boot = {
     initrd = {

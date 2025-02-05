@@ -5,11 +5,15 @@
 
   modules = {
     # System settings
+    boot = {
+      bootloader.timeout = 5; # Timeout before it proceeds with the selected boot option
+      plymouth = false; # Disable boot splash
+    };
     graphics.gpuType = "nvidia";
-    network.hostname = "luke";
+    network.hostname = "LaptopNixOS";
 
     user = rec {
-      username = "orang";
+      username = "sablesk";
       displayName = username;
     };
 

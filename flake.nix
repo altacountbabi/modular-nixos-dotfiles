@@ -44,6 +44,10 @@
           system = "x86_64-linux";
           host = "main-pc";
         }
+        {
+          system = "x86_64-linux";
+          host = "LaptopNixOS";
+        }
         # config-placeholder
       ];
     }
