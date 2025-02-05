@@ -26,7 +26,7 @@ mkModule {
     };
     slider_bg = mkOption {
       type = str;
-      default = "#11111b";
+      default = "#2e2e2e";
     };
     fg = mkOption {
       type = str;
@@ -186,24 +186,13 @@ mkModule {
             padding: 10px;
           }
 
-          .right {
-            margin-right: 10px;
-          }
-
-          .right slider {
-            all: unset;
-            color: ${slider_bg};
-          }
-
           .metric scale trough highlight {
-            all: unset;
             background-color: ${accent};
             color: ${accent};
             border-radius: 10px;
           }
 
           .metric scale trough {
-            all: unset;
             background-color: ${slider_bg};
             border-radius: 50px;
             min-height: 3px;
