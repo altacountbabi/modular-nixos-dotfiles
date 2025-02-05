@@ -56,6 +56,12 @@ mkModule {
         inherit user;
       };
 
+      sonarr = {
+        enable = true;
+        openFirewall = true;
+        inherit user;
+      };
+
       # Indexer for radarr
       prowlarr = {
         enable = true;
