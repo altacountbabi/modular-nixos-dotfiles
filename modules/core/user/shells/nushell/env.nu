@@ -87,6 +87,7 @@ alias tree = tree -l # Make `tree` follow symlinks
 alias clone = git clone --depth 1
 alias shell = nix-shell --command "nu"
 alias lg = lazygit
+alias switch = nh os switch ~/dotfiles
 
 def files [...args] {
     hyprctl dispatch exec nautilus ...$args o+e> /dev/null
