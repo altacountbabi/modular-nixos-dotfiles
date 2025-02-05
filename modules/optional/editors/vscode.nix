@@ -62,7 +62,18 @@ mkModule {
         "${toUpper firstChar}${rest}";
     in
     {
-      home.packages = [ pkgs.vscode ];
+      home.packages =
+        with pkgs;
+        [ vscode ]
+        ++ (
+          if (elem "nix" cfg.languages) then
+            [
+              nixd
+              nixfmt-rfc-style
+            ]
+          else
+            [ ]
+        );
 
       programs.vscode = {
         enable = true;
@@ -166,10 +177,8 @@ mkModule {
           # Nix
           "[nix]"."editor.defaultFormatter" = mkIf (elem "nix" cfg.languages) "brettm12345.nixfmt-vscode";
           "[nix]"."editor.tabSize" = mkIf (elem "nix" cfg.languages) 2;
-          "nix.serverSettings"."nil.diagnostics.ignored" = mkIf (elem "nix" cfg.languages) [
-            "unused_binding"
-          ];
           "nix.enableLanguageServer" = elem "nix" cfg.languages;
+          "nix.serverPath" = "nixd";
 
           # Markdown
           "[markdown]"."files.trimTrailingWhitespace" = false;

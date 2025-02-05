@@ -38,7 +38,7 @@ mkModule {
           {
             name = "rust";
             auto-format = true;
-            formatter.command = "rustfmt";
+            formatter.command = "rustfmt --edition 2024";
             language-servers = [ "rust-analyzer" ];
           }
           {
