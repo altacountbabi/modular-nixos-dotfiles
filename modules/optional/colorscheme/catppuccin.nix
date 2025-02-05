@@ -30,7 +30,7 @@ mkModule {
         "teal"
         "yellow"
       ];
-      default = "mauve";
+      default = "lavender";
     };
     flavor = mkOption {
       type = enum [
