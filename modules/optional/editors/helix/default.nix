@@ -38,7 +38,13 @@ mkModule {
           {
             name = "rust";
             auto-format = true;
-            formatter.command = "rustfmt --edition 2024";
+            formatter = {
+              command = "bash";
+              args = [
+                "-c"
+                "rustfmt --edition 2024 | dx fmt -f -"
+              ];
+            };
             language-servers = [ "rust-analyzer" ];
           }
           {
