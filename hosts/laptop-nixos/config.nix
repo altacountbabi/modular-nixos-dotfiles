@@ -6,6 +6,7 @@
   modules = {
     graphics.gpuType = "nvidia";
     network.hostname = "laptop-nixos";
+    services.tailscale.enable = true;
 
     packages.steam = false;
 

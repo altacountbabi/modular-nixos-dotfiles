@@ -12,6 +12,7 @@
   modules = {
     graphics.gpuType = "amd";
     network.hostname = "main-pc";
+    services.tailscale.enable = true;
 
     home-manager.packages = with pkgs; [
       localsend

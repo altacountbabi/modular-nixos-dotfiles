@@ -1,13 +1,9 @@
 {
   mkModule,
   config,
-  lib,
   ...
 }:
 
-let
-  inherit (lib) mkOption types;
-in
 mkModule {
   name = "docker";
   path = "services.docker";
