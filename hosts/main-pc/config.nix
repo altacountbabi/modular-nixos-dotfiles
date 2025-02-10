@@ -18,6 +18,7 @@
       localsend
       obsidian
       figma-linux
+      devenv
     ];
 
     desktop.desktops.hyprland.monitor = [
