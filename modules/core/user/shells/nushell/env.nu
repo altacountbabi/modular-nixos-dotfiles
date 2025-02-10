@@ -2,7 +2,7 @@
 #
 # version = "0.92.2"
 
-$env.PROMPT_COMMAND = $env.PROMPT_COMMAND? | default {||
+$env.PROMPT_COMMAND = {||
     let dir = match (do -i { $env.PWD | path relative-to $nu.home-path }) {
         null => $env.PWD
         '' => '~'
@@ -12,8 +12,11 @@ $env.PROMPT_COMMAND = $env.PROMPT_COMMAND? | default {||
     let path_color = (if (is-admin) { ansi red_bold } else { ansi green_bold })
     let separator_color = (if (is-admin) { ansi light_red_bold } else { ansi light_green_bold })
     let path_segment = $"($path_color)($dir)(ansi reset)"
+    let shell_name = if ($env.name? | is-not-empty) {
+        $"(ansi blue_bold)\((if ($env.name == "devenv-shell-env") { "devenv" } else { $env.name })\)(ansi reset) "
+    } else { "" }
 
-    $path_segment | str replace --all (char path_sep) $"($separator_color)(char path_sep)($path_color)"
+    $"($shell_name)($path_segment)" | str replace --all (char path_sep) $"($separator_color)(char path_sep)($path_color)"
 }
 
 # FIXME: This default is not implemented in rust code as of 2023-09-08.
