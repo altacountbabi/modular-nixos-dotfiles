@@ -56,7 +56,6 @@ mkModule {
         targets = cfg.targets;
       })
       gcc14
-      lldb
 
       cargo-binstall
       wasm-bindgen-cli
