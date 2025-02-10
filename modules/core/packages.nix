@@ -92,7 +92,12 @@ mkModule {
     ];
 
     programs = {
-      steam.enable = cfg.steam;
+      steam = {
+        enable = cfg.steam;
+        package = pkgs.steam.override {
+          extraPkgs = p: [ p.adwaita-icon-theme ];
+        };
+      };
       nh = mkIf cfg.nh.enable {
         enable = true;
         flake = cfg.nh.flakePath;
