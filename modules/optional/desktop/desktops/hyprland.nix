@@ -284,7 +284,7 @@ mkModule {
             disable_hyprland_logo = true;
             disable_splash_rendering = true;
             animate_manual_resizes = false;
-            enable_swallow = true;
+            enable_swallow = false;
             swallow_exception_regex = "(qemu|wev)";
             initial_workspace_tracking = 0;
             middle_click_paste = false;
