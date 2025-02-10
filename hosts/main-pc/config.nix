@@ -14,6 +14,8 @@
     network.hostname = "main-pc";
     services.tailscale.enable = true;
 
+    editor.helix.latest = true;
+
     home-manager.packages = with pkgs; [
       localsend
       obsidian

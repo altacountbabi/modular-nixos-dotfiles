@@ -8,17 +8,21 @@
 }:
 
 let
-  mdpls = import ../../../../pkgs/mdpls { inherit pkgs; };
+  inherit (pkgs.lib) mkEnableOption;
 
+  mdpls = import ../../../../pkgs/mdpls { inherit pkgs; };
 in
 mkModule {
   name = "Helix IDE";
   path = "editor.helix";
+  opts = {
+    latest = mkEnableOption "compile from source, this requires a lot of ram!";
+  };
   hm = cfg: {
     programs.helix = {
       enable = true;
       defaultEditor = true;
-      package = inputs.helix.packages.${system}.default;
+      package = if cfg.latest then inputs.helix.packages.${system}.default else pkgs.helix;
       extraPackages = with pkgs; [
         # Nix
         nixd
