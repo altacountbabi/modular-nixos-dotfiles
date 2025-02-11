@@ -63,6 +63,7 @@ mkModule {
         libnotify # notify-send
         neofetch
         delta # better `diff`
+        unzip
         just # command runner
         calc # calc is short for calculator btw im just using slang
         tree
@@ -72,6 +73,7 @@ mkModule {
         file # describe the content of files
         wget
         bat # better `cat`
+        zip
 
         # Development
         vscode
