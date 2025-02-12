@@ -1,4 +1,9 @@
-{ mkModule, config, ... }:
+{
+  mkModule,
+  config,
+  pkgs,
+  ...
+}:
 
 mkModule {
   name = "environment variables";
@@ -9,6 +14,8 @@ mkModule {
       ${if config.modules.graphics.gpuType != "nvidia" then "NIXOS_OZONE_WL" else null} = "1";
       # Fix audio crackling/popping in some games
       PULSE_LATENCY_MSEC = 50;
+      # Fix issues with tree-sitter using libstdc++ at runtime
+      LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib";
     };
   };
 }
