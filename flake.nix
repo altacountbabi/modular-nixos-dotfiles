@@ -94,11 +94,14 @@
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     flatpaks.url = "github:GermanBread/declarative-flatpak/stable-v3";
     vscode-server.url = "github:nix-community/nixos-vscode-server";
-    zen-browser.url = "github:0xc000022070/zen-browser-flake";
     flake-utils.url = "github:numtide/flake-utils";
     catppuccin.url = "github:altacountbabi/catppuccin-nix";
     disko.url = "github:nix-community/disko";
+
+    # Apps
     nixcord.url = "github:kaylorben/nixcord";
     helix.url = "github:helix-editor/helix";
+    # Lock to 1.7b because later versions break lots of themes.
+    zen-browser.url = "github:0xc000022070/zen-browser-flake?rev=32f3692cc4d6a1d1cb8943be7d2e712a63c4b374";
   };
 }
