@@ -71,8 +71,24 @@ mkModule {
                 nautilus
                 loupe
                 feh
+                mpv
               ]);
           };
+
+          # Default mime type handlers
+          xdg.mimeApps.defaultApplications =
+            let
+              mpvMimeTypes = [
+                "video/mp4"
+                "video/x-matroska"
+                "audio/mpeg"
+                "audio/flac"
+              ];
+            in
+            builtins.listToAttrs map (mime: {
+              name = mime;
+              value = "mpv.desktop";
+            }) mpvMimeTypes;
 
           programs.home-manager.enable = true;
         };
