@@ -143,10 +143,6 @@ mkModule {
             display-inlay-hints = true;
             display-messages = true;
           };
-          file-picker = {
-            hidden = false;
-            git-ignore = false;
-          };
           bufferline = "multiple";
           true-color = true;
           cursorline = true;
