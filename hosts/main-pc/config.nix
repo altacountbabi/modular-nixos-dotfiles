@@ -12,7 +12,10 @@
   modules = {
     graphics.gpuType = "amd";
     network.hostname = "main-pc";
-    services.tailscale.enable = true;
+    services = {
+      tailscale.enable = true;
+      syncthing.enable = true;
+    };
 
     editor.helix.latest = true;
 
