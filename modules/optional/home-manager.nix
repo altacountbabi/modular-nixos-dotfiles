@@ -64,6 +64,7 @@ mkModule {
                 obs-studio
                 cartridges
                 r2modman
+                xclicker
                 pinta
 
                 # System Apps
