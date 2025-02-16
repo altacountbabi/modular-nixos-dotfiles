@@ -139,10 +139,8 @@ mkModule {
                             if cfg.bar.battery then
                               ''
                                 (
-                                    _battery
-                                    :battery {EWW_BATTERY.BAT1.capacity}
-                                    :status {EWW_BATTERY.BAT1.status}
-                                    :warn "󰂃" :one "󰁺" :two "󰁻" :three "󰁼" :four "󰁽" :five "󰁾" :six "󰁿" :seven "󰂀" :eight "󰂁" :nine "󰂂" :full "󱟢" :charge "󰂄"
+                                  label
+                                  :text "Battery: {EWW_BATTERY.BAT1.status}"
                                 )
                               ''
                             else
@@ -174,25 +172,6 @@ mkModule {
                       (button :onclick "hyprctl dispatch workspace 6" 6)
                   )
               )
-            ''
-          else
-            ""
-        )
-        + (
-          if cfg.bar.battery then
-            ''
-              (defwidget _battery [battery status warn one two three four five six seven eight nine full charge]
-                (label :text {status == "Charging" ? charge :
-                  battery < 10 ? warn :
-                  battery < 20 ? one :
-                  battery < 30 ? two :
-                  battery < 40 ? three :
-                  battery < 50 ? four :
-                  battery < 60 ? five :
-                  battery < 70 ? six :
-                  battery < 80 ? seven :
-                  battery < 90 ? eight :
-                  battery < 100 ? nine : full}))
             ''
           else
             ""
