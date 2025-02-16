@@ -10,7 +10,10 @@ let
 in
 pkgs.writeShellApplication {
   name = "notify-info";
-  runtimeInputs = with pkgs; [ libnotify ];
+  runtimeInputs = with pkgs; [
+    libnotify
+    acpi
+  ];
   text =
     let
       volumeScript = getExe (import ./volume.nix pkgs);
