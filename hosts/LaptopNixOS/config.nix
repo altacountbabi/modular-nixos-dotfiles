@@ -30,7 +30,10 @@
     # Desktop settings
     desktop = {
       dm.autologin.enable = false;
-      eww.bar = true;
+      eww.bar = {
+        enable = true;
+        battery = true;
+      };
 
       browser = {
         zen = {

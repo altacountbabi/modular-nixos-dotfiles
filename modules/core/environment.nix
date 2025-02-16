@@ -16,6 +16,7 @@ mkModule {
       PULSE_LATENCY_MSEC = 50;
       # Fix issues with tree-sitter using libstdc++ at runtime
       LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib";
+      ${if config.modules.editor.helix.enable then "EDITOR" else null} = "hx";
     };
   };
 }

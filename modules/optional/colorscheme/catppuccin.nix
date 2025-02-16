@@ -44,12 +44,12 @@ mkModule {
   };
   cfg = cfg: {
     modules.desktop.eww = {
-      bg = "#1e1e2e";
-      border = "#313244";
-      slider_bg = "#11111b";
-      fg = "#cdd6f4";
-      # FIXME: Match the selected accent for the right color here, this is just going to be mauve by default
-      accent = "#b4befe";
+      bg = "#1e1e2e"; # Base
+      border = "#313244"; # Surface 0
+      slider_bg = "#313244"; # Surface 0
+      fg = "#cdd6f4"; # Text
+      # FIXME: Match the selected accent for the right color here, this is just going to be lavander by default
+      accent = "#b4befe"; # Lavander
     };
   };
   hm = cfg: {
@@ -76,12 +76,14 @@ mkModule {
       cava.enable = true;
       fish.enable = true;
       bat.enable = true;
+      fzf.enable = true;
     };
 
     programs = {
       cava.enable = true;
       btop.enable = true;
       bat.enable = true;
+      fzf.enable = true;
     };
 
     qt = {

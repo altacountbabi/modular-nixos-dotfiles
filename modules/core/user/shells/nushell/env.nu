@@ -123,3 +123,59 @@ def v [...args] {
     }
 }
 
+# Recent project picker
+def p [action?: string, project_path?: string] {
+    let recent_projects_file = ($env.HOME | path join ".cache/recent-projects")
+
+    mkdir ($recent_projects_file | path dirname) | ignore
+
+    match $action {
+        "add" => { add_project $project_path $recent_projects_file }
+        "list" => { list_projects $recent_projects_file }
+        "clear" => { clear_projects $recent_projects_file }
+        "pick" => { pick_project $recent_projects_file }
+        _ => { pick_project $recent_projects_file }
+    }
+}
+
+def add_project [project_path: string, recent_projects_file] {
+  if ($project_path | is-empty) {
+    print "Usage: recent-projects add /path/to/project"
+    return
+  }
+    
+  if not ($recent_projects_file | open | lines | any { |line| $line == $project_path }) {
+    $project_path | save --append $recent_projects_file
+  }
+}
+
+def list_projects [recent_projects_file] {
+  open $recent_projects_file | lines | each { |line| print $line }
+}
+
+def clear_projects [recent_projects_file] {
+  "" | save -f $recent_projects_file
+  print "Cleared recent projects."
+}
+
+def open_project [project_path: string, recent_projects_file] {
+  if not ($project_path | path exists) {
+    print "Project directory does not exist: ($project_path)"
+    return
+  }
+
+  cd $project_path
+  hx .
+}
+
+def pick_project [recent_projects_file] {
+  if (ls $recent_projects_file | get size) == 0 {
+    print "No recent projects found."
+    return
+  }
+    
+  let selected = ($recent_projects_file | open | lines | to text | fzf)
+  if not ($selected | is-empty) {
+    open_project $selected $recent_projects_file
+  }
+}

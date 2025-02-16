@@ -21,7 +21,6 @@ mkModule {
   hm = cfg: {
     programs.helix = {
       enable = true;
-      defaultEditor = true;
       package = if cfg.latest then inputs.helix.packages.${system}.default else pkgs.helix;
       extraPackages = with pkgs; [
         # Nix
@@ -30,6 +29,9 @@ mkModule {
 
         # Markdown
         mdpls
+
+        # Nushell
+        nufmt
       ];
       languages = {
         language = [
@@ -50,6 +52,11 @@ mkModule {
               ];
             };
             language-servers = [ "rust-analyzer" ];
+          }
+          {
+            name = "nu";
+            auto-format = true;
+            formatter.command = "nufmt --stdin";
           }
           {
             name = "markdown";

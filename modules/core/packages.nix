@@ -60,7 +60,7 @@ mkModule {
       [
         # Cli Utilities
         nix-search-cli # cli frontend to search.nixos.org
-        libnotify # notify-send
+        libnotify # cli notifications
         neofetch
         delta # better `diff`
         unzip
@@ -73,6 +73,7 @@ mkModule {
         file # describe the content of files
         wget
         bat # better `cat`
+        fzf
         zip
 
         # Development

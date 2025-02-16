@@ -21,6 +21,11 @@
     desktop = {
       browser.zen.autoStart = false;
       discord.autoStart = false;
+
+      eww.bar = {
+        enable = true;
+        battery = true;
+      };
     };
 
     home-manager.packages = with pkgs; [ pavucontrol ];
