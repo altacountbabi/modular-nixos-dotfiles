@@ -140,7 +140,7 @@ mkModule {
                               ''
                                 (
                                   label
-                                  :text "Battery: {EWW_BATTERY.BAT1.status}"
+                                  :text "Battery: $\{EWW_BATTERY.BAT1.status}"
                                 )
                               ''
                             else
