@@ -8,7 +8,7 @@
 }:
 
 let
-  inherit (pkgs.lib) mkEnableOption;
+  inherit (pkgs.lib) mkEnableOption mkIf;
 
   mdpls = import ../../../../pkgs/mdpls { inherit pkgs; };
 in
@@ -156,16 +156,19 @@ mkModule {
         };
         keys = {
           normal = {
-            space = {
-              space = "file_picker_in_current_directory";
-              # Swap space.f and space.F
-              f = "file_picker_in_current_directory";
-              F = "file_picker";
+            space =
+              {
+                space = "file_picker_in_current_directory";
+                # Swap space.f and space.F
+                f = "file_picker_in_current_directory";
+                F = "file_picker";
 
-              # Swap space.e and space.E
-              e = "file_explorer_in_current_directory";
-              E = "file_explorer";
-            };
+              }
+              // mkIf cfg.latest {
+                # Swap space.e and space.E
+                e = "file_explorer_in_current_directory";
+                E = "file_explorer";
+              };
 
             # Swap `a` and `i` because `a` is more convenient to press
             a = "insert_mode";
