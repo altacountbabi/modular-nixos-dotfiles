@@ -25,10 +25,9 @@
     # Desktop settings
     desktop = {
       dm.autologin.enable = false;
-      eww.bar = {
-        enable = true;
-        battery = true;
-      };
+      eww.bar = true;
+
+      desktops.hyprland.batteryInfo = true;
 
       browser = {
         zen = {

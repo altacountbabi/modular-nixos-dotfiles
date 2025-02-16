@@ -16,7 +16,6 @@ let
 
   getScript = name: getExe (import ../../scripts/${name}.nix { inherit lib pkgs; });
 
-  notifyInfoScript = getScript "notify-info";
   volumeScript = getScript "volume";
   colorPickerScript = getScript "color-picker";
   wallpaperScript =
@@ -61,6 +60,7 @@ mkModule {
       description = "Monitor config";
       default = [ ];
     };
+    batteryInfo = mkEnableOption "battery info in info notifications";
     hyprcursor = mkEnableOption "hyprcursor";
   };
   cfg = cfg: { programs.hyprland.enable = true; };
@@ -68,6 +68,13 @@ mkModule {
     cfg:
     let
       inherit (builtins) concatLists genList toString;
+
+      notifyInfoScript = getExe (
+        import ../../scripts/notify-info.nix {
+          inherit lib pkgs;
+          inherit (cfg) batteryInfo;
+        }
+      );
     in
     {
       home.packages = with pkgs; [

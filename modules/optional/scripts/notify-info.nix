@@ -1,4 +1,9 @@
-{ lib, pkgs, ... }:
+{
+  lib,
+  pkgs,
+  batteryInfo ? false,
+  ...
+}:
 
 let
   inherit (lib) getExe;
@@ -13,6 +18,7 @@ pkgs.writeShellApplication {
     in
     ''
       notify-send -t "${builtins.toString timeout}" -e "Time:   $(date +%-I:%M)" "Date:   $(date +"%A, %d, %B")
-      Volume: $(${volumeScript} g)%"
+      Volume:  $(${volumeScript} g)%
+      ${if batteryInfo then "$(acpi -b)" else ""}"
     '';
 }

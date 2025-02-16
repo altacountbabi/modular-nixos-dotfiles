@@ -13,10 +13,7 @@ mkModule {
   path = "desktop.eww";
   opts = with types; {
     # UI Panels
-    bar = {
-      enable = mkEnableOption "Bar UI";
-      battery = mkEnableOption "Battery Indicator";
-    };
+    bar = mkEnableOption "Bar UI";
 
     # Colors
     bg = mkOption {
@@ -104,7 +101,7 @@ mkModule {
           )
         ''
         + (
-          if cfg.bar.enable then
+          if cfg.bar then
             ''
               (defpoll time :interval "30s" "date '+%H:%M'")
               (
@@ -134,18 +131,6 @@ mkModule {
                           :space-evenly false
                           :spacing 8
                           :halign "end"
-
-                          ${
-                            if cfg.bar.battery then
-                              ''
-                                (
-                                  label
-                                  :text "Battery: $\{EWW_BATTERY.BAT1.status}"
-                                )
-                              ''
-                            else
-                              ""
-                          }
                           (
                               metric
                               :label ""
