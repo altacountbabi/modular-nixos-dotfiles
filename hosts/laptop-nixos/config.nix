@@ -23,11 +23,6 @@
       discord.autoStart = false;
 
       desktops.hyprland.batteryInfo = true;
-
-      eww.bar = {
-        enable = true;
-        battery = true;
-      };
     };
 
     home-manager.packages = with pkgs; [ pavucontrol ];
