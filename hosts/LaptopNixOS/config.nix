@@ -17,11 +17,6 @@
       displayName = username;
     };
 
-    services = {
-      vscode-server.enable = false;
-      ssh.enable = false;
-    };
-
     locale = {
       timeZone = "EST";
       i18n.extra = "en_US.UTF-8";
