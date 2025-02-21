@@ -156,19 +156,16 @@ mkModule {
         };
         keys = {
           normal = {
-            space =
-              {
-                space = "file_picker_in_current_directory";
-                # Swap space.f and space.F
-                f = "file_picker_in_current_directory";
-                F = "file_picker";
+            space = {
+              space = "file_picker_in_current_directory";
 
-              }
-              // mkIf cfg.latest {
-                # Swap space.e and space.E
-                e = "file_explorer_in_current_directory";
-                E = "file_explorer";
-              };
+              # Swap space.f and space.F
+              f = "file_picker_in_current_directory";
+              F = "file_picker";
+
+              ${if cfg.latest then "e" else null} = "file_explorer_in_current_directory";
+              ${if cfg.latest then "E" else null} = "file_explorer";
+            };
 
             # Swap `a` and `i` because `a` is more convenient to press
             a = "insert_mode";
