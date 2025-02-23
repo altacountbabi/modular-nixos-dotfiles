@@ -97,32 +97,37 @@ mkModule {
               "$mod, Q, killactive"
 
               # Layout Management
-              "$mod, V, togglefloating"
-              "$mod, F, fullscreen"
+              "$mod, V,       togglefloating"
+              "$mod, F,       fullscreen"
               "$mod SHIFT, F, fullscreenstate, 0 2"
-              "$mod, P, pseudo"
-              "$mod, J, togglesplit"
-              "$mod, S, togglespecialworkspace, magic"
+              "$mod, P,       pseudo"
+              "$mod, J,       togglesplit"
+              "$mod, S,       togglespecialworkspace, magic"
               "$mod SHIFT, S, movetoworkspace, special:magic"
 
-              "$mod SHIFT, Left, swapwindow, l"
+              "$mod SHIFT, Left,  swapwindow, l"
               "$mod SHIFT, Right, swapwindow, r"
-              "$mod SHIFT, Up, swapwindow, u"
-              "$mod SHIFT, Down, swapwindow, d"
+              "$mod SHIFT, Up,    swapwindow, u"
+              "$mod SHIFT, Down,  swapwindow, d"
 
               # Window Navigation
-              "$mod, Left, movefocus, l"
+              "$mod, Left,  movefocus, l"
               "$mod, Right, movefocus, r"
-              "$mod, Up, movefocus, u"
-              "$mod, Down, movefocus, d"
+              "$mod, Up,    movefocus, u"
+              "$mod, Down,  movefocus, d"
+
+              # Groups
+              "$mod,       G,   togglegroup"
+              "$mod,       Tab, changegroupactive, f"
+              "$mod SHIFT, Tab, changegroupactive, b"
 
               # Misc
-              "$mod, Tab, exec, ${notifyInfoScript}"
+              "$mod, Escape,  exec, ${notifyInfoScript}"
               "$mod, L, exec, youtube-music"
               "$mod, T, exec, cartridges"
 
               # Screenshotting
-              "ALT, R, exec, grimblast --freeze copy area"
+              "ALT, R,       exec, grimblast --freeze copy area"
               "ALT SHIFT, R, exec, grimblast copy screen"
 
               # Color picker
@@ -286,6 +291,15 @@ mkModule {
             "HYPRCURSOR_THEME,Adwaita"
             "HYPRCURSOR_SIZE,24"
           ];
+
+          group.groupbar = {
+            height = 0;
+            font_size = 0;
+            # https://github.com/catppuccin/catppuccin/raw/main/assets/palette/circles/mocha_mauve.png
+            "col.active" = "0xffcba6f7";
+            # Transparent
+            "col.inactive" = "0x00000000";
+          };
 
           misc = {
             disable_hyprland_logo = true;
