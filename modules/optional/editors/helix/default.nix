@@ -8,7 +8,7 @@
 }:
 
 let
-  inherit (pkgs.lib) mkEnableOption mkIf;
+  inherit (pkgs.lib) mkEnableOption;
 
   mdpls = import ../../../../pkgs/mdpls { inherit pkgs; };
 in
@@ -180,6 +180,8 @@ mkModule {
 
             ret = "goto_word";
 
+            X = "extend_line_above";
+
             y = [
               ":clipboard-yank"
               "yank"
@@ -206,6 +208,7 @@ mkModule {
               ":clipboard-yank"
               "yank"
             ];
+            X = "extend_line_above";
           };
         };
       };
