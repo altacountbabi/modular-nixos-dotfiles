@@ -7,7 +7,6 @@
 ; Identifiers
 (function_declaration argument: (identifier) @variable.parameter)
 (self) @variable.builtin
-(identifier) @variable
 
 ; Literals
 (comment) @comment
