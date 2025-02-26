@@ -75,6 +75,7 @@ mkModule {
         bat # better `cat`
         fzf
         zip
+        xxd
 
         # Development
         vscode

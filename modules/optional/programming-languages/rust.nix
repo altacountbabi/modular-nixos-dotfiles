@@ -57,8 +57,11 @@ mkModule {
       })
       gcc14
 
-      cargo-binstall
+      # CLI Tools
       wasm-bindgen-cli
+      cargo-show-asm
+      cargo-binstall
+      irust
     ];
   };
 }
