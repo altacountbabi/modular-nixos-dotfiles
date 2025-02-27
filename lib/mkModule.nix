@@ -6,11 +6,9 @@ let
   inherit (lib)
     mkIf
     mkOption
-    mkEnableOption
     splitString
     types
     attrsets
-    lists
     ;
 
   inherit (attrsets) setAttrByPath getAttrFromPath;
