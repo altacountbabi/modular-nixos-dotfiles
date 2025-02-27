@@ -141,6 +141,7 @@ in
         enable = true;
         autoStart = true;
       };
+      libreoffice.enable = true;
     };
   };
 

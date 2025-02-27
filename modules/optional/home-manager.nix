@@ -58,7 +58,6 @@ mkModule {
               cfg.packages
               ++ (with pkgs; [
                 # Normal Apps
-                libreoffice-fresh
                 youtube-music
                 prismlauncher
                 obs-studio
