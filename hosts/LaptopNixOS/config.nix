@@ -29,6 +29,8 @@
 
       desktops.hyprland.batteryInfo = true;
 
+      libreoffice.normalTheme = true;
+
       browser = {
         zen = {
           enable = false;
