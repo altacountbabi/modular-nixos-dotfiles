@@ -21,6 +21,7 @@ mkModule {
       package = (if cfg.wayland then rofi-wayland else rofi);
       plugins = [ (if cfg.wayland then rofi-emoji-wayland else rofi-emoji) ];
     };
+
     wayland.windowManager.hyprland.settings.bind =
       mkIf config.modules.desktop.desktops.hyprland.enable
         [
@@ -28,5 +29,23 @@ mkModule {
           # Emoji picker is broken right now (probably)
           "$mod, comma, exec, rofi -show emoji"
         ];
+
+    xdg.desktopEntries = {
+      sleep = {
+        name = "Sleep / Suspend";
+        exec = "systemctl suspend";
+        terminal = false;
+      };
+      restart = {
+        name = "Restart / Reboot";
+        exec = "reboot";
+        terminal = false;
+      };
+      poweroff = {
+        name = "Shutdown / Power Off";
+        exec = "poweroff";
+        terminal = false;
+      };
+    };
   };
 }
