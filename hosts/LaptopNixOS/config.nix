@@ -31,20 +31,15 @@
 
       libreoffice.normalTheme = true;
 
-      browser = {
-        zen = {
-          enable = false;
-          autoStart = false;
-        };
-        firefox.enable = true;
-      };
+      browser.zen.autoStart = false;
       discord.autoStart = false;
     };
 
     # Add extra packages here not in home-manager.nix
     home-manager.packages = with pkgs; [
-      thunderbird
       protonvpn-gui
+      thunderbird
+      floorp
     ];
   };
 
