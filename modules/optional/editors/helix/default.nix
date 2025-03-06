@@ -1,4 +1,5 @@
 {
+  getScript,
   mkModule,
   config,
   inputs,
@@ -11,6 +12,7 @@ let
   inherit (pkgs.lib) mkEnableOption;
 
   mdpls = import ../../../../pkgs/mdpls { inherit pkgs; };
+  rofiProjectsPickerScript = getScript "rofi-projects-picker";
 in
 mkModule {
   name = "Helix IDE";
@@ -195,6 +197,8 @@ mkModule {
 
             tab = "goto_next_buffer";
             A-tab = "goto_previous_buffer";
+
+            A-w = ":sh ${rofiProjectsPickerScript} add $PWD && echo \"Saved \"$PWD\" to recent projects\"";
           };
           insert = {
             C-s = ":w";
