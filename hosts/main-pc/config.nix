@@ -21,10 +21,10 @@
 
     home-manager.packages = with pkgs; [
       figma-linux
+      processing
       localsend
       obsidian
       devenv
-      processing
     ];
 
     desktop.desktops.hyprland.monitor = [
