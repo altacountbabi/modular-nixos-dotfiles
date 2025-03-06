@@ -14,10 +14,11 @@ let
     types
     ;
 
-  getScript = name: getExe (import ../../scripts/${name}.nix { inherit lib pkgs; });
+  getScript = name: getExe (import ../../scripts/${name}.nix { inherit lib pkgs config; });
 
   volumeScript = getScript "volume";
   colorPickerScript = getScript "color-picker";
+  rofiSearchScript = getScript "rofi-search";
   wallpaperScript =
     with pkgs;
     getExe (writeShellApplication {
@@ -123,8 +124,9 @@ mkModule {
 
               # Misc
               "$mod, Escape,  exec, ${notifyInfoScript}"
-              "$mod, L, exec, youtube-music"
-              "$mod, T, exec, cartridges"
+              "$mod, A,       exec, ${rofiSearchScript}"
+              "$mod, L,       exec, youtube-music"
+              "$mod, T,       exec, cartridges"
 
               # Screenshotting
               "ALT, R,       exec, grimblast --freeze copy area"
