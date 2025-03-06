@@ -20,8 +20,15 @@ pkgs.writeShellApplication {
       workspace_switch_cmd = if desktops.hyprland.enable then "hyprctl dispatch workspace 1" else "true";
     in
     ''
-      input=$(rofi -dmenu -p "Search: ")
-      ${browser} "${search_engine}$input"
+      input=$(rofi -dmenu -p "Search: " | tr -d '\n')
+
+      if echo "$input" | grep -qE '^(https?://|www\.)|[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(/.*)?$'; then
+        url="$input"
+      else
+        url="${search_engine}$input"
+      fi
+
+      ${browser} "$url"
       ${workspace_switch_cmd}
     '';
 }
