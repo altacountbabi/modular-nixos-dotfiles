@@ -73,6 +73,7 @@ mkModule {
         file # describe the content of files
         wget
         bat # better `cat`
+        duf # better 'du'
         fzf
         zip
         xxd

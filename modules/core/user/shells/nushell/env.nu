@@ -85,6 +85,7 @@ $env.PATH = ($env.PATH | append '~/.cargo/bin')
 
 # $env.CARGO_TARGET_DIR = "/home/real/target"
 alias cat = bat
+alias df = duf
 alias ns = nix-shell -p --command "nu"
 alias tree = tree -l # Make `tree` follow symlinks
 alias clone = git clone --depth 1
