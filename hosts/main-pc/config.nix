@@ -20,10 +20,11 @@
     editor.helix.latest = true;
 
     home-manager.packages = with pkgs; [
+      figma-linux
       localsend
       obsidian
-      figma-linux
       devenv
+      processing
     ];
 
     desktop.desktops.hyprland.monitor = [
