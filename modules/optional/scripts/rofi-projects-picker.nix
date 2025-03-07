@@ -20,7 +20,7 @@ pkgs.writeShellApplication {
           [ -f "$recent_projects" ] || touch "$recent_projects"
           # this lint just makes the code more unreadable
           # shellcheck disable=SC2002
-          project=$(cat "$recent_projects" | rofi -dmenu -p "Pick:")
+          project=$(cat "$recent_projects" | rofi -dmenu -p "Pick")
           ${terminal} "$project" ${shell} "$EDITOR ."
           ;;
         add)

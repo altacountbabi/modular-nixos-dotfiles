@@ -36,9 +36,9 @@ mkModule {
       wayland.windowManager.hyprland.settings.bind =
         mkIf config.modules.desktop.desktops.hyprland.enable
           [
-            "$mod, Space, exec, rofi -show drun"
-            "$mod, comma, exec, rofi -show emoji -modi emoji -kb-secondary-copy \"\" -kb-custom-1 \"Ctrl+c\""
-            "$mod, C,     exec, rofi -show calc -modi calc -no-show-match -no-sort"
+            "$mod, Space, exec, rofi -show drun -display-drun \"Launch\""
+            "$mod, comma, exec, rofi -show emoji -modi emoji -kb-secondary-copy \"\" -kb-custom-1 \"Ctrl+c\" -display-emoji \"Emoji\""
+            "$mod, C,     exec, rofi -show calc -modi calc -no-show-match -no-sort -display-calc \">\""
           ];
 
       xdg.desktopEntries = {
