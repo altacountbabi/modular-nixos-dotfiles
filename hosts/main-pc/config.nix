@@ -15,6 +15,7 @@
     services = {
       tailscale.enable = true;
       syncthing.enable = true;
+      openrazer.enable = true;
     };
 
     editor.helix.latest = true;
