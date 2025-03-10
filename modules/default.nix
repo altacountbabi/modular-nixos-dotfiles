@@ -111,6 +111,7 @@ in
     colorscheme.catppuccin.enable = true;
 
     virt-manager.enable = true;
+    yazi.enable = true;
 
     desktop = {
       # Login Screen

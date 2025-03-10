@@ -72,6 +72,7 @@ mkModule {
 
       # CLI Apps
       lazygit.enable = true;
+      yazi.enable = true;
       btop.enable = true;
       cava.enable = true;
       fish.enable = true;

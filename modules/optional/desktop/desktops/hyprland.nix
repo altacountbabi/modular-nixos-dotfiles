@@ -207,7 +207,7 @@ mkModule {
             numlock_by_default = false;
 
             # Mouse
-            sensitivity = -0.1;
+            sensitivity = 0;
             follow_mouse = 1;
             mouse_refocus = false;
             accel_profile = "flat";
