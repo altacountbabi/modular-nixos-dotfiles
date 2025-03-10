@@ -26,6 +26,7 @@ update:
 # Clean up /nix/store
 gc:
     sudo nix-collect-garbage -d
+    nix-collect-garbage -d
 
 # Build a VM with the $(hostname) host
 vm:
