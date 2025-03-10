@@ -18,6 +18,7 @@ let
   volumeScript = getScript "volume";
   colorPickerScript = getScript "color-picker";
   rofiSearchScript = getScript "rofi-search";
+  razerBatteryInfoScript = getScript "razer-battery-info";
   rofiProjectsPickerScript = getScript "rofi-projects-picker";
   wallpaperScript =
     with pkgs;
@@ -123,6 +124,12 @@ mkModule {
               "$mod SHIFT, Tab, changegroupactive, b"
 
               # Misc
+              (
+                if config.modules.services.openrazer.enable then
+                  "$mod, B,     exec, ${razerBatteryInfoScript}"
+                else
+                  ""
+              )
               "$mod, Escape,    exec, ${notifyInfoScript}"
               "$mod, A,         exec, ${rofiSearchScript}"
               "ALT,  semicolon, exec, ${rofiProjectsPickerScript} pick"
