@@ -28,6 +28,12 @@
       devenv
     ];
 
+    flatpak.packages = [
+      ":${../../modules/optional/flatpak/sober.flatpakref}"
+      # Screen sharing on wayland doesnt work with zoom from nixpkgs
+      "flathub:app/us.zoom.Zoom/x86_64/stable"
+    ];
+
     desktop.desktops.hyprland.monitor = [
       ",1920x1080@240,0x0,1,vrr,2"
     ];
