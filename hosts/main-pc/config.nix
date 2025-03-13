@@ -35,7 +35,7 @@
     ];
 
     desktop.desktops.hyprland.monitor = [
-      ",1920x1080@240,0x0,1,vrr,2"
+      ",1920x1080@240,0x0,1,vrr,0"
     ];
   };
 
