@@ -68,6 +68,7 @@ mkModule {
 
                 # System Apps
                 gnome-calculator
+                gnome-weather
                 resources
                 nautilus
                 loupe
