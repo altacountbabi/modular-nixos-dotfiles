@@ -161,6 +161,12 @@ mkModule {
 
               "$mod, grave, workspace, 999"
             ]
+            ++ (
+              if config.modules.services.openrazer.enable then
+                [ "$mod, B,     exec, ${razerBatteryInfoScript}" ]
+              else
+                [ ]
+            )
             # Workspace Switching
             ++ (concatLists (
               genList (
