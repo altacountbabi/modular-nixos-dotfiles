@@ -33,6 +33,15 @@ mkModule {
             "${cfg.dataDir}/jellyseerr:/app/config"
           ];
         };
+        flaresolverr = {
+          image = "ghcr.io/flaresolverr/flaresolverr:latest";
+          ports = [ "8191:8191" ];
+          environment = {
+            LOG_LEVEL = "info";
+            TZ = config.modules.locale.timeZone;
+          };
+          extraOptions = [ "--restart unless-stopped" ];
+        };
       };
     };
 
