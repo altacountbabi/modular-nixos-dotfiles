@@ -62,6 +62,7 @@ mkModule {
         nix-search-cli # cli frontend to search.nixos.org
         libnotify # cli notifications
         neofetch
+        ripgrep # saner grep
         delta # better `diff`
         unzip
         just # command runner
