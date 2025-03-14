@@ -331,6 +331,7 @@ mkModule {
             swallow_exception_regex = "(qemu|wev)";
             initial_workspace_tracking = 0;
             middle_click_paste = false;
+            focus_on_activate = true;
           };
 
           xwayland.force_zero_scaling = true;
