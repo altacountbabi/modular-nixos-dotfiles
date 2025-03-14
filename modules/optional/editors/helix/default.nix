@@ -34,6 +34,9 @@ mkModule {
 
         # Nushell
         nufmt
+
+        # TOML
+        taplo
       ];
       languages = {
         language = [
@@ -54,6 +57,17 @@ mkModule {
               ];
             };
             language-servers = [ "rust-analyzer" ];
+          }
+          {
+            name = "toml";
+            auto-format = true;
+            formatter = {
+              command = "taplo";
+              args = [
+                "format"
+                "-"
+              ];
+            };
           }
           {
             name = "nu";
