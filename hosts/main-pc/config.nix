@@ -25,7 +25,6 @@
       processing
       localsend
       obsidian
-      devenv
     ];
 
     flatpak.packages = [

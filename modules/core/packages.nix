@@ -63,6 +63,7 @@ mkModule {
         libnotify # cli notifications
         neofetch
         ripgrep # saner grep
+        devenv
         delta # better `diff`
         unzip
         just # command runner
