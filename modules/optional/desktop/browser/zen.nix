@@ -8,14 +8,26 @@
 }:
 
 let
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib)
+    mkEnableOption
+    mkOption
+    types
+    mkIf
+    ;
 in
 mkModule {
   name = "desktop.browser.zen";
   path = "desktop.browser.zen";
-  opts.autoStart = mkEnableOption "Zen as a startup app";
+  opts = with types; {
+    autoStart = mkEnableOption "Zen as a startup app";
+    package = mkOption {
+      type = package;
+      default = inputs.zen-browser.packages."${system}".twilight;
+
+    };
+  };
   hm = cfg: {
-    home.packages = [ inputs.zen-browser.packages."${system}".twilight ];
+    home.packages = [ cfg.package ];
     wayland.windowManager.hyprland.settings.exec-once =
       mkIf (config.modules.desktop.desktops.hyprland.enable && cfg.autoStart)
         [

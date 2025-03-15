@@ -103,5 +103,6 @@
     helix.url = "github:helix-editor/helix";
     # Lock to 1.7b because later versions break lots of themes.
     zen-browser.url = "github:0xc000022070/zen-browser-flake?rev=32f3692cc4d6a1d1cb8943be7d2e712a63c4b374";
+    zen-browser-new.url = "github:0xc000022070/zen-browser-flake";
   };
 }

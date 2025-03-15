@@ -1,4 +1,9 @@
-{ pkgs, ... }:
+{
+  inputs,
+  system,
+  pkgs,
+  ...
+}:
 
 {
   imports = [ ./hardware.nix ];
@@ -31,7 +36,10 @@
 
       libreoffice.normalTheme = true;
 
-      browser.zen.autoStart = false;
+      browser.zen = {
+        autoStart = false;
+        package = inputs.zen-browser-new.packages."${system}".twilight;
+      };
       discord.autoStart = false;
     };
 

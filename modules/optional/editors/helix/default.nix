@@ -139,7 +139,7 @@ mkModule {
             command = "mdpls";
             config = {
               auto = false;
-              browser = "zen-twilight";
+              browser = "zen";
             };
           };
         };
