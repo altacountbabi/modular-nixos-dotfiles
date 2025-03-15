@@ -64,6 +64,7 @@ in
       enable = true;
       plymouth = true;
     };
+    systemd.enable = true;
     environment.enable = true;
     locale = {
       enable = true;
