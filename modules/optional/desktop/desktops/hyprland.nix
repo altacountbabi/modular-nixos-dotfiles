@@ -131,12 +131,6 @@ mkModule {
               "$mod SHIFT, Tab, changegroupactive, b"
 
               # Misc
-              (
-                if config.modules.services.openrazer.enable then
-                  "$mod, B,     exec, ${razerBatteryInfoScript}"
-                else
-                  ""
-              )
               "$mod, Escape,    exec, ${notifyInfoScript}"
               "$mod, A,         exec, ${rofiSearchScript}"
               "ALT,  semicolon, exec, ${rofiProjectsPickerScript} pick"
