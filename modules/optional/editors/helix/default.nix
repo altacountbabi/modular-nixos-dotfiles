@@ -170,6 +170,7 @@ mkModule {
           true-color = true;
           cursorline = true;
         };
+        continue-comments = false;
         keys = {
           normal = {
             space = {
