@@ -2,6 +2,7 @@
   mkModule,
   config,
   pkgs,
+  lib,
   ...
 }:
 
@@ -14,8 +15,16 @@ mkModule {
       ${if config.modules.graphics.gpuType != "nvidia" then "NIXOS_OZONE_WL" else null} = "1";
       # Fix audio crackling/popping in some games
       PULSE_LATENCY_MSEC = 50;
-      # Fix issues with tree-sitter using libstdc++ at runtime
-      LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib";
+      # Include common libraries in the ld library path
+      LD_LIBRARY_PATH =
+        let
+          libs = with pkgs; [
+            stdenv.cc.cc.lib
+            libglvnd
+            libGL
+          ];
+        in
+        builtins.toString (lib.makeLibraryPath libs);
       ${if config.modules.editor.helix.enable then "EDITOR" else null} = "hx";
     };
   };
