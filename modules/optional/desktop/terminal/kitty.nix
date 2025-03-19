@@ -42,7 +42,7 @@ mkModule {
     };
     line_height = mkOption {
       type = int;
-      default = 3;
+      default = 5;
     };
     cursor = {
       beam = {
