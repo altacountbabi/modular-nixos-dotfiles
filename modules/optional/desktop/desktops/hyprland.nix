@@ -138,11 +138,11 @@ mkModule {
               "$mod, T,         exec, cartridges"
 
               # Screenshotting
-              "ALT, R,       exec, grimblast --freeze copy area"
-              "ALT SHIFT, R, exec, grimblast copy screen"
+              "ALT, R,        exec, grimblast --freeze copy area"
+              "ALT SHIFT, R,  exec, grimblast copy screen"
 
               # Color picker
-              "$mod, n, exec, ${colorPickerScript}"
+              "$mod SHIFT, C, exec, ${colorPickerScript}"
 
               # Media Control
               "ALT, 7, exec, playerctl previous"
