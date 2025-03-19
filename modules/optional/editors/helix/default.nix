@@ -169,8 +169,8 @@ mkModule {
           bufferline = "multiple";
           true-color = true;
           cursorline = true;
+          continue-comments = false;
         };
-        continue-comments = false;
         keys = {
           normal = {
             space = {
