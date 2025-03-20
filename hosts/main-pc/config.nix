@@ -25,6 +25,7 @@
       processing
       localsend
       obsidian
+      ghidra
     ];
 
     flatpak.packages = [
