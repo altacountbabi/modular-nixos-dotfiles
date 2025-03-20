@@ -40,7 +40,6 @@ mkModule {
             LOG_LEVEL = "info";
             TZ = config.modules.locale.timeZone;
           };
-          extraOptions = [ "--restart unless-stopped" ];
         };
       };
     };
