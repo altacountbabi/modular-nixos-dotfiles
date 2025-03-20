@@ -20,6 +20,7 @@ mkModule {
         let
           libs = with pkgs; [
             stdenv.cc.cc.lib
+            openssl
             libglvnd
             libGL
           ];
