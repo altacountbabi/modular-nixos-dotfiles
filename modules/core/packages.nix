@@ -66,6 +66,7 @@ mkModule {
         devenv
         delta # better `diff`
         unzip
+        unrar
         just # command runner
         calc # calc is short for calculator btw im just using slang
         tree
@@ -74,6 +75,7 @@ mkModule {
         btop
         file # describe the content of files
         wget
+        tldr
         bat # better `cat`
         duf # better 'du'
         fzf
