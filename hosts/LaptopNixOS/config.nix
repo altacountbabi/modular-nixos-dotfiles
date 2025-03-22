@@ -23,7 +23,7 @@
     };
 
     locale = {
-      timeZone = "EST";
+      timeZone = "America/Toronto";
       i18n.extra = "en_US.UTF-8";
     };
 
