@@ -23,6 +23,7 @@
       discord.autoStart = false;
 
       desktops.hyprland.batteryInfo = true;
+      desktops.niri.enable = true;
     };
 
     home-manager.packages = with pkgs; [ pavucontrol ];

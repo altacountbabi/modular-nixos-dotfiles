@@ -65,7 +65,12 @@ mkModule {
     batteryInfo = mkEnableOption "battery info in info notifications";
     hyprcursor = mkEnableOption "hyprcursor";
   };
-  cfg = cfg: { programs.hyprland.enable = true; };
+  cfg = cfg: {
+    programs.hyprland = {
+      enable = true;
+      xwayland.enable = false;
+    };
+  };
   hm =
     cfg:
     let
@@ -297,13 +302,16 @@ mkModule {
             "bordersize 0, floating:0, onworkspace:f[1]"
             "rounding 0,   floating:0, onworkspace:f[1]"
 
+            "pin,                initialTitle:Picture-in-Picture"
+            "keepaspectratio on, initialTitle:Picture-in-Picture"
+
             # Make file/folder info windows in file managers floating
             "float, title:(.*Properties.*)"
 
             "opacity 0.65, initialTitle:as_toolbar"
-            "norounding, initialTitle:as_toolbar"
-            "noblur, initialTitle:as_toolbar"
-            "pin, initialTitle:as_toolbar"
+            "norounding,   initialTitle:as_toolbar"
+            "noblur,       initialTitle:as_toolbar"
+            "pin,          initialTitle:as_toolbar"
           ];
 
           cursor.enable_hyprcursor = true;

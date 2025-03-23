@@ -94,9 +94,10 @@
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     flatpaks.url = "github:GermanBread/declarative-flatpak/stable-v3";
     vscode-server.url = "github:nix-community/nixos-vscode-server";
-    flake-utils.url = "github:numtide/flake-utils";
     catppuccin.url = "github:altacountbabi/catppuccin-nix";
+    flake-utils.url = "github:numtide/flake-utils";
     disko.url = "github:nix-community/disko";
+    niri.url = "github:sodiboo/niri-flake/";
 
     # Apps
     nixcord.url = "github:kaylorben/nixcord";

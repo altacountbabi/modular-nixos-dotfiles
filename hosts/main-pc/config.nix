@@ -1,4 +1,6 @@
 {
+  inputs,
+  system,
   pkgs,
   ...
 }:
@@ -34,9 +36,13 @@
       "flathub:app/us.zoom.Zoom/x86_64/stable"
     ];
 
-    desktop.desktops.hyprland.monitor = [
-      ",1920x1080@240,0x0,1,vrr,0"
-    ];
+    desktop = {
+      desktops.hyprland.monitor = [
+        ",1920x1080@240,0x0,1,vrr,0"
+      ];
+      desktops.niri.enable = true;
+      browser.zen.package = inputs.zen-browser-new.packages."${system}".twilight;
+    };
   };
 
   # This value determines the NixOS release from which the default

@@ -168,6 +168,9 @@ in
         "aspnetcore-runtime-6.0.36"
       ];
     };
-    overlays = [ inputs.rust-overlay.overlays.default ];
+    overlays = [
+      inputs.rust-overlay.overlays.default
+      inputs.niri.overlays.niri
+    ];
   };
 }
