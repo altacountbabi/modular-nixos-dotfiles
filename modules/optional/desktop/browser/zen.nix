@@ -23,7 +23,6 @@ mkModule {
     package = mkOption {
       type = package;
       default = inputs.zen-browser.packages."${system}".twilight;
-
     };
   };
   hm = cfg: {
