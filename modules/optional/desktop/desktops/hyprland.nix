@@ -195,9 +195,9 @@ mkModule {
 
             # Window Resizing
             "$mod CTRL, Right, resizeactive, ${toString cfg.kbResizeStep} 0"
-            "$mod CTRL, Left, resizeactive, -${toString cfg.kbResizeStep} 0"
-            "$mod CTRL, Up, resizeactive, 0 -${toString cfg.kbResizeStep}"
-            "$mod CTRL, Down, resizeactive, 0 ${toString cfg.kbResizeStep}"
+            "$mod CTRL, Left,  resizeactive, -${toString cfg.kbResizeStep} 0"
+            "$mod CTRL, Up,    resizeactive, 0 -${toString cfg.kbResizeStep}"
+            "$mod CTRL, Down,  resizeactive, 0 ${toString cfg.kbResizeStep}"
           ];
           bindm = [
             "$mod, mouse:272, movewindow"

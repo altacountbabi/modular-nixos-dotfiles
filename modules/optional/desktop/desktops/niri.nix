@@ -1,24 +1,43 @@
 {
+  getScript,
   mkModule,
+  system,
   inputs,
   pkgs,
   lib,
   ...
 }:
 
+let
+  inherit (lib) mkOption types;
+
+  volumeScript = getScript "volume";
+  colorPickerScript = getScript "color-picker";
+  rofiSearchScript = getScript "rofi-search";
+  razerBatteryInfoScript = getScript "razer-battery-info";
+  rofiProjectsPickerScript = getScript "rofi-projects-picker";
+in
 mkModule {
   name = "niri wayland compositor";
   path = "desktop.desktops.niri";
+  opts = with types; {
+    volumeStep = mkOption {
+      type = int;
+      default = 5;
+    };
+  };
   cfg = cfg: { programs.niri.enable = true; };
   hm = cfg: {
     imports = [ inputs.niri.homeModules.niri ];
 
     home.packages = with pkgs; [
       xwayland-satellite
+      xdg-desktop-portal-gnome
     ];
 
     programs.niri = {
       enable = true;
+      package = inputs.niri.packages.${system}.niri-unstable;
       settings = {
         outputs."DP-1".mode = {
           height = 1080;
@@ -41,7 +60,9 @@ mkModule {
 
         # Window Rules
         window-rules = [
+          # Make floating windows have rounded corners
           {
+            matches = [ { is-floating = true; } ];
             geometry-corner-radius = {
               top-left = 15.0;
               top-right = 15.0;
@@ -50,14 +71,30 @@ mkModule {
             };
             clip-to-geometry = true;
           }
+          # Floating windows
           {
-            matches = "discord";
-
+            matches = [
+              { title = "MainPicker"; }
+              { title = ".*Properties.*"; }
+            ];
+            open-floating = true;
+          }
+          {
+            matches = [ { app-id = "discord"; } ];
+            open-on-workspace = "chat";
+          }
+          {
+            matches = [ { app-id = "zen(-twilight)?"; } ];
+            open-on-workspace = "chat";
           }
         ];
 
         # Named Workspaces
-        # TODO
+        workspaces = {
+          "browser" = { };
+          "chat" = { };
+          "music" = { };
+        };
 
         # Environment Variables
         environment = {
@@ -65,7 +102,13 @@ mkModule {
           DISPLAY = ":0";
         };
 
-        input.mouse.accel-speed = 0.0;
+        input = {
+          mouse = {
+            accel-speed = 0.0;
+            accel-profile = "flat";
+          };
+          focus-follows-mouse.enable = true;
+        };
 
         layout = {
           gaps = 5;
@@ -76,10 +119,12 @@ mkModule {
             bottom = -5;
           };
 
+          default-column-width.proportion = 1.0;
+
           focus-ring.enable = false;
         };
 
-        binds = with lib.niri.actions; {
+        binds = {
           # App keybinds
           "Mod+Space".action.spawn = [
             "rofi"
@@ -94,6 +139,54 @@ mkModule {
           "Mod+Q".action.close-window = { };
           "Mod+F".action.fullscreen-window = { };
           "Mod+V".action.toggle-window-floating = { };
+
+          # Audio
+          "Alt+0" = {
+            allow-when-locked = true;
+            action.spawn = [
+              volumeScript
+              "t"
+            ];
+          };
+          "Alt+Minus" = {
+            allow-when-locked = true;
+            action.spawn = [
+              volumeScript
+              "d"
+              (toString cfg.volumeStep)
+            ];
+          };
+          "Alt+Equal" = {
+            allow-when-locked = true;
+            action.spawn = [
+              volumeScript
+              "i"
+              (toString cfg.volumeStep)
+            ];
+          };
+          "XF86AudioMute" = {
+            allow-when-locked = true;
+            action.spawn = [
+              volumeScript
+              "t"
+            ];
+          };
+          "XF86AudioLowerVolume" = {
+            allow-when-locked = true;
+            action.spawn = [
+              volumeScript
+              "d"
+              (toString cfg.volumeStep)
+            ];
+          };
+          "XF86AudioRaiseVolume" = {
+            allow-when-locked = true;
+            action.spawn = [
+              volumeScript
+              "i"
+              (toString cfg.volumeStep)
+            ];
+          };
 
           # Scrolling
           "Mod+WheelScrollUp" = {
