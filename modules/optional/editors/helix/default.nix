@@ -11,7 +11,6 @@
 let
   inherit (pkgs.lib) mkEnableOption;
 
-  mdpls = import ../../../../pkgs/mdpls { inherit pkgs; };
   rofiProjectsPickerScript = getScript "rofi-projects-picker";
 in
 mkModule {
@@ -28,9 +27,6 @@ mkModule {
         # Nix
         nixd
         nixfmt-rfc-style
-
-        # Markdown
-        mdpls
 
         # Nushell
         nufmt
@@ -73,11 +69,6 @@ mkModule {
             name = "nu";
             auto-format = true;
             formatter.command = "nufmt --stdin";
-          }
-          {
-            name = "markdown";
-            auto-format = false;
-            language-servers = [ "mdpls" ];
           }
           {
             name = "tl";
@@ -134,13 +125,6 @@ mkModule {
               chainingHints.enable = false;
             };
             cachePriming.enable = false;
-          };
-          mdpls = {
-            command = "mdpls";
-            config = {
-              auto = false;
-              browser = "zen";
-            };
           };
         };
       };
