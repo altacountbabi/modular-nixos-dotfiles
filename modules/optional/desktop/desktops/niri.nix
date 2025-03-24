@@ -12,7 +12,6 @@ let
   inherit (lib) mkOption types;
 
   volumeScript = getScript "volume";
-  colorPickerScript = getScript "color-picker";
   rofiSearchScript = getScript "rofi-search";
   razerBatteryInfoScript = getScript "razer-battery-info";
   rofiProjectsPickerScript = getScript "rofi-projects-picker";
@@ -238,6 +237,7 @@ mkModule {
         # Misc
         prefer-no-csd = true;
         hotkey-overlay.skip-at-startup = true;
+        screenshot-path = null; # dont save screenshots
       };
     };
   };
