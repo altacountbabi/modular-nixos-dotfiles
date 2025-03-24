@@ -158,6 +158,7 @@ in
       "root"
       "@users"
     ];
+    warn-dirty = false;
   };
 
   nixpkgs = {
