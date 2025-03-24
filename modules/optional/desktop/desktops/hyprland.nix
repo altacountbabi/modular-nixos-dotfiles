@@ -62,7 +62,7 @@ mkModule {
       description = "Monitor config";
       default = [ ];
     };
-    batteryInfo = mkEnableOption "battery info in info notifications";
+    batteryInfo = mkEnableOption "battery data in info notifications";
     hyprcursor = mkEnableOption "hyprcursor";
   };
   cfg = cfg: {

@@ -40,6 +40,13 @@
       desktops.hyprland.monitor = [
         ",1920x1080@240,0x0,1,vrr,0"
       ];
+      desktops.niri.outputs = {
+        "DP-1".mode = {
+          height = 1080;
+          width = 1920;
+          refresh = 240.0;
+        };
+      };
       desktops.niri.enable = true;
       browser.zen.package = inputs.zen-browser-new.packages."${system}".twilight;
     };
