@@ -35,6 +35,7 @@ mkModule {
     services.mako = mkIf (cfg.enable && config.modules.home-manager.enable) {
       enable = true;
       borderRadius = cfg.cornerRadius;
+      layer = "overlay";
       inherit (cfg) anchor;
     };
     wayland.windowManager.hyprland.settings.exec-once =
