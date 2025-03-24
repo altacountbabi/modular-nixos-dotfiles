@@ -7,7 +7,7 @@
 }:
 
 let
-  inherit (lib) mkIf mkEnableOption;
+  inherit (lib) mkIf mkEnableOption mkMerge;
 in
 mkModule {
   name = "rofi";
@@ -22,6 +22,8 @@ mkModule {
         inherit pkgs;
         inherit (cfg) wayland;
       };
+
+      desktops = config.modules.desktop.desktops;
     in
     {
       programs.rofi = with pkgs; {
@@ -33,13 +35,51 @@ mkModule {
         ];
       };
 
-      wayland.windowManager.hyprland.settings.bind =
-        mkIf config.modules.desktop.desktops.hyprland.enable
-          [
-            "$mod, Space, exec, rofi -show drun -display-drun \"Run\""
-            "$mod, comma, exec, rofi -show emoji -modi emoji -kb-secondary-copy \"\" -kb-custom-1 \"Ctrl+c\" -display-emoji \"Emoji\""
-            "$mod, C,     exec, rofi -show calc -modi calc -no-show-match -no-sort -display-calc \">\""
+      wayland.windowManager.hyprland.settings.bind = mkIf desktops.hyprland.enable [
+        "$mod, Space, exec, rofi -show drun -display-drun \"Run\""
+        "$mod, comma, exec, rofi -show emoji -modi emoji -kb-secondary-copy \"\" -kb-custom-1 \"Ctrl+c\" -display-emoji \"Emoji\""
+        "$mod, C,     exec, rofi -show calc -modi calc -no-show-match -no-sort -display-calc \">\""
+      ];
+
+      programs.niri.settings.binds = mkIf desktops.niri.enable (mkMerge [
+        {
+          "Mod+Space".action.spawn = [
+            "rofi"
+            "-show"
+            "drun"
+            "-display-drun"
+            "Run"
           ];
+        }
+        {
+          "Mod+Comma".action.spawn = [
+            "rofi"
+            "-show"
+            "emoji"
+            "-modi"
+            "emoji"
+            "-kb-secondary-copy"
+            ""
+            "-kb-custom-1"
+            "Ctrl+c"
+            "-display-emoji"
+            "Emoji"
+          ];
+        }
+        {
+          "Mod+C".action.spawn = [
+            "rofi"
+            "-show"
+            "calc"
+            "-modi"
+            "calc"
+            "-no-show-match"
+            "-no-sort"
+            "-display-calc"
+            ">"
+          ];
+        }
+      ]);
 
       xdg.desktopEntries = {
         sleep = {

@@ -26,7 +26,12 @@ mkModule {
       default = 5;
     };
   };
-  cfg = cfg: { programs.niri.enable = true; };
+  cfg = cfg: {
+    programs.niri = {
+      enable = true;
+      package = inputs.niri.packages.${system}.niri-unstable;
+    };
+  };
   hm = cfg: {
     imports = [ inputs.niri.homeModules.niri ];
 
@@ -84,8 +89,11 @@ mkModule {
             open-on-workspace = "chat";
           }
           {
-            matches = [ { app-id = "zen(-twilight)?"; } ];
-            open-on-workspace = "chat";
+            matches = [
+              { app-id = "zen(-twilight)?"; }
+              { app-id = "firefox.*"; }
+            ];
+            open-on-workspace = "browser";
           }
         ];
 
@@ -93,6 +101,7 @@ mkModule {
         workspaces = {
           "browser" = { };
           "chat" = { };
+          "code" = { };
           "music" = { };
         };
 
@@ -126,14 +135,6 @@ mkModule {
 
         binds = {
           # App keybinds
-          "Mod+Space".action.spawn = [
-            "rofi"
-            "-show"
-            "drun"
-            "-display-drun"
-            "Run"
-          ];
-          "Mod+Return".action.spawn = "kitty";
           "Mod+L".action.spawn = "youtube-music";
 
           "Mod+Q".action.close-window = { };
@@ -225,8 +226,8 @@ mkModule {
           "Mod+Shift+Right".action.move-column-right = { };
 
           # Screenshots
-          "Print".action.screenshot = { };
-          "Ctrl+Print".action.screenshot-screen = { };
+          "Alt+R".action.screenshot = { };
+          "Print".action.screenshot-screen = { };
           "Alt+Print".action.screenshot-window = { };
 
           "Mod+Shift+P".action.power-off-monitors = { };
