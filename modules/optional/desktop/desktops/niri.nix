@@ -64,7 +64,7 @@ mkModule {
 
         # Window Rules
         window-rules = [
-          # Make floating windows have rounded corners
+          # Make floating windows have rounded corners and shadows
           {
             matches = [ { is-floating = true; } ];
             geometry-corner-radius = {
@@ -74,6 +74,11 @@ mkModule {
               bottom-left = 15.0;
             };
             clip-to-geometry = true;
+            shadow = {
+              enable = true;
+              spread = 5;
+              color = "#00000045";
+            };
           }
           # Floating windows
           {
