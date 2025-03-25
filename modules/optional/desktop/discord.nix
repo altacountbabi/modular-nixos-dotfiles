@@ -29,8 +29,8 @@ mkModule {
         )
         + builtins.readFile (
           builtins.fetchurl {
-            url = "https://gist.githubusercontent.com/altacountbabi/fbb93e52946c2571b678119e0f4f8b69/raw/88c3951022b2763bf4f7680494ceaf4008503c40/style.css";
-            sha256 = "5acf36750b807d6a78c4b66b1259ec8a7243e64dfce8ca2c8982676c76c8ba6c";
+            url = "https://gist.githubusercontent.com/altacountbabi/fbb93e52946c2571b678119e0f4f8b69/raw/880f5e179e360cd523923cbe0a9cdb13ed7883f3/style.css";
+            sha256 = "3c9455f25ee727aa5353b8116b65b04fd9c515fb2ddf1eb81a547354aa810809";
           }
         );
 
