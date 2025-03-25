@@ -1,56 +1,78 @@
 { pkgs, ... }:
 
-pkgs.writeShellApplication {
+pkgs.nuenv.mkScript {
   name = "volume";
-  runtimeInputs = with pkgs; [ pamixer ];
-  text =
+  script =
     let
+      pamixer = "${pkgs.pamixer}/bin/pamixer";
       osdTimeout = 2500;
     in
     ''
-      create_volume_bar() {
-        volume=$1
-        bar=""
-        steps=$((volume / 10))
+      let id_path = "/tmp/volume_osd_id"
 
-        for ((i = 0; i < 10; i++)); do
-          if ((i < steps)); then
-            bar+="▰"
-          else
-            bar+="▱"
-          fi
-        done
-
-        echo "$bar"
+      def main [] {
+        main get
       }
 
-      update_ui() {
-        volume=$($0 g)
-        volume_bar=$(create_volume_bar "$volume")
-
-        notify-send -t "${builtins.toString osdTimeout}" "$volume_bar $volume"
+      def "main get" [] {
+        if (${pamixer} --get-mute) == "true" {
+          0
+        } else {
+          (${pamixer} --get-volume) | into int
+        }
       }
 
-      case $1 in
-        t)
-          pamixer --toggle-mute
-          update_ui
-          ;;
-        i)
-          pamixer --increase "$2"
-          update_ui
-          ;;
-        d)
-          pamixer --decrease "$2"
-          update_ui
-          ;;
-        g)
-          if [ "$(pamixer --get-mute)" = true ]; then
-            echo 0
-          else
-            pamixer --get-volume
-          fi
-          ;;
-      esac
+      def "main mute" [] {
+        ${pamixer} --toggle-mute
+        ui
+      }
+
+      def "main increase" [amount: int] {
+        ${pamixer} --unmute
+        ${pamixer} --increase $amount
+        ui
+      }
+
+      def "main decrease" [amount: int] {
+        ${pamixer} --unmute
+        ${pamixer} --decrease $amount
+        ui
+      }
+
+      def volume_bar [volume: int]: nothing -> string {
+        let full = "●"
+        let half = "◐"
+        let empty = "○"
+
+        0..9
+        | each {|i|
+          let threshold = $i * 10
+
+          match $volume {
+            $volume if $volume >= $threshold + 10 => $full
+            $volume if $volume >= $threshold + 5 => $half
+            _ => $empty
+          }
+        }
+        | str join ""
+      }
+
+      def ui [] {
+        let volume = main get;
+
+        let id = if ($id_path | path exists) {
+          open $id_path | into int
+        } else {
+          -1
+        }
+
+        let new_id = if $id != -1 {
+          notify-send -t ${toString osdTimeout} $"(volume_bar $volume) ($volume)%" -r $id -p
+        } else {
+          notify-send -t ${toString osdTimeout} $"(volume_bar $volume) ($volume)%" -p 
+        }
+
+        $new_id | into string | save $id_path --force
+      }
     '';
 }

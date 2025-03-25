@@ -92,6 +92,7 @@
     };
 
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
+    nuenv.url = "https://flakehub.com/f/DeterminateSystems/nuenv/*.tar.gz";
     flatpaks.url = "github:GermanBread/declarative-flatpak/stable-v3";
     vscode-server.url = "github:nix-community/nixos-vscode-server";
     catppuccin.url = "github:altacountbabi/catppuccin-nix";

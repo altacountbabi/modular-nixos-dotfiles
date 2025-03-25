@@ -11,6 +11,7 @@
 let
   inherit (pkgs.lib) mkEnableOption;
 
+  nuls = import ../../../../pkgs/nuls { inherit pkgs; };
   rofiProjectsPickerScript = getScript "rofi-projects-picker";
 in
 mkModule {
@@ -30,6 +31,7 @@ mkModule {
 
         # Nushell
         nufmt
+        nuls
 
         # TOML
         taplo
@@ -68,6 +70,7 @@ mkModule {
           {
             name = "nu";
             auto-format = true;
+            language-servers = [ "nuls" ];
             formatter.command = "nufmt --stdin";
           }
           {
@@ -126,6 +129,7 @@ mkModule {
             };
             cachePriming.enable = false;
           };
+          nuls.command = "nuls";
         };
       };
       settings = {

@@ -185,13 +185,13 @@ mkModule {
             ));
           binde = [
             # Volume Keys
-            "ALT, 0, exec, ${volumeScript} t"
-            "ALT, minus, exec, ${volumeScript} d ${toString cfg.volumeStep}"
-            "ALT, equal, exec, ${volumeScript} i ${toString cfg.volumeStep}"
+            "ALT, 0, exec, ${volumeScript} mute"
+            "ALT, minus, exec, ${volumeScript} decrease ${toString cfg.volumeStep}"
+            "ALT, equal, exec, ${volumeScript} increase ${toString cfg.volumeStep}"
 
-            ", XF86AudioMute, exec, ${volumeScript} t"
-            ", XF86AudioLowerVolume, exec, ${volumeScript} d ${toString cfg.volumeStep}"
-            ", XF86AudioRaiseVolume, exec, ${volumeScript} i ${toString cfg.volumeStep}"
+            ", XF86AudioMute, exec, ${volumeScript} mute"
+            ", XF86AudioLowerVolume, exec, ${volumeScript} decrease ${toString cfg.volumeStep}"
+            ", XF86AudioRaiseVolume, exec, ${volumeScript} increase ${toString cfg.volumeStep}"
 
             # Window Resizing
             "$mod CTRL, Right, resizeactive, ${toString cfg.kbResizeStep} 0"

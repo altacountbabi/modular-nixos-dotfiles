@@ -171,6 +171,7 @@ in
     };
     overlays = [
       inputs.rust-overlay.overlays.default
+      inputs.nuenv.overlays.default
       inputs.niri.overlays.niri
     ];
   };
