@@ -91,6 +91,9 @@ mkModule {
 
         # Wine
         wineWowPackages.stable
+
+        # FPS Counter
+        mangohud
       ]
       ++ cfg.extraPackages;
 
