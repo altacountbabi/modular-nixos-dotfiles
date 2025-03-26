@@ -13,8 +13,8 @@ let
   inherit (lib)
     mkOption
     mkEnableOption
-    types
     getExe
+    types
     ;
 
   volumeScript = getScript "volume";
@@ -83,15 +83,26 @@ mkModule {
           # Startup Apps
           spawn-at-startup =
             (lists: map (cmd: if builtins.isList cmd then { command = cmd; } else { command = [ cmd ]; }) lists)
-              [
-                "${pkgs.xwayland-satellite}/bin/xwayland-satellite"
-                "swww-daemon"
-                "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
-                "${pkgs.gnome-keyring}/bin/gnome-keyring-daemon"
-
-                "zen"
-                "discord"
-              ];
+              (
+                [
+                  "${pkgs.xwayland-satellite}/bin/xwayland-satellite"
+                  "swww-daemon"
+                  "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
+                  "${pkgs.gnome-keyring}/bin/gnome-keyring-daemon"
+                ]
+                ++ (
+                  if (config.modules.desktop.browser.zen.enable && config.modules.desktop.browser.zen.autoStart) then
+                    [ "zen" ]
+                  else
+                    [ ]
+                )
+                ++ (
+                  if (config.modules.desktop.discord.enable && config.modules.desktop.discord.autoStart) then
+                    [ "discord" ]
+                  else
+                    [ ]
+                )
+              );
 
           # Window Rules
           window-rules = [

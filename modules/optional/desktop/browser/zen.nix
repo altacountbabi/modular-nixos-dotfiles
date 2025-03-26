@@ -25,12 +25,19 @@ mkModule {
       default = inputs.zen-browser.packages."${system}".twilight;
     };
   };
-  hm = cfg: {
-    home.packages = [ cfg.package ];
-    wayland.windowManager.hyprland.settings.exec-once =
-      mkIf (config.modules.desktop.desktops.hyprland.enable && cfg.autoStart)
-        [
-          "[workspace 1 silent] zen --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=wayland"
-        ];
-  };
+  hm =
+    cfg:
+    let
+      desktops = config.modules.desktop.desktops;
+    in
+    {
+      home.packages = [ cfg.package ];
+
+      # Auto start
+      wayland.windowManager.hyprland.settings.exec-once =
+        mkIf (desktops.hyprland.enable && cfg.autoStart)
+          [
+            "[workspace 1 silent] zen --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=wayland"
+          ];
+    };
 }

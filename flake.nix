@@ -5,6 +5,7 @@
     {
       self,
       nixpkgs,
+      lix-module,
       flake-utils,
       ...
     }@inputs:
@@ -27,6 +28,8 @@
               };
 
               modules = [
+                lix-module.nixosModules.default
+
                 ./hosts/${host.host}/config.nix
                 ./modules
               ];
@@ -83,6 +86,11 @@
 
     home-manager = {
       url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    lix-module = {
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.92.0-2.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

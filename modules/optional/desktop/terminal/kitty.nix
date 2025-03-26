@@ -96,7 +96,7 @@ mkModule {
 
       programs.niri.settings.binds = mkIf desktops.niri.enable (mkMerge [
         { }
-        { "Mod+Return".action.spawn = "kitty"; }
+        { "Mod+Return".action.spawn = [ "kitty" ]; }
       ]);
 
       dconf = {
