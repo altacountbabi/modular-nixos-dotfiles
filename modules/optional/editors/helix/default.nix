@@ -5,11 +5,12 @@
   inputs,
   system,
   pkgs,
+  lib,
   ...
 }:
 
 let
-  inherit (pkgs.lib) mkEnableOption;
+  inherit (lib) mkEnableOption mkOption types;
 
   nuls = import ../../../../pkgs/nuls { inherit pkgs; };
   rofiProjectsPickerScript = getScript "rofi-projects-picker";
@@ -17,13 +18,17 @@ in
 mkModule {
   name = "Helix IDE";
   path = "editor.helix";
-  opts = {
-    latest = mkEnableOption "compile from source, this requires a lot of ram!";
+  opts = with types; {
+    latest = mkEnableOption "compile from source, this requires a lot of ram, overwrites `package` option";
+    package = mkOption {
+      type = package;
+      default = pkgs.helix;
+    };
   };
   hm = cfg: {
     programs.helix = {
       enable = true;
-      package = if cfg.latest then inputs.helix.packages.${system}.default else pkgs.helix;
+      package = if cfg.latest then inputs.helix.packages.${system}.default else cfg.package;
       extraPackages = with pkgs; [
         # Nix
         nixd

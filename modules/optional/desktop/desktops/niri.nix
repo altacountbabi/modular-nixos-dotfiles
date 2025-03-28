@@ -131,6 +131,13 @@ mkModule {
               ];
               open-floating = true;
             }
+            # Maximized windows
+            {
+              matches = [
+                { app-id = "org.vinegarhq.Sober"; }
+              ];
+              open-maximized = true;
+            }
             {
               matches = [ { app-id = "discord"; } ];
               open-on-workspace = "chat";

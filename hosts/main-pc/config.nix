@@ -1,6 +1,4 @@
 {
-  inputs,
-  system,
   pkgs,
   ...
 }:
@@ -20,7 +18,7 @@
       openrazer.enable = true;
     };
 
-    editor.helix.latest = true;
+    editor.helix.package = import ../../pkgs/helix { inherit pkgs; };
 
     home-manager.packages = with pkgs; [
       figma-linux
