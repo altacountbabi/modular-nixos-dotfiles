@@ -36,10 +36,7 @@
 
       libreoffice.normalTheme = true;
 
-      browser.zen = {
-        autoStart = false;
-        package = inputs.zen-browser-new.packages."${system}".twilight;
-      };
+      browser.zen.autoStart = false;
       discord.autoStart = false;
     };
 

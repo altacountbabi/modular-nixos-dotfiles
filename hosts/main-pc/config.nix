@@ -48,7 +48,6 @@
         };
       };
       desktops.niri.enable = true;
-      browser.zen.package = inputs.zen-browser-new.packages."${system}".twilight;
     };
   };
 
