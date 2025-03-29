@@ -131,12 +131,12 @@ mkModule {
               ];
               open-floating = true;
             }
-            # Maximized windows
+            # Fullscreen windows
             {
               matches = [
                 { app-id = "org.vinegarhq.Sober"; }
               ];
-              open-maximized = true;
+              open-fullscreen = true;
             }
             {
               matches = [ { app-id = "discord"; } ];
