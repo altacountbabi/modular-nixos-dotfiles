@@ -26,7 +26,6 @@
       processing
       localsend
       obsidian
-      sysprof
       ghidra
     ];
 
