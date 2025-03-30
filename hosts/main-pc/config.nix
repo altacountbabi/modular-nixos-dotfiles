@@ -16,6 +16,7 @@
       tailscale.enable = true;
       syncthing.enable = true;
       openrazer.enable = true;
+      docker.enable = true;
     };
 
     editor.helix.package = import ../../pkgs/helix { inherit pkgs; };
