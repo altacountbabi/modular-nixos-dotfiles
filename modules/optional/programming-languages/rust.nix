@@ -56,6 +56,7 @@ mkModule {
         targets = cfg.targets;
       })
       gcc14
+      clang
 
       # CLI Tools
       wasm-bindgen-cli
