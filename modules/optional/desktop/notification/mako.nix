@@ -36,6 +36,7 @@ mkModule {
       enable = true;
       borderRadius = cfg.cornerRadius;
       layer = "overlay";
+      defaultTimeout = 2500;
       inherit (cfg) anchor;
     };
     wayland.windowManager.hyprland.settings.exec-once =
