@@ -209,6 +209,37 @@ mkModule {
               "Mod+Escape".action.spawn = notifyInfoScript;
               ${if config.modules.desktop.terminal.kitty.enable then "Mod+Return" else null}.action.spawn =
                 "kitty";
+              ${if config.modules.desktop.appLauncher.rofi.enable then "Mod+Space" else null}.action.spawn = [
+                "rofi"
+                "-show"
+                "drun"
+                "-display-drun"
+                "Run"
+              ];
+              ${if config.modules.desktop.appLauncher.rofi.enable then "Mod+Comma" else null}.action.spawn = [
+                "rofi"
+                "-show"
+                "emoji"
+                "-modi"
+                "emoji"
+                "-kb-secondary-copy"
+                ""
+                "-kb-custom-1"
+                "Ctrl+c"
+                "-display-emoji"
+                "Emoji"
+              ];
+              ${if config.modules.desktop.appLauncher.rofi.enable then "Mod+C" else null}.action.spawn = [
+                "rofi"
+                "-show"
+                "calc"
+                "-modi"
+                "calc"
+                "-no-show-match"
+                "-no-sort"
+                "-display-calc"
+                ">"
+              ];
               ${if config.modules.services.openrazer.enable then "Mod+B" else null}.action.spawn =
                 razerBatteryInfoScript;
 

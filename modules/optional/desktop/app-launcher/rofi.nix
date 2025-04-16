@@ -7,7 +7,7 @@
 }:
 
 let
-  inherit (lib) mkIf mkEnableOption mkMerge;
+  inherit (lib) mkIf mkEnableOption;
 in
 mkModule {
   name = "rofi";
@@ -40,46 +40,6 @@ mkModule {
         "$mod, comma, exec, rofi -show emoji -modi emoji -kb-secondary-copy \"\" -kb-custom-1 \"Ctrl+c\" -display-emoji \"Emoji\""
         "$mod, C,     exec, rofi -show calc -modi calc -no-show-match -no-sort -display-calc \">\""
       ];
-
-      programs.niri.settings.binds = mkIf desktops.niri.enable (mkMerge [
-        {
-          "Mod+Space".action.spawn = [
-            "rofi"
-            "-show"
-            "drun"
-            "-display-drun"
-            "Run"
-          ];
-        }
-        {
-          "Mod+Comma".action.spawn = [
-            "rofi"
-            "-show"
-            "emoji"
-            "-modi"
-            "emoji"
-            "-kb-secondary-copy"
-            ""
-            "-kb-custom-1"
-            "Ctrl+c"
-            "-display-emoji"
-            "Emoji"
-          ];
-        }
-        {
-          "Mod+C".action.spawn = [
-            "rofi"
-            "-show"
-            "calc"
-            "-modi"
-            "calc"
-            "-no-show-match"
-            "-no-sort"
-            "-display-calc"
-            ">"
-          ];
-        }
-      ]);
 
       xdg.desktopEntries = {
         sleep = {
