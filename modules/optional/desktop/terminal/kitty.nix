@@ -12,7 +12,6 @@ let
     mkEnableOption
     mkIf
     types
-    mkMerge
     ;
 in
 mkModule {
@@ -93,11 +92,6 @@ mkModule {
         # TODO: Allow for other terminals to add to the swallow regex
         misc.swallow_regex = "^(kitty)$";
       };
-
-      programs.niri.settings.binds = mkIf desktops.niri.enable (mkMerge [
-        { }
-        { "Mod+Return".action.spawn = [ "kitty" ]; }
-      ]);
 
       dconf = {
         enable = true;

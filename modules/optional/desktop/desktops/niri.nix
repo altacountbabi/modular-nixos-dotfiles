@@ -207,6 +207,8 @@ mkModule {
                 "pick"
               ];
               "Mod+Escape".action.spawn = notifyInfoScript;
+              ${if config.modules.desktop.terminal.kitty.enable then "Mod+Return" else null}.action.spawn =
+                "kitty";
               ${if config.modules.services.openrazer.enable then "Mod+B" else null}.action.spawn =
                 razerBatteryInfoScript;
 
