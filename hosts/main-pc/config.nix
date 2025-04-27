@@ -9,6 +9,8 @@
     ./disko.nix
   ];
 
+  virtualisation.waydroid.enable = true;
+
   modules = {
     graphics.gpuType = "amd";
     network.hostname = "main-pc";
@@ -26,6 +28,8 @@
       processing
       localsend
       obsidian
+      amberol
+      eartag
       ghidra
     ];
 
@@ -33,6 +37,7 @@
       ":${../../modules/optional/flatpak/sober.flatpakref}"
       # Screen sharing on wayland doesnt work with zoom from nixpkgs
       "flathub:app/us.zoom.Zoom/x86_64/stable"
+      "flathub:app/re.sonny.Workbench/x86_64/stable"
     ];
 
     desktop = {
