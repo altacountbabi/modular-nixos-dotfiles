@@ -221,6 +221,9 @@ mkModule {
               "yank"
             ];
             X = "extend_line_above";
+
+            tab = "goto_next_buffer";
+            A-tab = "goto_previous_buffer";
           };
         };
       };
