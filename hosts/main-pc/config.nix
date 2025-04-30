@@ -38,6 +38,7 @@
       # Screen sharing on wayland doesnt work with zoom from nixpkgs
       "flathub:app/us.zoom.Zoom/x86_64/stable"
       "flathub:app/re.sonny.Workbench/x86_64/stable"
+      "flathub:app/org.gnome.design.IconLibrary/x86_64/stable"
     ];
 
     desktop = {
