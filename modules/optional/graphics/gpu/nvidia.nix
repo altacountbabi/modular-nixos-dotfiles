@@ -23,7 +23,7 @@ mkModule {
       nvidia = {
         package = config.boot.kernelPackages.nvidiaPackages.production;
         modesetting.enable = true;
-        open = false;
+        open = true;
       };
       graphics.enable = true;
     };
