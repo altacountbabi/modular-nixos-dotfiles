@@ -62,6 +62,7 @@ mkModule {
       wasm-bindgen-cli
       cargo-show-asm
       cargo-binstall
+      cargo-expand
       cargo-bloat
       irust
     ];
