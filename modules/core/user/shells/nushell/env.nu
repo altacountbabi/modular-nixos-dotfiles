@@ -87,15 +87,12 @@ $env.PATH = ($env.PATH | append '~/.cargo/bin')
 alias cat = bat
 alias df = duf
 alias ns = nix-shell -p --command "nu"
+alias search = nix-search
 alias tree = tree -l # Make `tree` follow symlinks
-alias clone = git clone --depth 1
+alias clone = git clone --depth 1 # Shallow git clone
 alias shell = nix-shell --command "nu"
 alias lg = lazygit
 alias switch = nh os switch ~/dotfiles
-
-def files [...args] {
-    hyprctl dispatch exec nautilus ...$args o+e> /dev/null
-}
 
 def nsr [pkg] {
 	nix-shell -p $pkg --command $pkg
@@ -103,16 +100,6 @@ def nsr [pkg] {
 
 def mkcd [name] {
 	mkdir $name; cd $name
-}
-
-# nix search $query -> nix-search $query
-# nix $something -> nix $something
-def nix [...args] {
-    if $args.0 == "search" {
-        nix-search ...($args | skip 1)
-    } else {
-        ^nix ...$args
-    }
 }
 
 # Alias to helix
