@@ -201,6 +201,8 @@ mkModule {
             A-tab = "goto_previous_buffer";
 
             A-w = ":sh ${rofiProjectsPickerScript} add $PWD && echo \"Saved \"$PWD\" to recent projects\"";
+
+            A-space = "completion";
           };
           insert = {
             C-s = ":w";
@@ -208,6 +210,7 @@ mkModule {
             C-q = ":q";
 
             C-v = [ ":clipboard-paste-before" ];
+            A-space = "completion";
           };
           select = {
             y = [
