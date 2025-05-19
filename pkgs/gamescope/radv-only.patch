@@ -1,0 +1,13 @@
+diff --git a/src/rendervulkan.cpp b/src/rendervulkan.cpp
+index b8412b8..265407b 100644
+--- a/src/rendervulkan.cpp
++++ b/src/rendervulkan.cpp
+@@ -331,6 +331,9 @@ bool CVulkanDevice::selectPhysDev(VkSurfaceKHR surface)
+ 		VkPhysicalDeviceProperties deviceProperties;
+ 		vk.GetPhysicalDeviceProperties(cphysDev, &deviceProperties);
+ 
++		if (strstr(deviceProperties.deviceName, "RADV") == nullptr)
++	    continue;
++
+ 		if (deviceProperties.apiVersion < VK_API_VERSION_1_2)
+ 			continue;

@@ -1,4 +1,5 @@
 {
+  config,
   pkgs,
   ...
 }:
@@ -30,15 +31,24 @@
 
     editor.helix.package = import ../../pkgs/helix { inherit pkgs; };
 
-    home-manager.packages = with pkgs; [
-      figma-linux
-      processing
-      localsend
-      obsidian
-      amberol
-      eartag
-      ghidra
-    ];
+    home-manager.packages =
+      let
+        gamescope-amdvlk = import ../../pkgs/gamescope {
+          inherit pkgs;
+          amd = config.modules.graphics.gpuType == "amd";
+        };
+      in
+      with pkgs;
+      [
+        gamescope-amdvlk
+        figma-linux
+        processing
+        localsend
+        obsidian
+        amberol
+        eartag
+        ghidra
+      ];
 
     flatpak.packages = [
       ":${../../modules/optional/flatpak/sober.flatpakref}"
