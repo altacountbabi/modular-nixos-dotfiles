@@ -83,9 +83,11 @@ mkModule {
         xxd
 
         # Development
+        man-pages-posix
+        man-pages
+        lazygit
         vscode
         micro
-        lazygit
         git
         gh
 
