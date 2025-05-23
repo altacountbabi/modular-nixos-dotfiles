@@ -21,7 +21,13 @@
 
   modules = {
     graphics.gpuType = "amd";
-    network.hostname = "main-pc";
+    network = {
+      hostname = "main-pc";
+      wol = {
+        enable = true;
+        interface = "enp4s0";
+      };
+    };
     services = {
       tailscale.enable = true;
       syncthing.enable = true;
@@ -60,15 +66,21 @@
 
     desktop = {
       desktops.hyprland.monitor = [
-        ",1920x1080@240,0x0,1,vrr,0"
+        # ",1920x1080@240,0x0,1,vrr,0"
+        ",2560x1440@240, 0x0, 1, vrr,0, bitdepth,10, cm,hdr"
       ];
       desktops.niri = {
         enable = true;
         outputs = {
+          # "DP-1".mode = {
+          #   width = 1920;
+          #   height = 1080;
+          #   refresh = 240.0;
+          # };
           "DP-1".mode = {
-            height = 1080;
-            width = 1920;
-            refresh = 240.0;
+            width = 2560;
+            height = 1440;
+            refresh = 359.979;
           };
         };
       };
