@@ -179,6 +179,8 @@ mkModule {
             focus-follows-mouse.enable = true;
           };
 
+          gestures.hot-corners.enable = false;
+
           layout =
             let
               gaps = 5;
