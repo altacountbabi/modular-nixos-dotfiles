@@ -34,11 +34,14 @@ mkModule {
     home.packages = with pkgs; [ mako ];
     services.mako = mkIf (cfg.enable && config.modules.home-manager.enable) {
       enable = true;
-      borderRadius = cfg.cornerRadius;
-      layer = "overlay";
-      defaultTimeout = 2500;
-      inherit (cfg) anchor;
+      settings = {
+        border-radius = cfg.cornerRadius;
+        layer = "overlay";
+        default-timeout = 2500;
+        inherit (cfg) anchor;
+      };
     };
+
     wayland.windowManager.hyprland.settings.exec-once =
       mkIf config.modules.desktop.desktops.hyprland.enable
         [ "mako" ];

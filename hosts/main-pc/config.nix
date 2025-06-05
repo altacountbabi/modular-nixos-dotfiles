@@ -54,6 +54,7 @@
         amberol
         eartag
         ghidra
+        gimp3
       ];
 
     flatpak.packages = [
@@ -66,22 +67,22 @@
 
     desktop = {
       desktops.hyprland.monitor = [
-        # ",1920x1080@240,0x0,1,vrr,0"
-        ",2560x1440@240, 0x0, 1, vrr,0, bitdepth,10, cm,hdr"
+        ",1920x1080@240,0x0,1,vrr,0"
+        # ",2560x1440@240, 0x0, 1, vrr,0, bitdepth,10, cm,hdr"
       ];
       desktops.niri = {
         enable = true;
         outputs = {
-          # "DP-1".mode = {
-          #   width = 1920;
-          #   height = 1080;
-          #   refresh = 240.0;
-          # };
           "DP-1".mode = {
-            width = 2560;
-            height = 1440;
-            refresh = 359.979;
+            width = 1920;
+            height = 1080;
+            refresh = 240.0;
           };
+          # "DP-1".mode = {
+          #   width = 2560;
+          #   height = 1440;
+          #   refresh = 359.979;
+          # };
         };
       };
     };

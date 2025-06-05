@@ -30,6 +30,7 @@ mkModule {
         "clippy"
         "rust-src"
         "rust-analyzer"
+        "llvm-tools-preview"
       ];
     };
     targets = mkOption {
@@ -38,8 +39,11 @@ mkModule {
         "x86_64-unknown-linux-musl"
         "aarch64-unknown-linux-musl"
         "aarch64-unknown-linux-gnu"
-        "x86_64-unknown-uefi"
         "wasm32-unknown-unknown"
+
+        # no_std
+        "x86_64-unknown-none"
+        "x86_64-unknown-uefi"
 
         # Android
         "aarch64-linux-android"

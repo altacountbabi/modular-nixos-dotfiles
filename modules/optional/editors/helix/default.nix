@@ -52,7 +52,15 @@ mkModule {
           {
             name = "rust";
             auto-format = true;
-            formatter.command = "rustfmt";
+            formatter = {
+              command = "dx";
+              args = [
+                "fmt"
+                "--all-code"
+                "-f"
+                "-"
+              ];
+            };
             language-servers = [ "rust-analyzer" ];
           }
           {
@@ -132,6 +140,7 @@ mkModule {
         };
       };
       settings = {
+        theme = lib.mkForce "catppuccin_mocha";
         editor = {
           cursor-shape = {
             insert = "bar";
@@ -203,6 +212,9 @@ mkModule {
             A-w = ":sh ${rofiProjectsPickerScript} add $PWD && echo \"Saved \"$PWD\" to recent projects\"";
 
             A-space = "completion";
+
+            A-l = ":pipe awk '{ print length, $0 }' | sort -n -r | cut -d' ' -f2-";
+            A-S-l = ":pipe awk '{ print length, $0 }' | sort -n | cut -d' ' -f2-";
           };
           insert = {
             C-s = ":w";
@@ -221,6 +233,9 @@ mkModule {
 
             tab = "goto_next_buffer";
             A-tab = "goto_previous_buffer";
+
+            A-l = ":pipe awk '{ print length, $0 }' | sort -n -r | cut -d' ' -f2-";
+            A-S-l = ":pipe awk '{ print length, $0 }' | sort -n | cut -d' ' -f2-";
           };
         };
       };
