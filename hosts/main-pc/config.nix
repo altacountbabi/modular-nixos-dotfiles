@@ -39,6 +39,8 @@
       docker.enable = true;
     };
 
+    programming-language.android.enable = true;
+
     editor.helix.package = import ../../pkgs/helix { inherit pkgs; };
 
     home-manager.packages =

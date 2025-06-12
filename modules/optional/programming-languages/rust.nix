@@ -12,7 +12,7 @@ let
     ;
 in
 mkModule {
-  name = "programming-language.rust";
+  name = "Rust dev environment";
   path = "programming-language.rust";
   opts = with types; {
     channel = mkOption {

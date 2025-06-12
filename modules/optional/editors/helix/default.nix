@@ -41,7 +41,7 @@ mkModule {
             name = "nix";
             auto-format = true;
             formatter.command = "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
-            language-servers = [ "${pkgs.nixd}/bin/nixd" ];
+            language-servers = [ "nixd" ];
           }
           {
             name = "rust";

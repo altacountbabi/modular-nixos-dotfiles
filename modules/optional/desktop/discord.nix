@@ -33,8 +33,8 @@ mkModule {
           )
           + builtins.readFile (
             builtins.fetchurl {
-              url = "https://gist.githubusercontent.com/altacountbabi/fbb93e52946c2571b678119e0f4f8b69/raw/925f8fd742dea0200bef47278ab7e0644111d11e/style.css";
-              sha256 = "6c319025765eaa30283b945daa1c072bf5277b72197340af0b85d77ab82cb583";
+              url = "https://gist.githubusercontent.com/altacountbabi/fbb93e52946c2571b678119e0f4f8b69/raw/ae0cc838014f1449e9444e2af17b64171759db58/style.css";
+              sha256 = "1db3850d92b2ce32d9a63b173ce3bcd5c10ecdd645eab25a7fd8e1182551baa0";
             }
           );
 
