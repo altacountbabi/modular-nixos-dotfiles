@@ -102,6 +102,33 @@ def mkcd [name] {
 	mkdir $name; cd $name
 }
 
+def sizes [] {
+  ls
+    # Filter files that never make it into the final image
+    | where not (($it.name | str contains ".d") or ($it.name | str contains ".rlib") or ($it.name | str contains ".so"))
+    # Filter only for files
+    | where type == "file"
+    # Filter out this file as it's only ran on the host
+    | where name != "os-workspace"
+    | each {|x| {
+      name: $x.name,
+      size: $x.size,
+      linking: (
+        ldd $x.name
+          | lines
+          # Trim each line
+          | each {|line| $line | str trim}
+          # Filter out "linux-vdso" and "ld-linux"
+          | filter {|line| not (($line | str contains "linux-vdso") or ($line | str contains "ld-linux"))}
+          # Remove hex after the path and remove the nix store path component
+          | each { |line| $line | str replace -r ' \(0x[0-9a-f]+\)$' '' | str replace -r '\/nix\/store\/[a-z0-9]{32}-[^\/]+' '' }
+          # Join lines
+          | str join "\n"
+      )
+    } }
+    | sort-by size
+}
+
 # Alias to helix
 def v [...args] {
     if ($args | is-empty) {

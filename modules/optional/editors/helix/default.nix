@@ -30,35 +30,27 @@ mkModule {
       enable = true;
       package = if cfg.latest then inputs.helix.packages.${system}.default else cfg.package;
       extraPackages = with pkgs; [
-        # Nix
-        nixd
-        nixfmt-rfc-style
+        vscode-langservers-extracted
+        superhtml
 
-        # Nushell
-        nufmt
-        nuls
-
-        # TOML
-        taplo
+        typescript-language-server
       ];
       languages = {
         language = [
           {
             name = "nix";
             auto-format = true;
-            formatter.command = "nixfmt";
-            language-servers = [ "nixd" ];
+            formatter.command = "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
+            language-servers = [ "${pkgs.nixd}/bin/nixd" ];
           }
           {
             name = "rust";
             auto-format = true;
             formatter = {
-              command = "dx";
+              command = "rustfmt";
               args = [
-                "fmt"
-                "--all-code"
-                "-f"
-                "-"
+                "--edition"
+                "2018"
               ];
             };
             language-servers = [ "rust-analyzer" ];
@@ -67,7 +59,7 @@ mkModule {
             name = "toml";
             auto-format = true;
             formatter = {
-              command = "taplo";
+              command = "${pkgs.taplo}/bin/taplo";
               args = [
                 "format"
                 "-"
@@ -78,7 +70,27 @@ mkModule {
             name = "nu";
             auto-format = true;
             language-servers = [ "nuls" ];
-            formatter.command = "nufmt --stdin";
+            formatter.command = "${pkgs.nufmt}/bin/nufmt --stdin";
+          }
+          {
+            name = "html";
+            auto-format = true;
+            language-servers = [
+              {
+                name = "superhtml";
+                except-features = [ "format" ];
+              }
+              "vscode-html-language-server"
+            ];
+          }
+          {
+            name = "javascript";
+            auto-format = true;
+            language-servers = [ "typescript-language-server" ];
+            formatter = {
+              command = "${pkgs.prettierd}/bin/prettierd";
+              args = [ ".js" ];
+            };
           }
           {
             name = "tl";
@@ -103,7 +115,7 @@ mkModule {
         ];
         language-server = {
           nixd = {
-            command = "nixd";
+            command = "${pkgs.nixd}/bin/nixd";
             args = [ "--inlay-hints=true" ];
             config.nixd =
               let
@@ -136,7 +148,7 @@ mkModule {
             };
             cachePriming.enable = false;
           };
-          nuls.command = "nuls";
+          nuls.command = "${nuls}/bin/nuls";
         };
       };
       settings = {

@@ -19,6 +19,10 @@
 
   virtualisation.waydroid.enable = true;
 
+  services.printing = {
+    enable = true;
+  };
+
   modules = {
     graphics.gpuType = "amd";
     network = {
