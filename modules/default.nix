@@ -159,6 +159,7 @@ in
       "@users"
     ];
     warn-dirty = false;
+    lazy-trees = true;
   };
 
   nixpkgs = {

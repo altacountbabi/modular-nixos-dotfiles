@@ -6,6 +6,7 @@
       self,
       nixpkgs,
       lix-module,
+      determinate,
       flake-utils,
       ...
     }@inputs:
@@ -28,7 +29,8 @@
               };
 
               modules = [
-                lix-module.nixosModules.default
+                # lix-module.nixosModules.default
+                determinate.nixosModules.default
 
                 ./hosts/${host.host}/config.nix
                 ./modules
@@ -89,6 +91,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
     lix-module = {
       url = "https://git.lix.systems/lix-project/nixos-module/archive/2.92.0-2.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
