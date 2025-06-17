@@ -70,7 +70,6 @@ mkModule {
         # }))
         xwayland-satellite
         xdg-desktop-portal-gnome
-        swww
         playerctl
       ];
 
@@ -85,8 +84,12 @@ mkModule {
             (lists: map (cmd: if builtins.isList cmd then { command = cmd; } else { command = [ cmd ]; }) lists)
               (
                 [
+                  [
+                    "${pkgs.swaybg}/bin/swaybg"
+                    "-i"
+                    "/home/real/Pictures/wallpapers/purple_abstract.png"
+                  ]
                   "${pkgs.xwayland-satellite}/bin/xwayland-satellite"
-                  "swww-daemon"
                   "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
                   "${pkgs.gnome-keyring}/bin/gnome-keyring-daemon"
                 ]
