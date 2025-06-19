@@ -35,7 +35,7 @@
     services = {
       tailscale.enable = true;
       syncthing.enable = true;
-      openrazer.enable = true;
+      openrazer.enable = false;
       docker.enable = true;
     };
 

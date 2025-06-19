@@ -28,5 +28,10 @@ mkModule {
         driversi686Linux.amdvlk
       ];
     };
+
+    boot.kernelParams = [
+      # Fixes random kernel panics
+      "amdgpu.gfxoff=0"
+    ];
   };
 }

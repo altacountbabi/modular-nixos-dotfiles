@@ -5,7 +5,6 @@
     {
       self,
       nixpkgs,
-      lix-module,
       determinate,
       flake-utils,
       ...

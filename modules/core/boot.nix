@@ -1,4 +1,9 @@
-{ mkModule, lib, ... }:
+{
+  mkModule,
+  pkgs,
+  lib,
+  ...
+}:
 
 let
   inherit (lib) mkOption mkEnableOption types;
@@ -20,6 +25,8 @@ mkModule {
         efi.canTouchEfiVariables = true;
         timeout = cfg.bootloader.timeout;
       };
+
+      kernelPackages = pkgs.linuxPackages_latest;
 
       plymouth.enable = cfg.plymouth;
 
